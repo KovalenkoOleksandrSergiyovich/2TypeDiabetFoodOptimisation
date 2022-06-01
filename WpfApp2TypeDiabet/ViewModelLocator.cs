@@ -9,17 +9,17 @@ namespace WpfApp2TypeDiabet
 {
     public class ViewModelLocator
     {
-        public MainPageViewModel _mainViewModel => DependencyInjection.Resolve<MainPageViewModel>();
-        public PromptToLoginPageViewModel _promptToLoginViewModel => DependencyInjection.Resolve<PromptToLoginPageViewModel>();
-        public LoginPageViewModel _loginPageViewModel => DependencyInjection.Resolve<LoginPageViewModel>();
-        public GuestMainPageViewModel _guestMainPageViewModel => DependencyInjection.Resolve<GuestMainPageViewModel>();
-        public RegistrationPageViewModel _registrationPageViewModel => DependencyInjection.Resolve<RegistrationPageViewModel>();
-        public UserMainPageViewModel _userMainPageViewModel => DependencyInjection.Resolve<UserMainPageViewModel>();
-        public GoodsViewPageViewModel _goodsViewPageViewModel => DependencyInjection.Resolve<GoodsViewPageViewModel>();
-        public GoodPageViewModel _goodPageViewModel => DependencyInjection.Resolve<GoodPageViewModel>();
-        public CalculateDataInputPageViewModel _calculateDataInputPageViewModel => DependencyInjection.Resolve<CalculateDataInputPageViewModel>();
-        public GoodsBasketPageViewModel _goodsBacketPageViewModel => DependencyInjection.Resolve<GoodsBasketPageViewModel>();
         public BasketListPageViewModel _backetListPageViewModel => DependencyInjection.Resolve<BasketListPageViewModel>();
+        public CalculateDataInputPageViewModel _calculateDataInputPageViewModel => DependencyInjection.Resolve<CalculateDataInputPageViewModel>();
+        public GoodPageViewModel _goodPageViewModel => DependencyInjection.Resolve<GoodPageViewModel>();
+        public GoodsBasketPageViewModel _goodsBacketPageViewModel => DependencyInjection.Resolve<GoodsBasketPageViewModel>();
+        public GoodsViewPageViewModel _goodsViewPageViewModel => DependencyInjection.Resolve<GoodsViewPageViewModel>();
+        public GuestMainPageViewModel _guestMainPageViewModel => DependencyInjection.Resolve<GuestMainPageViewModel>();
+        public LoginPageViewModel _loginPageViewModel => DependencyInjection.Resolve<LoginPageViewModel>();
+        public MainPageViewModel _mainViewModel => DependencyInjection.Resolve<MainPageViewModel>();
+        public PromptToLoginPageViewModel _promptToLoginViewModel => DependencyInjection.Resolve<PromptToLoginPageViewModel>();       
+        public RegistrationPageViewModel _registrationPageViewModel => DependencyInjection.Resolve<RegistrationPageViewModel>();
         public RestrictionsPageViewModel _restrictionsPageViewModel => DependencyInjection.Resolve<RestrictionsPageViewModel>();
+        public UserMainPageViewModel _userMainPageViewModel => DependencyInjection.Resolve<UserMainPageViewModel>();  
     }
 }

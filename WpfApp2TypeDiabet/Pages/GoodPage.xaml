@@ -7,11 +7,11 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:validationrules="clr-namespace:WpfApp2TypeDiabet.ValidationRules"
     Title="GoodPage"
-    Width="270"
+    Width="300"
     Height="510"
     DataContext="{Binding Source={StaticResource VMLocator}, Path=_goodPageViewModel}"
     mc:Ignorable="d">
-    <Grid>
+    <Grid Margin="5 0 5 0">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -192,7 +192,7 @@
                                     <Condition Binding="{Binding Path=(Validation.HasError), ElementName=GoodPriceTextBox}" Value="False" />
                                     <Condition Binding="{Binding Path=(Validation.HasError), ElementName=GoodAmountTextBox}" Value="False" />
                                     <Condition Binding="{Binding Path=(Validation.HasError), ElementName=GoodUnitsComboBox}" Value="False" />
-                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=GoodCarbohydrates}" Value="False" />
+                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=GoodCarbohydratesTextBox}" Value="False" />
                                 </MultiDataTrigger.Conditions>
                                 <Setter Property="IsEnabled" Value="True" />
                             </MultiDataTrigger>
@@ -203,7 +203,7 @@
             <Button
                 Margin="5,0,0,0"
                 Command="{Binding CancelGoodAddOrEditCommand}"
-                Content="Відміна" />
+                Content="Скасувати" />
         </StackPanel>
     </Grid>
 </Page>

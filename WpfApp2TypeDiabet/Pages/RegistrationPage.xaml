@@ -165,9 +165,7 @@
                 Grid.Row="1"
                 Margin="0,5,0,0"
                 SelectedIndex="0"
-                SelectedValue="{Binding Gender,
-                                UpdateSourceTrigger=PropertyChanged,
-                                ValidatesOnDataErrors=true}"
+                SelectedValue="{Binding Gender, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true}"
                 Style="{StaticResource GeneralComboBoxErrorStyle}">
                 <ComboBoxItem>Чоловіча</ComboBoxItem>
                 <ComboBoxItem>Жіноча</ComboBoxItem>
@@ -199,20 +197,20 @@
             Margin="0,25,0,0"
             HorizontalAlignment="Center"
             Orientation="Horizontal">
-            <Button Command="{Binding RegisterUserCommand}" Content="Підтвердити" >
+            <Button Command="{Binding RegisterUserCommand}" Content="Підтвердити">
                 <Button.Style>
                     <Style TargetType="Button">
-                        <Setter Property="IsEnabled" Value="False"/>
+                        <Setter Property="IsEnabled" Value="False" />
                         <Style.Triggers>
                             <MultiDataTrigger>
                                 <MultiDataTrigger.Conditions>
-                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=UserNameTextBox}" Value="False"/>
-                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=UserPasswordBox}" Value="False"/>
-                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=UserAgeTextBox}" Value="False"/>
-                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=UserHeightTextBox}" Value="False"/>
-                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=UserWeightTextBox}" Value="False"/>
+                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=UserNameTextBox}" Value="False" />
+                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=UserPasswordBox}" Value="False" />
+                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=UserAgeTextBox}" Value="False" />
+                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=UserHeightTextBox}" Value="False" />
+                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=UserWeightTextBox}" Value="False" />
                                 </MultiDataTrigger.Conditions>
-                                <Setter Property="IsEnabled" Value="True"/>
+                                <Setter Property="IsEnabled" Value="True" />
                             </MultiDataTrigger>
                         </Style.Triggers>
                     </Style>
@@ -221,7 +219,7 @@
             <Button
                 Margin="5,0,0,0"
                 Command="{Binding CancelRegistrationCommand}"
-                Content="Відміна" />
+                Content="Скасувати" />
         </StackPanel>
     </Grid>
 </Page>

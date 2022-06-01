@@ -7,9 +7,10 @@
     xmlns:local="clr-namespace:WpfApp2TypeDiabet.Pages"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="LoginPage"
+    Height="244"
     d:DesignWidth="400"
     DataContext="{Binding Source={StaticResource VMLocator}, Path=_loginPageViewModel}"
-    mc:Ignorable="d" Height="244">
+    mc:Ignorable="d">
     <Grid
         Width="Auto"
         Height="Auto"
@@ -42,8 +43,8 @@
             <TextBox
                 Grid.Row="1"
                 MinWidth="100"
-                Text="{Binding Login, UpdateSourceTrigger=PropertyChanged}"
-                Margin="0,5,0,0"/>
+                Margin="0,5,0,0"
+                Text="{Binding Login, UpdateSourceTrigger=PropertyChanged}" />
         </Grid>
         <Grid Grid.Row="2">
             <Grid.RowDefinitions>
@@ -92,7 +93,7 @@
             <Button
                 Margin="5,0,0,0"
                 Command="{Binding GoToPromptPageCommand}"
-                Content="Відміна" />
+                Content="Скасувати" />
         </StackPanel>
     </Grid>
 </Page>
