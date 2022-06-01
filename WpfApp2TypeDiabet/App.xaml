@@ -49,20 +49,30 @@
         <Style TargetType="PasswordBox">
             <Setter Property="Padding" Value="2" />
         </Style>
-        <Style 
+        <Style
             x:Key="GeneralTextBoxErrorStyle"
             BasedOn="{StaticResource {x:Type TextBox}}"
             TargetType="{x:Type TextBox}">
             <Style.Triggers>
-                    <Trigger Property="Validation.HasError" Value="True">
-                        <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}" />
-                    </Trigger>
-                </Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="True">
+                    <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}" />
+                </Trigger>
+            </Style.Triggers>
         </Style>
-        <Style 
+        <Style
             x:Key="GeneralPasswordBoxErrorStyle"
             BasedOn="{StaticResource {x:Type UserControl}}"
             TargetType="{x:Type UserControl}">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="True">
+                    <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style
+            x:Key="GeneralComboBoxErrorStyle"
+            BasedOn="{StaticResource {x:Type ComboBox}}"
+            TargetType="{x:Type ComboBox}">
             <Style.Triggers>
                 <Trigger Property="Validation.HasError" Value="True">
                     <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}" />

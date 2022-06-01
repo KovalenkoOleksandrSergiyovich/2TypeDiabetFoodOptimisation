@@ -24,10 +24,5 @@ namespace WpfApp2TypeDiabet.Pages
         {
             InitializeComponent();
         }
-
-        private void OnPasswordChanged(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

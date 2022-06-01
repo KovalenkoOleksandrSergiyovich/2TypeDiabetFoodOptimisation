@@ -24,5 +24,10 @@ namespace WpfApp2TypeDiabet.Pages
         {
             InitializeComponent();
         }
+        public GoodPage(string header)
+        {
+            InitializeComponent();
+            TitleTextBlock.Text = header;
+        }
     }
 }

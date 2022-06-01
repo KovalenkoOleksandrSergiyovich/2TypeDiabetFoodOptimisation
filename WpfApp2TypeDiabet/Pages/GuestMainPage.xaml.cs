@@ -24,5 +24,17 @@ namespace WpfApp2TypeDiabet.Pages
         {
             InitializeComponent();
         }
+
+        private void ExitMenuClick(object sender, RoutedEventArgs e)
+        {
+
+            MessageBoxResult result = MessageBox.Show("Ви впевнені, що хочете завершити роботу програми?",
+                "Закриття додатку", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.Yes)
+            {
+                Application.Current.Shutdown();
+            }
+
+        }
     }
 }
