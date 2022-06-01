@@ -1,0 +1,224 @@
+﻿<Page
+    x:Class="WpfApp2TypeDiabet.Pages.RegistrationPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:components="clr-namespace:WpfApp2TypeDiabet.Components"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:WpfApp2TypeDiabet.Pages"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:validationrules="clr-namespace:WpfApp2TypeDiabet.ValidationRules"
+    Title="RegistrationPage"
+    Height="518"
+    d:DesignWidth="800"
+    DataContext="{Binding Source={StaticResource VMLocator}, Path=_registrationPageViewModel}"
+    mc:Ignorable="d">
+
+    <Grid
+        MaxWidth="600"
+        MaxHeight="600"
+        Margin="10,10"
+        Grid.IsSharedSizeScope="True">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <TextBlock
+            Grid.Row="0"
+            HorizontalAlignment="center"
+            FontSize="24"
+            Text="Реєстрація нового користувача" />
+        <Grid Grid.Row="1" Margin="0,25,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" SharedSizeGroup="InputFields" />
+            </Grid.RowDefinitions>
+            <TextBlock
+                Grid.Row="0"
+                FontSize="14"
+                Text="Ім'я користувача" />
+            <TextBox
+                x:Name="UserNameTextBox"
+                Grid.Row="1"
+                Height="22"
+                Margin="0,5,0,0"
+                VerticalAlignment="Top"
+                Style="{StaticResource GeneralTextBoxErrorStyle}">
+                <TextBox.Text>
+                    <Binding Path="UserName" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <validationrules:UserNameValidationRule />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+        </Grid>
+
+        <Grid Grid.Row="2" Margin="0,10,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" SharedSizeGroup="InputFields" />
+            </Grid.RowDefinitions>
+            <TextBlock
+                Grid.Row="0"
+                FontSize="14"
+                Text="Пароль" />
+            <components:BindablePasswordBox
+                x:Name="UserPasswordBox"
+                Grid.Row="1"
+                Margin="0,5,0,0"
+                Style="{StaticResource GeneralPasswordBoxErrorStyle}">
+                <components:BindablePasswordBox.Password>
+                    <Binding Path="Password" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <validationrules:PasswordValidationRule />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </components:BindablePasswordBox.Password>
+            </components:BindablePasswordBox>
+        </Grid>
+        <Grid Grid.Row="3" Margin="0,10,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" SharedSizeGroup="InputFields" />
+            </Grid.RowDefinitions>
+            <TextBlock
+                Grid.Row="0"
+                FontSize="14"
+                Text="Вік, роки" />
+            <TextBox
+                x:Name="UserAgeTextBox"
+                Grid.Row="1"
+                Margin="0,5,0,0"
+                Style="{StaticResource GeneralTextBoxErrorStyle}">
+                <TextBox.Text>
+                    <Binding Path="Age" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <validationrules:AgeValidationRule />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+        </Grid>
+        <Grid Grid.Row="4" Margin="0,10,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" SharedSizeGroup="InputFields" />
+            </Grid.RowDefinitions>
+            <TextBlock
+                Grid.Row="0"
+                FontSize="14"
+                Text="Зріст, метри" />
+            <TextBox
+                x:Name="UserHeightTextBox"
+                Grid.Row="1"
+                Margin="0,5,0,0"
+                Style="{StaticResource GeneralTextBoxErrorStyle}">
+                <TextBox.Text>
+                    <Binding Path="Height" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <validationrules:HeightValidationRule />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+        </Grid>
+        <Grid Grid.Row="5" Margin="0,10,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" SharedSizeGroup="InputFields" />
+            </Grid.RowDefinitions>
+            <TextBlock
+                Grid.Row="0"
+                FontSize="14"
+                Text="Вага, кг" />
+            <TextBox
+                x:Name="UserWeightTextBox"
+                Grid.Row="1"
+                Margin="0,5,0,0"
+                Style="{StaticResource GeneralTextBoxErrorStyle}">
+                <TextBox.Text>
+                    <Binding Path="Weight" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <validationrules:WeightValidationRule />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+        </Grid>
+        <Grid Grid.Row="6" Margin="0,10,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" SharedSizeGroup="InputFields" />
+            </Grid.RowDefinitions>
+            <TextBlock
+                Grid.Row="0"
+                FontSize="14"
+                Text="Стать" />
+            <ComboBox
+                Grid.Row="1"
+                Margin="0,5,0,0"
+                SelectedIndex="0"
+                SelectedItem="{Binding Gender, UpdateSourceTrigger=PropertyChanged}">
+                <ComboBoxItem>Чоловіча</ComboBoxItem>
+                <ComboBoxItem>Жіноча</ComboBoxItem>
+            </ComboBox>
+        </Grid>
+        <TextBlock
+            Grid.Row="7"
+            Margin="0,10"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            FontSize="12"
+            Foreground="Blue"
+            Text="Якщо у вас вже є обліковий запис - будь ласка, авторизуйтеся.">
+            <TextBlock.InputBindings>
+                <MouseBinding Command="{Binding GoToLoginPageCommand}" MouseAction="LeftClick" />
+            </TextBlock.InputBindings>
+            <TextBlock.Style>
+                <Style TargetType="TextBlock">
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="TextDecorations" Value="Underline" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+        <StackPanel
+            Grid.Row="8"
+            Margin="0,25,0,0"
+            HorizontalAlignment="Center"
+            Orientation="Horizontal">
+            <Button Command="{Binding RegisterUserCommand}" Content="Підтвердити" >
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="IsEnabled" Value="False"/>
+                        <Style.Triggers>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=UserNameTextBox}" Value="False"/>
+                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=UserPasswordBox}" Value="False"/>
+                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=UserAgeTextBox}" Value="False"/>
+                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=UserHeightTextBox}" Value="False"/>
+                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=UserWeightTextBox}" Value="False"/>
+                                </MultiDataTrigger.Conditions>
+                                <Setter Property="IsEnabled" Value="True"/>
+                            </MultiDataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <Button
+                Margin="5,0,0,0"
+                Command="{Binding CancelRegistrationCommand}"
+                Content="Відміна" />
+        </StackPanel>
+    </Grid>
+</Page>
