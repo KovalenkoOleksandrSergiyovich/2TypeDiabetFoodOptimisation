@@ -9,7 +9,8 @@
     Width="800"
     Height="450"
     DataContext="{Binding Source={StaticResource VMLocator}, Path=_mainViewModel}"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    SizeToContent="WidthAndHeight">
     <Grid>
         <Frame Content="{Binding CurrentPage}" NavigationUIVisibility="Hidden" />
     </Grid>

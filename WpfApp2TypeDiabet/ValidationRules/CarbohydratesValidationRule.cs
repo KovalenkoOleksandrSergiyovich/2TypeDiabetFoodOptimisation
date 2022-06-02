@@ -9,7 +9,7 @@ using System.Windows.Controls;
 
 namespace WpfApp2TypeDiabet.ValidationRules
 {
-    public class AmountValidationRule : ValidationRule
+    public class CarbohydratesValidationRule : ValidationRule
     {
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
@@ -44,29 +44,12 @@ namespace WpfApp2TypeDiabet.ValidationRules
                 }
                 else
                 {
-                    if (!(double.Parse(input, CultureInfo.InvariantCulture) > 0))
-                    {
-                        ErrorMessage = "Кількість товару не може дорівнювати нулю";
-                        return new ValidationResult(false, ErrorMessage);
-                    }
-                    else
-                    {
-                        return new ValidationResult(true, null);
-                    }
+                    return new ValidationResult(true, null);
                 }
             }
             else
             {
-                if (!(int.Parse(input, CultureInfo.InvariantCulture) > 0))
-                {
-                    ErrorMessage = "Ціна товару не може дорівнювати нулю";
-                    return new ValidationResult(false, ErrorMessage);
-                }
-                else
-                {
-                    return new ValidationResult(true, null);
-                }
-
+                return new ValidationResult(true, null);
             }
         }
     }

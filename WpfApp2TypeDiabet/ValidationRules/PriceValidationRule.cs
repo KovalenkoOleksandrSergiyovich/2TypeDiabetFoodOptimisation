@@ -16,7 +16,8 @@ namespace WpfApp2TypeDiabet.ValidationRules
             string input = value as string;
             string ErrorMessage;
             var hasNumber = new Regex(@"[0-9]+");
-            var hasCommaOrPeriod = new Regex(@"[,.]{1}");
+            var hasPeriod = new Regex(@"[.]{1}");
+            var hasComma = new Regex(@"[,]{1}");
             var hasTwoDecimals = new Regex(@"[0-9]{2}");
 
             if (string.IsNullOrEmpty(input) || string.IsNullOrWhiteSpace(input))
@@ -29,7 +30,12 @@ namespace WpfApp2TypeDiabet.ValidationRules
                 ErrorMessage = "Вартість товару має бути числовим значенням";
                 return new ValidationResult(false, ErrorMessage);
             }
-            else if (hasCommaOrPeriod.IsMatch(input))
+            else if(hasComma.IsMatch(input))
+            {
+                ErrorMessage = "Розділовим знаком повинна бути крапка";
+                return new ValidationResult(false, ErrorMessage);
+            }
+            else if (hasPeriod.IsMatch(input))
             {
                 if (!hasTwoDecimals.IsMatch(input))
                 {
@@ -38,12 +44,29 @@ namespace WpfApp2TypeDiabet.ValidationRules
                 }
                 else
                 {
-                    return new ValidationResult(true, null);
+                    if (!(double.Parse(input, CultureInfo.InvariantCulture) > 0))
+                    {
+                        ErrorMessage = "Ціна товару не може дорівнювати нулю";
+                        return new ValidationResult(false, ErrorMessage); 
+                    }
+                    else
+                    {
+                        return new ValidationResult(true, null);
+                    }
                 }
             }
             else
             {
-                return new ValidationResult(true, null);
+                if(!(int.Parse(input, CultureInfo.InvariantCulture) > 0))
+                {
+                    ErrorMessage = "Ціна товару не може дорівнювати нулю";
+                    return new ValidationResult(false, ErrorMessage);
+                }
+                else
+                {
+                    return new ValidationResult(true, null);
+                }
+                
             }
         }
     }

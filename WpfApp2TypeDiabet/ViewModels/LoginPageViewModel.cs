@@ -22,19 +22,45 @@ namespace WpfApp2TypeDiabet.ViewModels
         }
         public ICommand GoToRegistrationPageCommand => new DelegateCommand(() =>
         {
-            _navigation.Navigate(new RegistrationPage());
-            ClearFields();
+            if (!string.IsNullOrEmpty(Login) || !string.IsNullOrEmpty(Password))
+            {
+                MessageBoxResult result = MessageBox.Show("Ви впевнені, що хочете скасувати авторизацію?",
+                "Скасування авторизації", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (result == MessageBoxResult.Yes)
+                {
+                    ClearFields();
+                    _navigation.Navigate(new RegistrationPage());
+                }
+            }
+            else
+            {
+                ClearFields();
+                _navigation.Navigate(new RegistrationPage());
+            }
         });
         public ICommand GoToPromptPageCommand => new DelegateCommand(() =>
         {
-            _navigation.Navigate(new PromptToLogin());
-            ClearFields();
+            if (!string.IsNullOrEmpty(Login) || !string.IsNullOrEmpty(Password))
+            {
+                MessageBoxResult result = MessageBox.Show("Ви впевнені, що хочете скасувати авторизацію?",
+                "Скасування авторизації", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (result == MessageBoxResult.Yes)
+                {
+                    ClearFields();
+                    _navigation.Navigate(new PromptToLogin());
+                }
+            }
+            else
+            {
+                ClearFields();
+                _navigation.Navigate(new PromptToLogin());
+            }
         });
         public ICommand LoginCommand => new DelegateCommand(() =>
         {
             if(Login=="admin" && Password=="admin")
             {
-                //_navigation.Navigate(new UserMainPage());
+                _navigation.Navigate(new UserMainPage());
                 ClearFields();
             }
             else

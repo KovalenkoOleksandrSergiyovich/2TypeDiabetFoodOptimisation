@@ -47,7 +47,7 @@
                 <TextBox.Text>
                     <Binding Path="GoodName" UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>
-                            <validationrules:UserNameValidationRule />
+                            <validationrules:GoodNameValidationRule />
                         </Binding.ValidationRules>
                     </Binding>
                 </TextBox.Text>
@@ -105,7 +105,7 @@
                 <TextBox.Text>
                     <Binding Path="GoodPrice" UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>
-                            <validationrules:HeightValidationRule />
+                            <validationrules:PriceValidationRule />
                         </Binding.ValidationRules>
                     </Binding>
                 </TextBox.Text>
@@ -128,7 +128,7 @@
                 <TextBox.Text>
                     <Binding Path="GoodAmount" UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>
-                            <validationrules:WeightValidationRule />
+                            <validationrules:AmountValidationRule />
                         </Binding.ValidationRules>
                     </Binding>
                 </TextBox.Text>
@@ -168,7 +168,7 @@
                 <TextBox.Text>
                     <Binding Path="GoodCarbohydrates" UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>
-                            <validationrules:WeightValidationRule />
+                            <validationrules:CarbohydratesValidationRule />
                         </Binding.ValidationRules>
                     </Binding>
                 </TextBox.Text>

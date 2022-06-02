@@ -7,13 +7,13 @@
     xmlns:local="clr-namespace:WpfApp2TypeDiabet.Pages"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="LoginPage"
-    Height="244"
-    d:DesignWidth="400"
     DataContext="{Binding Source={StaticResource VMLocator}, Path=_loginPageViewModel}"
     mc:Ignorable="d">
     <Grid
         Width="Auto"
         Height="Auto"
+        MinWidth="400"
+        MinHeight="250"
         Margin="10,10,0,0"
         Grid.IsSharedSizeScope="True">
         <Grid.RowDefinitions>

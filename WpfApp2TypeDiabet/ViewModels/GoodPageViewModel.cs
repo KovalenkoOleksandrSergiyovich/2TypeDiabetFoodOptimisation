@@ -70,7 +70,13 @@ namespace WpfApp2TypeDiabet.ViewModels
                 ClearFields();
             }
             
-        });
+        },() => !string.IsNullOrWhiteSpace(GoodName) &&
+        !string.IsNullOrWhiteSpace(GoodCategory) &&
+        !string.IsNullOrWhiteSpace(GoodState) &&
+        !string.IsNullOrWhiteSpace(GoodPrice) &&
+        !string.IsNullOrWhiteSpace(GoodAmount) &&
+        !string.IsNullOrWhiteSpace(GoodUnits) &&
+        !string.IsNullOrWhiteSpace(GoodCarbohydrates));
 
         public ICommand CancelGoodAddOrEditCommand => new DelegateCommand(() =>
         {
@@ -79,7 +85,7 @@ namespace WpfApp2TypeDiabet.ViewModels
             !string.IsNullOrEmpty(GoodCarbohydrates))
             {
                 MessageBoxResult result = MessageBox.Show("Ви впевнені, що хочете скасувати внесення змін?",
-                "Скасування змін даних", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                "Скасування внесення змін", MessageBoxButton.YesNo, MessageBoxImage.Question);
                 if (result == MessageBoxResult.Yes)
                 {
                     ClearFields();
