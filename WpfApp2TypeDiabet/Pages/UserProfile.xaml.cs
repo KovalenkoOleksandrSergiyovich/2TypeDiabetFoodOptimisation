@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace WpfApp2TypeDiabet.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для GuestMainPage.xaml
+    /// Логика взаимодействия для UserProfile.xaml
     /// </summary>
-    public partial class GuestMainPage : Page
+    public partial class UserProfile : Page
     {
-        public GuestMainPage()
+        public UserProfile()
         {
             InitializeComponent();
         }

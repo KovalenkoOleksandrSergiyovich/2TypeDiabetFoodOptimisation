@@ -1,0 +1,175 @@
+﻿<Page
+    x:Class="WpfApp2TypeDiabet.Pages.UserProfile"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:WpfApp2TypeDiabet.Pages"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="UserProfile"
+    Width="310"
+    Height="320"
+    MinWidth="250"
+    MinHeight="50"
+    DataContext="{Binding Source={StaticResource VMLocator}, Path=_userProfileViewModel}"
+    mc:Ignorable="d">
+
+    <Grid Margin="5,10,0,0" Grid.IsSharedSizeScope="True">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <StackPanel
+            Grid.Row="0"
+            Grid.ColumnSpan="2"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Orientation="Horizontal">
+            <TextBlock
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                FontSize="24"
+                Text="Ваші дані" />
+        </StackPanel>
+        <Grid
+            Grid.Row="1"
+            Margin="5,10,0,10"
+            HorizontalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" SharedSizeGroup="labels" />
+                <ColumnDefinition Width="Auto" SharedSizeGroup="outputFields" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <TextBlock
+                Grid.Column="0"
+                HorizontalAlignment="Left"
+                FontSize="16"
+                Text="Ім'я користувача" />
+            <TextBlock
+                x:Name="userNameTextBlock"
+                Grid.Column="1"
+                Margin="15,0,0,0"
+                HorizontalAlignment="Center"
+                FontSize="16"
+                Text="Ім'я" />
+        </Grid>
+        <Grid
+            Grid.Row="2"
+            Margin="5,10,0,10"
+            HorizontalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" SharedSizeGroup="labels" />
+                <ColumnDefinition Width="Auto" SharedSizeGroup="outputFields" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <TextBlock
+                Grid.Column="0"
+                HorizontalAlignment="Left"
+                FontSize="16"
+                Text="Вік, роки" />
+            <TextBlock
+                x:Name="userAgeTextBlock"
+                Grid.Column="1"
+                Margin="15,0,0,0"
+                HorizontalAlignment="Center"
+                FontSize="16"
+                Text="Вік" />
+        </Grid>
+        <Grid
+            Grid.Row="3"
+            Margin="5,10,0,10"
+            HorizontalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" SharedSizeGroup="labels" />
+                <ColumnDefinition Width="Auto" SharedSizeGroup="outputFields" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <TextBlock
+                Grid.Column="0"
+                HorizontalAlignment="Left"
+                FontSize="16"
+                Text="Зріст, метри" />
+            <TextBlock
+                x:Name="userHeightTextBlock"
+                Grid.Column="1"
+                Margin="15,0,0,0"
+                HorizontalAlignment="Center"
+                FontSize="16"
+                Text="Зріст" />
+        </Grid>
+        <Grid
+            Grid.Row="4"
+            Margin="5,10,0,10"
+            HorizontalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" SharedSizeGroup="labels" />
+                <ColumnDefinition Width="Auto" SharedSizeGroup="outputFields" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <TextBlock
+                Grid.Column="0"
+                HorizontalAlignment="Left"
+                FontSize="16"
+                Text="Вага, кг" />
+            <TextBlock
+                x:Name="userWeightTextBlock"
+                Grid.Column="1"
+                Margin="15,0,0,0"
+                HorizontalAlignment="Center"
+                FontSize="16"
+                Text="Вага" />
+        </Grid>
+        <Grid
+            Grid.Row="5"
+            Margin="5,10,0,10"
+            HorizontalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" SharedSizeGroup="labels" />
+                <ColumnDefinition Width="Auto" SharedSizeGroup="outputFields" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <TextBlock
+                Grid.Column="0"
+                HorizontalAlignment="Left"
+                FontSize="16"
+                Text="Стать" />
+            <TextBlock
+                x:Name="userGenderTextBlock"
+                Grid.Column="1"
+                Margin="15,0,0,0"
+                HorizontalAlignment="Center"
+                FontSize="16"
+                Text="Стать" />
+        </Grid>
+        <StackPanel
+            Grid.Row="6"
+            Grid.ColumnSpan="2"
+            Margin="0,25,0,0"
+            HorizontalAlignment="Center"
+            Orientation="Horizontal">
+            <Button Command="{Binding EditUserDataCommand}" Content="Редагувати дані" />
+            <Button
+                Margin="5,0,0,0"
+                Command="{Binding GoToUserMainPageCommand}"
+                Content="Повернутися" />
+            <Button
+                Margin="5,0,0,0"
+                Command="{Binding LogoutCommand}"
+                Content="Вийти" />
+        </StackPanel>
+    </Grid>
+</Page>

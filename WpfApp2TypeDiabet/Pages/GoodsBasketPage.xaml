@@ -6,9 +6,125 @@
     xmlns:local="clr-namespace:WpfApp2TypeDiabet.Pages"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="GoodsBasketPage"
-    d:DesignHeight="450"
-    d:DesignWidth="800"
+    MinWidth="800"
+    MinHeight="450"
+    DataContext="{Binding Source={StaticResource VMLocator}, Path=_goodsBacketPageViewModel}"
     mc:Ignorable="d">
 
-    <Grid />
+    <Grid Margin="5,5,5,5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Menu
+            Grid.Row="0"
+            Height="25"
+            VerticalAlignment="Top">
+            <MenuItem Header="Кошик">
+                <MenuItem Command="{Binding SaveBasketCommand}" Header="Зберегти" />
+                <MenuItem Header="Експортувати">
+                    <MenuItem Command="{Binding ExportAsDocCommand}" Header="Документ .doc" />
+                    <MenuItem Command="{Binding ExportAsXlsCommand}" Header="Документ .xls" />
+                    <MenuItem Command="{Binding ExportAsPdfCommand}" Header="Документ .pdf" />
+                </MenuItem>
+                <MenuItem Command="{Binding PrintCommand}" Header="Надрукувати" />
+                <MenuItem Command="{Binding ViewBasketsListCommand}" Header="Список кошиків" />
+            </MenuItem>
+            <MenuItem Header="Навігація">
+                <MenuItem Command="{Binding GoToThePreviousPageCommand}" Header="На попередню" />
+                <MenuItem Command="{Binding GoToTheMainPageCommand}" Header="На головну" />
+            </MenuItem>
+        </Menu>
+        <Grid Grid.Row="1" Margin="0,10,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <TextBlock
+                    Grid.Column="0"
+                    Margin="5,0,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Text="Загальна ціна кошику" />
+                <TextBlock
+                    Grid.Column="1"
+                    Margin="5,0,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Text="Ціна" />
+            </Grid>
+            <Grid Grid.Row="0" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <TextBlock
+                    Grid.Column="0"
+                    Margin="5,0,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Text="Загальна кількість ХО" />
+                <TextBlock
+                    Grid.Column="1"
+                    Margin="5,0,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Text="ХО" />
+            </Grid>
+            <Grid Grid.Row="0" Grid.Column="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <TextBlock
+                    Grid.Column="0"
+                    Margin="5,0,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Text="Часовий проміжок" />
+                <TextBlock
+                    Grid.Column="1"
+                    Margin="5,0,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Text="Період" />
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="2" Margin="0,10,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <TextBlock
+                Grid.Row="0"
+                Margin="0,10,0,10"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                FontSize="16"
+                Text="Рекомендації щодо споживання продуктів" />
+            <ListBox
+                Grid.Row="1"
+                ItemsSource="{Binding}"
+                ScrollViewer.VerticalScrollBarVisibility="Auto" />
+        </Grid>
+    </Grid>
 </Page>

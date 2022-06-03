@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using WpfApp2TypeDiabet.Pages;
 using WpfApp2TypeDiabet.Services;
@@ -29,6 +30,15 @@ namespace WpfApp2TypeDiabet.ViewModels
         public ICommand CalculationDataInputCommand => new DelegateCommand(() =>
         {
             _navigation.Navigate(new CalculateDataInputPage());
+        });
+        public ICommand ExitCommand => new DelegateCommand(() =>
+        {
+            MessageBoxResult result = MessageBox.Show("Ви впевнені, що хочете завершити роботу програми?",
+                "Закриття додатку", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.Yes)
+            {
+                Application.Current.Shutdown();
+            }
         });
     }
 }

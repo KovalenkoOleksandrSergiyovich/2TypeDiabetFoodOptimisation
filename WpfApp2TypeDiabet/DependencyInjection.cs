@@ -32,7 +32,9 @@ namespace WpfApp2TypeDiabet
             services.AddSingleton<RegistrationPageViewModel>();
             services.AddSingleton<RestrictionsPageViewModel>();
             services.AddSingleton<UserMainPageViewModel>();
-
+            services.AddSingleton<UserProfileViewModel>();
+            services.AddSingleton<UserEditUserPageViewModel>();
+            services.AddSingleton<GoodAdminPageViewModel>();
 
             //реєструємо сервіси
             services.AddSingleton<NavigationService>();

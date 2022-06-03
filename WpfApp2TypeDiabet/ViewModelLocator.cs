@@ -20,6 +20,9 @@ namespace WpfApp2TypeDiabet
         public PromptToLoginPageViewModel _promptToLoginViewModel => DependencyInjection.Resolve<PromptToLoginPageViewModel>();       
         public RegistrationPageViewModel _registrationPageViewModel => DependencyInjection.Resolve<RegistrationPageViewModel>();
         public RestrictionsPageViewModel _restrictionsPageViewModel => DependencyInjection.Resolve<RestrictionsPageViewModel>();
-        public UserMainPageViewModel _userMainPageViewModel => DependencyInjection.Resolve<UserMainPageViewModel>();  
+        public UserMainPageViewModel _userMainPageViewModel => DependencyInjection.Resolve<UserMainPageViewModel>();
+        public UserProfileViewModel _userProfileViewModel => DependencyInjection.Resolve<UserProfileViewModel>();
+        public UserEditUserPageViewModel _userEditUserPageViewModel => DependencyInjection.Resolve<UserEditUserPageViewModel>();
+        public GoodAdminPageViewModel _goodAdminPageViewModel => DependencyInjection.Resolve<GoodAdminPageViewModel>();
     }
 }

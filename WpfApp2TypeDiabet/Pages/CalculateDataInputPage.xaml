@@ -5,10 +5,204 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:WpfApp2TypeDiabet.Pages"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:validationrules="clr-namespace:WpfApp2TypeDiabet.ValidationRules"
     Title="CalculateDataInputPage"
-    d:DesignHeight="450"
-    d:DesignWidth="800"
+    Width="426"
+    MinWidth="200"
+    MinHeight="250"
+    DataContext="{Binding Source={StaticResource VMLocator}, Path=_calculateDataInputPageViewModel}"
     mc:Ignorable="d">
 
-    <Grid />
+    <Grid Margin="5,0,0,0" Grid.IsSharedSizeScope="True">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <TextBlock
+            Grid.Row="0"
+            Margin="0,0,15,0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            FontSize="24"
+            Text="Підтвердіть особисту інформацію" />
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition SharedSizeGroup="Labels" />
+                <ColumnDefinition SharedSizeGroup="Inputs" />
+            </Grid.ColumnDefinitions>
+            <TextBlock
+                Grid.Row="0"
+                Grid.Column="0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                FontSize="16"
+                Text="Вік, роки" />
+            <TextBox
+                x:Name="UserAgeTextBox"
+                Grid.Row="0"
+                Grid.Column="1"
+                Width="100"
+                Margin="10,5,0,0"
+                Style="{StaticResource GeneralTextBoxErrorStyle}">
+                <TextBox.Text>
+                    <Binding Path="Age" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <validationrules:AgeValidationRule />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition SharedSizeGroup="Labels" />
+                <ColumnDefinition SharedSizeGroup="Inputs" />
+            </Grid.ColumnDefinitions>
+            <TextBlock
+                Grid.Row="0"
+                Grid.Column="0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                FontSize="16"
+                Text="Зріст, метри" />
+            <TextBox
+                x:Name="UserHeightTextBox"
+                Grid.Row="0"
+                Grid.Column="1"
+                Margin="10,5,0,0"
+                Style="{StaticResource GeneralTextBoxErrorStyle}">
+                <TextBox.Text>
+                    <Binding Path="Height" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <validationrules:HeightValidationRule />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+        </Grid>
+        <Grid Grid.Row="3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition SharedSizeGroup="Labels" />
+                <ColumnDefinition SharedSizeGroup="Inputs" />
+            </Grid.ColumnDefinitions>
+            <TextBlock
+                Grid.Row="0"
+                Grid.Column="0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                FontSize="16"
+                Text="Вага, кг" />
+            <TextBox
+                x:Name="UserWeightTextBox"
+                Grid.Row="0"
+                Grid.Column="1"
+                Margin="10,5,0,0"
+                Style="{StaticResource GeneralTextBoxErrorStyle}">
+                <TextBox.Text>
+                    <Binding Path="Weight" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <validationrules:WeightValidationRule />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+        </Grid>
+        <Grid Grid.Row="4">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition SharedSizeGroup="Labels" />
+                <ColumnDefinition SharedSizeGroup="Inputs" />
+            </Grid.ColumnDefinitions>
+            <TextBlock
+                Grid.Row="0"
+                Grid.Column="0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                FontSize="16"
+                Text="Стать" />
+            <ComboBox
+                x:Name="UserGenderComboBox"
+                Grid.Row="0"
+                Grid.Column="1"
+                Margin="10,5,0,0"
+                SelectedValue="{Binding Gender, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true}"
+                Style="{StaticResource GeneralComboBoxErrorStyle}">
+                <ComboBoxItem>Чоловіча</ComboBoxItem>
+                <ComboBoxItem>Жіноча</ComboBoxItem>
+            </ComboBox>
+        </Grid>
+        <Grid Grid.Row="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition SharedSizeGroup="Labels" />
+                <ColumnDefinition SharedSizeGroup="Inputs" />
+            </Grid.ColumnDefinitions>
+            <TextBlock
+                Grid.Column="0"
+                Width="135"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                FontSize="16"
+                Text="Рівень фізичного навантаження"
+                TextWrapping="Wrap" />
+            <ComboBox
+                x:Name="PhysicalActivityComboBox"
+                Grid.Row="0"
+                Grid.Column="1"
+                Margin="10,5,0,0"
+                SelectedValue="{Binding PhysicalActivity, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true}"
+                Style="{StaticResource GeneralComboBoxErrorStyle}">
+                <ComboBoxItem>Низький</ComboBoxItem>
+                <ComboBoxItem>Середній</ComboBoxItem>
+                <ComboBoxItem>Важкий</ComboBoxItem>
+            </ComboBox>
+        </Grid>
+        <StackPanel
+            Grid.Row="6"
+            Margin="0,25,0,0"
+            HorizontalAlignment="Center"
+            Orientation="Horizontal">
+            <Button Command="{Binding CalculateCommand}" Content="Підтвердити">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="IsEnabled" Value="False" />
+                        <Style.Triggers>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=UserAgeTextBox}" Value="False" />
+                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=UserHeightTextBox}" Value="False" />
+                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=UserWeightTextBox}" Value="False" />
+                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=UserGenderComboBox}" Value="False" />
+                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=PhysicalActivityComboBox}" Value="False" />
+                                </MultiDataTrigger.Conditions>
+                                <Setter Property="IsEnabled" Value="True" />
+                            </MultiDataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <Button
+                Margin="5,0,0,0"
+                Command="{Binding CancelCalculationsCommand}"
+                Content="Скасувати" />
+        </StackPanel>
+    </Grid>
 </Page>
