@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace WpfApp2TypeDiabet.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для RestrictionsPage.xaml
+    /// Логика взаимодействия для CalculationPreparationsPage.xaml
     /// </summary>
-    public partial class RestrictionsPage : Page
+    public partial class CalculationPreparationsPage : Page
     {
-        public RestrictionsPage()
+        public CalculationPreparationsPage()
         {
             InitializeComponent();
         }

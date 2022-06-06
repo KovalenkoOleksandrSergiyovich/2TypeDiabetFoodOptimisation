@@ -25,5 +25,9 @@ namespace WpfApp2TypeDiabet.ViewModels
         {
             _navigation.Navigate(new GuestMainPage());
         });
+        public ICommand GoBackCommand => new DelegateCommand(() =>
+        {
+            _navigation.GoBack();
+        });
     }
 }

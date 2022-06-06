@@ -162,13 +162,13 @@
                 FontSize="14"
                 Text="Стать" />
             <ComboBox
+                x:Name="UserGenderComboBox"
                 Grid.Row="1"
                 Margin="0,5,0,0"
                 SelectedIndex="0"
-                SelectedValue="{Binding Gender, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true}"
-                Style="{StaticResource GeneralComboBoxErrorStyle}">
-                <ComboBoxItem>Чоловіча</ComboBoxItem>
-                <ComboBoxItem>Жіноча</ComboBoxItem>
+                SelectedItem="{Binding Gender, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true}"
+                Style="{StaticResource GeneralComboBoxErrorStyle}"
+                ItemsSource="{Binding Genders}">
             </ComboBox>
         </Grid>
         <TextBlock

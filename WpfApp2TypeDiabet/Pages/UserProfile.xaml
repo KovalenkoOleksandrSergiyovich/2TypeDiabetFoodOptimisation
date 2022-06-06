@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="UserProfile"
     Width="310"
-    Height="320"
+    Height="350"
     MinWidth="250"
     MinHeight="50"
     DataContext="{Binding Source={StaticResource VMLocator}, Path=_userProfileViewModel}"
@@ -22,9 +22,16 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
+        <Menu Grid.Row="0" Height="25">
+            <MenuItem Header="Навігація">
+                <MenuItem Command="{Binding GoBackCommand}" Header="На попередню" />
+                <MenuItem Command="{Binding CancelCalculationsCommand}" Header="На головну" />
+            </MenuItem>
+        </Menu>
         <StackPanel
-            Grid.Row="0"
+            Grid.Row="1"
             Grid.ColumnSpan="2"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
@@ -36,7 +43,7 @@
                 Text="Ваші дані" />
         </StackPanel>
         <Grid
-            Grid.Row="1"
+            Grid.Row="2"
             Margin="5,10,0,10"
             HorizontalAlignment="Stretch">
             <Grid.ColumnDefinitions>
@@ -54,13 +61,14 @@
             <TextBlock
                 x:Name="userNameTextBlock"
                 Grid.Column="1"
+                Width="Auto"
                 Margin="15,0,0,0"
                 HorizontalAlignment="Center"
                 FontSize="16"
-                Text="Ім'я" />
+                Text="{Binding UserName}" />
         </Grid>
         <Grid
-            Grid.Row="2"
+            Grid.Row="3"
             Margin="5,10,0,10"
             HorizontalAlignment="Stretch">
             <Grid.ColumnDefinitions>
@@ -78,13 +86,14 @@
             <TextBlock
                 x:Name="userAgeTextBlock"
                 Grid.Column="1"
+                Width="Auto"
                 Margin="15,0,0,0"
                 HorizontalAlignment="Center"
                 FontSize="16"
-                Text="Вік" />
+                Text="{Binding Age}" />
         </Grid>
         <Grid
-            Grid.Row="3"
+            Grid.Row="4"
             Margin="5,10,0,10"
             HorizontalAlignment="Stretch">
             <Grid.ColumnDefinitions>
@@ -102,13 +111,14 @@
             <TextBlock
                 x:Name="userHeightTextBlock"
                 Grid.Column="1"
+                Width="Auto"
                 Margin="15,0,0,0"
                 HorizontalAlignment="Center"
                 FontSize="16"
-                Text="Зріст" />
+                Text="{Binding Height}" />
         </Grid>
         <Grid
-            Grid.Row="4"
+            Grid.Row="5"
             Margin="5,10,0,10"
             HorizontalAlignment="Stretch">
             <Grid.ColumnDefinitions>
@@ -126,13 +136,14 @@
             <TextBlock
                 x:Name="userWeightTextBlock"
                 Grid.Column="1"
+                Width="Auto"
                 Margin="15,0,0,0"
                 HorizontalAlignment="Center"
                 FontSize="16"
-                Text="Вага" />
+                Text="{Binding Weight}" />
         </Grid>
         <Grid
-            Grid.Row="5"
+            Grid.Row="6"
             Margin="5,10,0,10"
             HorizontalAlignment="Stretch">
             <Grid.ColumnDefinitions>
@@ -150,22 +161,19 @@
             <TextBlock
                 x:Name="userGenderTextBlock"
                 Grid.Column="1"
+                Width="Auto"
                 Margin="15,0,0,0"
                 HorizontalAlignment="Center"
                 FontSize="16"
-                Text="Стать" />
+                Text="{Binding Gender}" />
         </Grid>
         <StackPanel
-            Grid.Row="6"
+            Grid.Row="7"
             Grid.ColumnSpan="2"
             Margin="0,25,0,0"
             HorizontalAlignment="Center"
             Orientation="Horizontal">
             <Button Command="{Binding EditUserDataCommand}" Content="Редагувати дані" />
-            <Button
-                Margin="5,0,0,0"
-                Command="{Binding GoToUserMainPageCommand}"
-                Content="Повернутися" />
             <Button
                 Margin="5,0,0,0"
                 Command="{Binding LogoutCommand}"

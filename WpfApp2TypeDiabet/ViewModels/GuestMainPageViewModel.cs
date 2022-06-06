@@ -25,7 +25,7 @@ namespace WpfApp2TypeDiabet.ViewModels
         });
         public ICommand RestrictionsListCommand => new DelegateCommand(() =>
         {
-            _navigation.Navigate(new RestrictionsPage());
+            _navigation.Navigate(new RestrictionPage());
         });
         public ICommand CalculationDataInputCommand => new DelegateCommand(() =>
         {

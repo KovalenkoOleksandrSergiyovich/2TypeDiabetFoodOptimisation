@@ -97,5 +97,46 @@ namespace WpfApp2TypeDiabet.ViewModels
                 _navigation.Navigate(new GoodsViewPage());
             }
         });
+
+        public ICommand GoBackCommand => new DelegateCommand(() =>
+        {
+            if (!string.IsNullOrEmpty(GoodName) && !string.IsNullOrEmpty(GoodCategory) && !string.IsNullOrEmpty(GoodState) &&
+            !string.IsNullOrEmpty(GoodPrice) && !string.IsNullOrEmpty(GoodAmount) && !string.IsNullOrEmpty(GoodUnits) &&
+            !string.IsNullOrEmpty(GoodCarbohydrates))
+            {
+                MessageBoxResult result = MessageBox.Show("Ви впевнені, що хочете скасувати внесення змін?",
+                "Скасування внесення змін", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (result == MessageBoxResult.Yes)
+                {
+                    ClearFields();
+                    _navigation.GoBack();
+                }
+            }
+            else
+            {
+                ClearFields();
+                _navigation.GoBack();
+            }
+        });
+        public ICommand GoToMainCommand => new DelegateCommand(() =>
+        {
+            if (!string.IsNullOrEmpty(GoodName) && !string.IsNullOrEmpty(GoodCategory) && !string.IsNullOrEmpty(GoodState) &&
+            !string.IsNullOrEmpty(GoodPrice) && !string.IsNullOrEmpty(GoodAmount) && !string.IsNullOrEmpty(GoodUnits) &&
+            !string.IsNullOrEmpty(GoodCarbohydrates))
+            {
+                MessageBoxResult result = MessageBox.Show("Ви впевнені, що хочете скасувати внесення змін?",
+                "Скасування внесення змін", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (result == MessageBoxResult.Yes)
+                {
+                    ClearFields();
+                    _navigation.Navigate(new UserMainPage());
+                }
+            }
+            else
+            {
+                ClearFields();
+                _navigation.Navigate(new UserMainPage());
+            }
+        });
     }
 }

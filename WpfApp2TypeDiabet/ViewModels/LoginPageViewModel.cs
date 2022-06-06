@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using WpfApp2TypeDiabet.Models;
 using WpfApp2TypeDiabet.Pages;
 using WpfApp2TypeDiabet.Services;
 
@@ -14,11 +15,14 @@ namespace WpfApp2TypeDiabet.ViewModels
     public class LoginPageViewModel : BindableBase
     {
         private readonly NavigationService _navigation;
+        private readonly UserService _userService;
+
         public string Login {get; set;}
         public string Password {get; set;}
-        public LoginPageViewModel(NavigationService navigation)
+        public LoginPageViewModel(NavigationService navigation, UserService userSevice)
         {
             _navigation = navigation;
+            _userService = userSevice;
         }
         public ICommand GoToRegistrationPageCommand => new DelegateCommand(() =>
         {
@@ -58,9 +62,11 @@ namespace WpfApp2TypeDiabet.ViewModels
         });
         public ICommand LoginCommand => new DelegateCommand(() =>
         {
-            if(Login=="admin" && Password=="admin")
+            User userToLogin = _userService.AttemptToLogin(Login, Password);
+            if (userToLogin != null)
             {
                 _navigation.Navigate(new UserMainPage());
+                _userService.CurrentUser = userToLogin;
                 ClearFields();
             }
             else

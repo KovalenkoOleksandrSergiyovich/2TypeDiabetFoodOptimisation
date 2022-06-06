@@ -27,13 +27,20 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
+        <Menu Grid.Row="0" Height="25">
+            <MenuItem Header="Навігація">
+                <MenuItem Command="{Binding GoBackCommand}" Header="На попередню" />
+                <MenuItem Command="{Binding GoToMainCommand}" Header="На головну" />
+            </MenuItem>
+        </Menu>
         <TextBlock
-            Grid.Row="0"
+            Grid.Row="1"
             HorizontalAlignment="center"
             FontSize="24"
             Text="Зміна персональних даних" />
-        <Grid Grid.Row="1" Margin="0,25,0,0">
+        <Grid Grid.Row="2" Margin="0,25,0,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" SharedSizeGroup="InputFields" />
@@ -50,7 +57,7 @@
                 VerticalAlignment="Top"
                 Style="{StaticResource GeneralTextBoxErrorStyle}">
                 <TextBox.Text>
-                    <Binding Path="UserName" UpdateSourceTrigger="PropertyChanged">
+                    <Binding Path="UserName" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
                         <Binding.ValidationRules>
                             <validationrules:UserNameValidationRule />
                         </Binding.ValidationRules>
@@ -59,7 +66,7 @@
             </TextBox>
         </Grid>
 
-        <Grid Grid.Row="2" Margin="0,10,0,0">
+        <Grid Grid.Row="3" Margin="0,10,0,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" SharedSizeGroup="InputFields" />
@@ -74,7 +81,7 @@
                 Margin="0,5,0,0"
                 Style="{StaticResource GeneralPasswordBoxErrorStyle}">
                 <components:BindablePasswordBox.Password>
-                    <Binding Path="Password" UpdateSourceTrigger="PropertyChanged">
+                    <Binding Path="Password" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
                         <Binding.ValidationRules>
                             <validationrules:PasswordValidationRule />
                         </Binding.ValidationRules>
@@ -82,7 +89,7 @@
                 </components:BindablePasswordBox.Password>
             </components:BindablePasswordBox>
         </Grid>
-        <Grid Grid.Row="3" Margin="0,10,0,0">
+        <Grid Grid.Row="4" Margin="0,10,0,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" SharedSizeGroup="InputFields" />
@@ -97,7 +104,7 @@
                 Margin="0,5,0,0"
                 Style="{StaticResource GeneralTextBoxErrorStyle}">
                 <TextBox.Text>
-                    <Binding Path="Age" UpdateSourceTrigger="PropertyChanged">
+                    <Binding Path="Age" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
                         <Binding.ValidationRules>
                             <validationrules:AgeValidationRule />
                         </Binding.ValidationRules>
@@ -105,7 +112,7 @@
                 </TextBox.Text>
             </TextBox>
         </Grid>
-        <Grid Grid.Row="4" Margin="0,10,0,0">
+        <Grid Grid.Row="5" Margin="0,10,0,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" SharedSizeGroup="InputFields" />
@@ -120,7 +127,7 @@
                 Margin="0,5,0,0"
                 Style="{StaticResource GeneralTextBoxErrorStyle}">
                 <TextBox.Text>
-                    <Binding Path="Height" UpdateSourceTrigger="PropertyChanged">
+                    <Binding Path="Height" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
                         <Binding.ValidationRules>
                             <validationrules:HeightValidationRule />
                         </Binding.ValidationRules>
@@ -128,7 +135,7 @@
                 </TextBox.Text>
             </TextBox>
         </Grid>
-        <Grid Grid.Row="5" Margin="0,10,0,0">
+        <Grid Grid.Row="6" Margin="0,10,0,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" SharedSizeGroup="InputFields" />
@@ -143,7 +150,7 @@
                 Margin="0,5,0,0"
                 Style="{StaticResource GeneralTextBoxErrorStyle}">
                 <TextBox.Text>
-                    <Binding Path="Weight" UpdateSourceTrigger="PropertyChanged">
+                    <Binding Path="Weight" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
                         <Binding.ValidationRules>
                             <validationrules:WeightValidationRule />
                         </Binding.ValidationRules>
@@ -151,7 +158,7 @@
                 </TextBox.Text>
             </TextBox>
         </Grid>
-        <Grid Grid.Row="6" Margin="0,10,0,0">
+        <Grid Grid.Row="7" Margin="0,10,0,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" SharedSizeGroup="InputFields" />
@@ -164,13 +171,12 @@
                 Grid.Row="1"
                 Margin="0,5,0,0"
                 SelectedValue="{Binding Gender, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true}"
-                Style="{StaticResource GeneralComboBoxErrorStyle}">
-                <ComboBoxItem>Чоловіча</ComboBoxItem>
-                <ComboBoxItem>Жіноча</ComboBoxItem>
+                Style="{StaticResource GeneralComboBoxErrorStyle}"
+                ItemsSource="{Binding Genders}">
             </ComboBox>
         </Grid>
         <StackPanel
-            Grid.Row="7"
+            Grid.Row="8"
             Margin="0,25,0,0"
             HorizontalAlignment="Center"
             Orientation="Horizontal">

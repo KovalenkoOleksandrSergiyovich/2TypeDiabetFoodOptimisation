@@ -24,5 +24,6 @@ namespace WpfApp2TypeDiabet
         public UserProfileViewModel _userProfileViewModel => DependencyInjection.Resolve<UserProfileViewModel>();
         public UserEditUserPageViewModel _userEditUserPageViewModel => DependencyInjection.Resolve<UserEditUserPageViewModel>();
         public GoodAdminPageViewModel _goodAdminPageViewModel => DependencyInjection.Resolve<GoodAdminPageViewModel>();
+        public CalculationPreparationsPageViewModel _calculationPreparations => DependencyInjection.Resolve<CalculationPreparationsPageViewModel>();
     }
 }

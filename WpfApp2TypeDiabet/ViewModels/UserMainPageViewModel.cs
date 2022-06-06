@@ -35,13 +35,13 @@ namespace WpfApp2TypeDiabet.ViewModels
         {
             //TODO...
             //create list of default restrictions and default goods and put in into stores
-            _navigation.Navigate(new RestrictionsPage());
+            _navigation.Navigate(new RestrictionPage());
         });
         public ICommand CustomRestrictionsListCommand => new DelegateCommand(() =>
         {
             //TODO...
             //create list of custom restrictions and custom goods and put in into stores
-            _navigation.Navigate(new RestrictionsPage());
+            _navigation.Navigate(new RestrictionPage());
         });
         public ICommand OptimizeFoodConsumingCommand => new DelegateCommand(() =>
         {

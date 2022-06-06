@@ -27,16 +27,25 @@ namespace WpfApp2TypeDiabet.ViewModels
         {
             //TODO...
             //save changes to user? and run calculations 
-            _navigation.Navigate(new GoodsBasketPage());
+            _navigation.Navigate(new CalculationPreparationsPage());
         }, ()=> !string.IsNullOrEmpty(Age) && !string.IsNullOrEmpty(Height) &&
         !string.IsNullOrEmpty(Weight) && !string.IsNullOrEmpty(Gender) && !string.IsNullOrEmpty(PhysicalActivity));
         public ICommand CancelCalculationsCommand => new DelegateCommand(() =>
         {
             MessageBoxResult result = MessageBox.Show("Ви впевнені, що хочете скасувати оптимізацію продуктвого кошика?",
-                "Скасування реєстрації", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                "Скасування оптимізації", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (result == MessageBoxResult.Yes)
             {
                 _navigation.Navigate(new UserMainPage());
+            }
+        });
+        public ICommand GoBackCommand => new DelegateCommand(() =>
+        {
+            MessageBoxResult result = MessageBox.Show("Ви впевнені, що хочете скасувати оптимізацію продуктвого кошика?",
+                "Скасування оптимізації", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.Yes)
+            {
+                _navigation.GoBack();
             }
         });
     }

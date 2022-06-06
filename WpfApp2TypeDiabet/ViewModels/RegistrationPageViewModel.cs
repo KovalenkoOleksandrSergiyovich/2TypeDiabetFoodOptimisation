@@ -1,11 +1,14 @@
 ﻿using DevExpress.Mvvm;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using WpfApp2TypeDiabet.DBServices;
+using WpfApp2TypeDiabet.Models;
 using WpfApp2TypeDiabet.Pages;
 using WpfApp2TypeDiabet.Services;
 
@@ -14,15 +17,24 @@ namespace WpfApp2TypeDiabet.ViewModels
     public class RegistrationPageViewModel : BindableBase
     {
         private readonly NavigationService _navigation;
+        private readonly UserService _userService;
+
+        public List<string> Genders { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
         public string Gender { get; set; }
         public string Age { get; set; }
         public string Height { get; set; }
         public string Weight { get; set; }
-        public RegistrationPageViewModel(NavigationService navigation)
+        public RegistrationPageViewModel(NavigationService navigation, UserService userSevice)
         {
             _navigation = navigation;
+            _userService = userSevice;
+            Genders = new List<string>
+            {
+                "Чоловіча",
+                "Жіноча"
+            };
         }
         private void ClearFields()
         {
@@ -72,11 +84,22 @@ namespace WpfApp2TypeDiabet.ViewModels
         });
         public ICommand RegisterUserCommand => new DelegateCommand(() =>
         {
-            
+
             //create user
             //TODO....
-            ClearFields();
-            _navigation.Navigate(new LoginPage());
+            User newUser = new User(UserName, Password, int.Parse(Age), double.Parse(Height), double.Parse(Weight), Gender);
+            if (_userService.IsUserNameAvaliable(newUser))
+            {
+                _userService.CreateUser(newUser);
+                MessageBox.Show("Користувача " + newUser.UserName + " було зареєстровано","Реєстрація користувача",MessageBoxButton.OK, MessageBoxImage.Information);
+                ClearFields();
+                _navigation.Navigate(new LoginPage());
+            }
+            else 
+            {
+                MessageBox.Show("Неможливо зареєструвати користувача " + newUser.UserName + " - це ім'я вже зайняте", "Реєстрація користувача", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            
         }, () => !string.IsNullOrWhiteSpace(UserName) && 
         !string.IsNullOrWhiteSpace(Password) &&
         !string.IsNullOrWhiteSpace(Age) &&
@@ -102,5 +125,6 @@ namespace WpfApp2TypeDiabet.ViewModels
                 _navigation.Navigate(new PromptToLogin());
             }
         });
+        
     }
 }

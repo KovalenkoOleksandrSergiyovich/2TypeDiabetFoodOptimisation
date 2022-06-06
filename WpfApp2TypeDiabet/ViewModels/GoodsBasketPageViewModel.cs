@@ -58,7 +58,7 @@ namespace WpfApp2TypeDiabet.ViewModels
         {
             //TODO...
             //save current record to the list
-            _navigation.Navigate(new UserMainPage());
+            _navigation.GoBack();
         });
         public ICommand GoToTheMainPageCommand => new DelegateCommand(() =>
         {

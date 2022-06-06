@@ -26,20 +26,23 @@ namespace WpfApp2TypeDiabet
             services.AddSingleton<GoodsBasketPageViewModel>();
             services.AddSingleton<GoodsViewPageViewModel>();
             services.AddSingleton<GuestMainPageViewModel>();
-            services.AddSingleton<LoginPageViewModel>();
+            services.AddTransient<LoginPageViewModel>();
             services.AddSingleton<MainPageViewModel>();
             services.AddSingleton<PromptToLoginPageViewModel>();
-            services.AddSingleton<RegistrationPageViewModel>();
+            services.AddTransient<RegistrationPageViewModel>();
             services.AddSingleton<RestrictionsPageViewModel>();
             services.AddSingleton<UserMainPageViewModel>();
-            services.AddSingleton<UserProfileViewModel>();
-            services.AddSingleton<UserEditUserPageViewModel>();
+            services.AddTransient<UserProfileViewModel>();
+            services.AddTransient<UserEditUserPageViewModel>();
             services.AddSingleton<GoodAdminPageViewModel>();
+            services.AddSingleton<CalculationPreparationsPageViewModel>();
 
             //реєструємо сервіси
             services.AddSingleton<NavigationService>();
+            services.AddSingleton<UserService>();
 
             _provider = services.BuildServiceProvider();
+
         }
 
 

@@ -17,9 +17,13 @@ namespace WpfApp2TypeDiabet.ViewModels
         {
             _navigation = navigation;
         }
-        public ICommand GoToUserMainPageCommand => new DelegateCommand(() =>
+        public ICommand GoToMainCommand => new DelegateCommand(() =>
         {
             _navigation.Navigate(new UserMainPage());
+        });
+        public ICommand GoBackCommand => new DelegateCommand(() =>
+        {
+            _navigation.GoBack();
         });
     }
 }
