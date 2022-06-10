@@ -57,7 +57,22 @@ namespace WpfApp2TypeDiabet.ViewModels
         });
         public ICommand GoToMainCommand => new DelegateCommand(() =>
         {
-            _navigation.Navigate(new UserMainPage());
+            if(_userService.CurrentUser.IsSuperUser)
+            {
+                _navigation.Navigate(new AdminMainPage());
+            }
+            else
+            {
+                if(_userService.CurrentUser.UserName.Equals("Guest"))
+                {
+                    _navigation.Navigate(new GuestMainPage());
+                }
+                else
+                {
+                    _navigation.Navigate(new UserMainPage());
+                }
+            }
+            
         });
     }
 }

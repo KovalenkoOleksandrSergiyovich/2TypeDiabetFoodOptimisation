@@ -32,6 +32,7 @@
         <Menu Grid.Row="0" Height="25">
             <MenuItem Header="Навігація">
                 <MenuItem Command="{Binding GoBackCommand}" Header="На попередню" />
+
                 <MenuItem Command="{Binding GoToMainCommand}" Header="На головну" />
             </MenuItem>
         </Menu>
@@ -57,7 +58,10 @@
                 VerticalAlignment="Top"
                 Style="{StaticResource GeneralTextBoxErrorStyle}">
                 <TextBox.Text>
-                    <Binding Path="UserName" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
+                    <Binding
+                        Mode="TwoWay"
+                        Path="UserName"
+                        UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>
                             <validationrules:UserNameValidationRule />
                         </Binding.ValidationRules>
@@ -81,7 +85,10 @@
                 Margin="0,5,0,0"
                 Style="{StaticResource GeneralPasswordBoxErrorStyle}">
                 <components:BindablePasswordBox.Password>
-                    <Binding Path="Password" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
+                    <Binding
+                        Mode="TwoWay"
+                        Path="Password"
+                        UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>
                             <validationrules:PasswordValidationRule />
                         </Binding.ValidationRules>
@@ -104,7 +111,10 @@
                 Margin="0,5,0,0"
                 Style="{StaticResource GeneralTextBoxErrorStyle}">
                 <TextBox.Text>
-                    <Binding Path="Age" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
+                    <Binding
+                        Mode="TwoWay"
+                        Path="Age"
+                        UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>
                             <validationrules:AgeValidationRule />
                         </Binding.ValidationRules>
@@ -127,7 +137,10 @@
                 Margin="0,5,0,0"
                 Style="{StaticResource GeneralTextBoxErrorStyle}">
                 <TextBox.Text>
-                    <Binding Path="Height" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
+                    <Binding
+                        Mode="TwoWay"
+                        Path="Height"
+                        UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>
                             <validationrules:HeightValidationRule />
                         </Binding.ValidationRules>
@@ -150,7 +163,10 @@
                 Margin="0,5,0,0"
                 Style="{StaticResource GeneralTextBoxErrorStyle}">
                 <TextBox.Text>
-                    <Binding Path="Weight" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
+                    <Binding
+                        Mode="TwoWay"
+                        Path="Weight"
+                        UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>
                             <validationrules:WeightValidationRule />
                         </Binding.ValidationRules>
@@ -170,10 +186,9 @@
             <ComboBox
                 Grid.Row="1"
                 Margin="0,5,0,0"
+                ItemsSource="{Binding Genders}"
                 SelectedValue="{Binding Gender, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true}"
-                Style="{StaticResource GeneralComboBoxErrorStyle}"
-                ItemsSource="{Binding Genders}">
-            </ComboBox>
+                Style="{StaticResource GeneralComboBoxErrorStyle}" />
         </Grid>
         <StackPanel
             Grid.Row="8"

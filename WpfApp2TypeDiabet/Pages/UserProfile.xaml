@@ -27,7 +27,7 @@
         <Menu Grid.Row="0" Height="25">
             <MenuItem Header="Навігація">
                 <MenuItem Command="{Binding GoBackCommand}" Header="На попередню" />
-                <MenuItem Command="{Binding CancelCalculationsCommand}" Header="На головну" />
+                <MenuItem Command="{Binding GoToMainCommand}" Header="На головну" />
             </MenuItem>
         </Menu>
         <StackPanel

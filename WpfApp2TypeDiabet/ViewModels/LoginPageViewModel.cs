@@ -65,9 +65,18 @@ namespace WpfApp2TypeDiabet.ViewModels
             User userToLogin = _userService.AttemptToLogin(Login, Password);
             if (userToLogin != null)
             {
-                _navigation.Navigate(new UserMainPage());
                 _userService.CurrentUser = userToLogin;
+                if (userToLogin.IsSuperUser)
+                {
+                    _navigation.Navigate(new AdminMainPage());
+                }
+                else
+                {
+                    _navigation.Navigate(new UserMainPage());
+                }
+                
                 ClearFields();
+                
             }
             else
             {

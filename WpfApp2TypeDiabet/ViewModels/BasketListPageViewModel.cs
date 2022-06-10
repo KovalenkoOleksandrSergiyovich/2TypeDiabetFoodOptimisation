@@ -13,13 +13,23 @@ namespace WpfApp2TypeDiabet.ViewModels
     public class BasketListPageViewModel : BindableBase
     {
         private readonly NavigationService _navigation;
-        public BasketListPageViewModel(NavigationService navigation)
+        private readonly UserService _userService;
+
+        public BasketListPageViewModel(NavigationService navigation, UserService userService)
         {
             _navigation = navigation;
+            _userService = userService;
         }
         public ICommand GoToMainCommand => new DelegateCommand(() =>
         {
-            _navigation.Navigate(new UserMainPage());
+            if(_userService.CurrentUser.IsSuperUser)
+            {
+                _navigation.Navigate(new AdminMainPage());
+            }
+            else
+            {
+                _navigation.Navigate(new UserMainPage());
+            }
         });
         public ICommand GoBackCommand => new DelegateCommand(() =>
         {

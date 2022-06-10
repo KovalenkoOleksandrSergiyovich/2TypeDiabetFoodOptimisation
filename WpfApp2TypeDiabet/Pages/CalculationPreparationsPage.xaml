@@ -9,6 +9,7 @@
     Title="CalculationPreparationsPage"
     d:DesignHeight="450"
     d:DesignWidth="800"
+    DataContext="{Binding Source={StaticResource VMLocator}, Path=_calculationPreparations}"
     mc:Ignorable="d">
 
     <Grid Margin="5,5,0,0" Grid.IsSharedSizeScope="True">
@@ -89,8 +90,8 @@
                 MinWidth="200"
                 MinHeight="300"
                 Margin="0,5"
-                ScrollViewer.VerticalScrollBarVisibility="Auto"
-                SelectedValue="{Binding}" />
+                ScrollViewer.VerticalScrollBarVisibility="Auto" />
+            <!--  SelectedValue="{Binding}"  -->
         </Grid>
         <Grid
             Grid.Row="2"

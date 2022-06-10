@@ -14,10 +14,13 @@ namespace WpfApp2TypeDiabet.ViewModels
     public class UserMainPageViewModel : BindableBase
     {
         private readonly NavigationService _navigation;
-
-        public UserMainPageViewModel(NavigationService navigation)
+        private readonly UserService _userService;
+        public string UserName { get; set; }
+        public UserMainPageViewModel(NavigationService navigation, UserService userService)
         {
             _navigation = navigation;
+            _userService = userService;
+            UserName = _userService.CurrentUser.UserName;
         }
         public ICommand StandartGoodsListCommand => new DelegateCommand(() =>
         {
@@ -63,6 +66,7 @@ namespace WpfApp2TypeDiabet.ViewModels
             {
                 //TODO
                 //clear User store from current user
+                _userService.LogOut();
                 _navigation.Navigate(new PromptToLogin());
             }
         });
@@ -75,6 +79,7 @@ namespace WpfApp2TypeDiabet.ViewModels
             {
                 //TODO...
                 //LogOut user and clear user store
+                _userService.LogOut();
                 Application.Current.Shutdown();
             }
         });

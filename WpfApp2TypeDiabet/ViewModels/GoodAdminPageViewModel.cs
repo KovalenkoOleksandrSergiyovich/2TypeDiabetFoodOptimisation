@@ -102,7 +102,7 @@ namespace WpfApp2TypeDiabet.ViewModels
                 _navigation.GoBack();
             }
         });
-        public ICommand GoTomain => new DelegateCommand(() =>
+        public ICommand GoToMainCommand => new DelegateCommand(() =>
         {
             if (!string.IsNullOrEmpty(GoodName) || !string.IsNullOrEmpty(GoodCategory) || !string.IsNullOrEmpty(GoodState) ||
             !string.IsNullOrEmpty(GoodPrice) || !string.IsNullOrEmpty(GoodAmount) || !string.IsNullOrEmpty(GoodUnits) ||
@@ -113,12 +113,21 @@ namespace WpfApp2TypeDiabet.ViewModels
                 if (result == MessageBoxResult.Yes)
                 {
                     ClearFields();
-                    //_navigation.Navigate(new AdminMainPage());
+                    _navigation.Navigate(new AdminMainPage());
                 }
             }
             else
             {
-                //_navigation.Navigate(new AdminMainPage());
+                _navigation.Navigate(new AdminMainPage());
+            }
+        });
+        public ICommand GoBackCommand => new DelegateCommand(() =>
+        {
+            MessageBoxResult result = MessageBox.Show("Ви впевнені, що хочете скасувати внесення змін?",
+                "Скасування внесення змін", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.Yes)
+            {
+                _navigation.GoBack();
             }
         });
     }

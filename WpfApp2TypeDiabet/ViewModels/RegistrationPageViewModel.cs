@@ -87,7 +87,7 @@ namespace WpfApp2TypeDiabet.ViewModels
 
             //create user
             //TODO....
-            User newUser = new User(UserName, Password, int.Parse(Age), double.Parse(Height), double.Parse(Weight), Gender);
+            User newUser = new User(UserName, Password, int.Parse(Age), double.Parse(Height), double.Parse(Weight), Gender, false);
             if (_userService.IsUserNameAvaliable(newUser))
             {
                 _userService.CreateUser(newUser);

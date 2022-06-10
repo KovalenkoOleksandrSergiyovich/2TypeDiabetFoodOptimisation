@@ -17,8 +17,9 @@ namespace WpfApp2TypeDiabet.Models
         public double Height { get; set; }
         public double Weight { get; set; }
         public string Gender { get; set; }
+        public bool IsSuperUser { get; set; }
 
-        public User(string userName, string password, int age, double height, double weight, string gender)
+        public User(string userName, string password, int age, double height, double weight, string gender, bool isSuperUser)
         {
             UserName = userName;
             Password = password;
@@ -26,10 +27,11 @@ namespace WpfApp2TypeDiabet.Models
             Height = height;
             Weight = weight;
             Gender = gender;
+            IsSuperUser = isSuperUser;
         }
 
-        
-        //public ObservableCollection<Good> CustomGoods { get; set; } = new ObservableCollection<Good>();
+
+        //public ObservableCollection<Goods> CustomGoods { get; set; } = new ObservableCollection<Goods>();
         //public ObservableCollection<Restriction> CustomRestrictions { get; set; } = new ObservableCollection<Restriction>();
         //public ObservableCollection<GoodBasket> GoodBaskets { get; set; } = new ObservableCollection<GoodBasket>();
     }

@@ -9,6 +9,8 @@ namespace WpfApp2TypeDiabet
 {
     public class ViewModelLocator
     {
+        public AdminMainPageViewModel _adminMainPageViewModel => DependencyInjection.Resolve<AdminMainPageViewModel>();
+        public AdminUserViewPageViewModel _adminUserViewPageViewModel => DependencyInjection.Resolve<AdminUserViewPageViewModel>();
         public BasketListPageViewModel _backetListPageViewModel => DependencyInjection.Resolve<BasketListPageViewModel>();
         public CalculateDataInputPageViewModel _calculateDataInputPageViewModel => DependencyInjection.Resolve<CalculateDataInputPageViewModel>();
         public GoodPageViewModel _goodPageViewModel => DependencyInjection.Resolve<GoodPageViewModel>();

@@ -14,6 +14,7 @@ namespace WpfApp2TypeDiabet.ViewModels
     public class GoodPageViewModel : BindableBase
     {
         private readonly NavigationService _navigation;
+        private readonly UserService _userService;
 
         public string GoodName { get; set; }
         public string GoodCategory { get; set; }
@@ -23,9 +24,10 @@ namespace WpfApp2TypeDiabet.ViewModels
         public string GoodUnits { get; set; }
         public string GoodCarbohydrates { get; set; }
 
-        public GoodPageViewModel(NavigationService navigation)
+        public GoodPageViewModel(NavigationService navigation, UserService userService)
         {
             _navigation = navigation;
+            _userService = userService;
         }
         private void ClearFields()
         {
@@ -129,13 +131,41 @@ namespace WpfApp2TypeDiabet.ViewModels
                 if (result == MessageBoxResult.Yes)
                 {
                     ClearFields();
-                    _navigation.Navigate(new UserMainPage());
+                    if (_userService.CurrentUser.IsSuperUser)
+                    {
+                        _navigation.Navigate(new AdminMainPage());
+                    }
+                    else
+                    {
+                        if (_userService.CurrentUser.UserName.Equals("Guest"))
+                        {
+                            _navigation.Navigate(new GuestMainPage());
+                        }
+                        else
+                        {
+                            _navigation.Navigate(new UserMainPage());
+                        }
+                    }
                 }
             }
             else
             {
                 ClearFields();
-                _navigation.Navigate(new UserMainPage());
+                if (_userService.CurrentUser.IsSuperUser)
+                {
+                    _navigation.Navigate(new AdminMainPage());
+                }
+                else
+                {
+                    if (_userService.CurrentUser.UserName.Equals("Guest"))
+                    {
+                        _navigation.Navigate(new GuestMainPage());
+                    }
+                    else
+                    {
+                        _navigation.Navigate(new UserMainPage());
+                    }
+                }
             }
         });
     }

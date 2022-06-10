@@ -148,11 +148,9 @@
                 Grid.Row="0"
                 Grid.Column="1"
                 Margin="10,5,0,0"
+                ItemsSource="{Binding Genders}"
                 SelectedValue="{Binding Gender, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true}"
-                Style="{StaticResource GeneralComboBoxErrorStyle}">
-                <ComboBoxItem>Чоловіча</ComboBoxItem>
-                <ComboBoxItem>Жіноча</ComboBoxItem>
-            </ComboBox>
+                Style="{StaticResource GeneralComboBoxErrorStyle}" />
         </Grid>
         <Grid Grid.Row="6">
             <Grid.RowDefinitions>
@@ -175,12 +173,9 @@
                 Grid.Row="0"
                 Grid.Column="1"
                 Margin="10,5,0,0"
+                ItemsSource="{Binding PhysicalActivities}"
                 SelectedValue="{Binding PhysicalActivity, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true}"
-                Style="{StaticResource GeneralComboBoxErrorStyle}">
-                <ComboBoxItem>Низький</ComboBoxItem>
-                <ComboBoxItem>Середній</ComboBoxItem>
-                <ComboBoxItem>Важкий</ComboBoxItem>
-            </ComboBox>
+                Style="{StaticResource GeneralComboBoxErrorStyle}" />
         </Grid>
         <StackPanel
             Grid.Row="7"

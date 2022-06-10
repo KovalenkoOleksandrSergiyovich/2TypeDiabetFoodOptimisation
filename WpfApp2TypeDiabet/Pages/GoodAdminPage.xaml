@@ -28,8 +28,8 @@
         </Grid.RowDefinitions>
         <Menu Grid.Row="0" Height="25">
             <MenuItem Header="Навігація">
-                <MenuItem Command="{Binding CancelGoodAddOrEditAdminCommand}" Header="На попередню" />
-                <MenuItem Command="{Binding CancelCalculationsCommand}" Header="На головну" />
+                <MenuItem Command="{Binding GoBackCommand}" Header="На попередню" />
+                <MenuItem Command="{Binding GoToMainCommand}" Header="На головну" />
             </MenuItem>
         </Menu>
         <TextBlock
@@ -187,10 +187,11 @@
             Grid.Row="9"
             Margin="0,10,0,0"
             Content="Стандартний продукт"
-            IsChecked="{Binding GoodIsDefault, Mode=TwoWay}" />
+            IsChecked="True"
+            IsEnabled="False" />
         <StackPanel
             Grid.Row="9"
-            Margin="0,25,0,0"
+            Margin="0,25,0,10"
             HorizontalAlignment="Center"
             Orientation="Horizontal">
             <Button Command="{Binding ConfirmGoodAddOrEditAdminCommand}" Content="Підтвердити">

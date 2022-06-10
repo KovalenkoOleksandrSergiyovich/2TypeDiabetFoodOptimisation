@@ -13,10 +13,12 @@ namespace WpfApp2TypeDiabet.ViewModels
     public class GoodsBasketPageViewModel : BindableBase
     {
         private readonly NavigationService _navigation;
+        private readonly UserService _userService;
 
-        public GoodsBasketPageViewModel(NavigationService navigation)
+        public GoodsBasketPageViewModel(NavigationService navigation, UserService userService)
         {
             _navigation = navigation;
+            _userService = userService;
         }
         public ICommand SaveBasketCommand => new DelegateCommand(() =>
         {
@@ -64,7 +66,21 @@ namespace WpfApp2TypeDiabet.ViewModels
         {
             //TODO...
             //save current record to the list
-            _navigation.Navigate(new UserMainPage());
+            if (_userService.CurrentUser.IsSuperUser)
+            {
+                _navigation.Navigate(new AdminMainPage());
+            }
+            else
+            {
+                if (_userService.CurrentUser.UserName.Equals("Guest"))
+                {
+                    _navigation.Navigate(new GuestMainPage());
+                }
+                else
+                {
+                    _navigation.Navigate(new UserMainPage());
+                }
+            }
         });
     }
 }

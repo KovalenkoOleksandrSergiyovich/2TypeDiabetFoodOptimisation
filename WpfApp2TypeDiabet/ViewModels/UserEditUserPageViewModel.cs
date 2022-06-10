@@ -48,7 +48,7 @@ namespace WpfApp2TypeDiabet.ViewModels
         {
             //TODO...
             //save changes to user object
-            string message = _userService.UpdateInfo(UserName, Password, int.Parse(Age), double.Parse(Height), double.Parse(Weight), Gender);
+            string message = _userService.UpdateDBInfo(UserName, Password, int.Parse(Age), double.Parse(Height), double.Parse(Weight), Gender);
             if (message.Equals("Success"))
             {
                 MessageBox.Show("Дані користувача було упісшно оновлено", "Оновлення даних", MessageBoxButton.OK, MessageBoxImage.Information);

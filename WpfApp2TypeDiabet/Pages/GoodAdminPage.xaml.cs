@@ -20,9 +20,10 @@ namespace WpfApp2TypeDiabet.Pages
     /// </summary>
     public partial class GoodAdminPage : Page
     {
-        public GoodAdminPage()
+        public GoodAdminPage(string titleContent)
         {
             InitializeComponent();
+            TitleTextBlock.Text = titleContent;
         }
     }
 }
