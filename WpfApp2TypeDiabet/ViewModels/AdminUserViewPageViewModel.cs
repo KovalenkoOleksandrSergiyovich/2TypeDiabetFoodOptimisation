@@ -57,15 +57,15 @@ namespace WpfApp2TypeDiabet.ViewModels
             if(boxResult==MessageBoxResult.Yes)
             {
                 User userToDelete = _userService.GetUser(SelectedUser.UserName);
-                //string result = _userService.DeleteUser(userToDelete);
-                //if (!result.Equals("Success"))
-                //{
-                //    MessageBox.Show("Помилка при видаленні користувача " + SelectedUser.UserName, "Видалення користувача", MessageBoxButton.OK, MessageBoxImage.Error);
-                //}
-                //else
-                //{
-                //    MessageBox.Show("Користувача "+ SelectedUser.UserName + " було успішно видалено", "Видалення користувача", MessageBoxButton.OK, MessageBoxImage.Information);
-                //}
+                string result = _userService.DeleteUser(userToDelete);
+                if (!result.Equals("Success"))
+                {
+                    MessageBox.Show("Помилка при видаленні користувача " + SelectedUser.UserName, "Видалення користувача", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                else
+                {
+                    MessageBox.Show("Користувача " + SelectedUser.UserName + " було успішно видалено", "Видалення користувача", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
             }
         });
         public void FillUsersList()

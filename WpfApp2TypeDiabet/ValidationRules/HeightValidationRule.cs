@@ -32,7 +32,7 @@ namespace WpfApp2TypeDiabet.ValidationRules
                 ErrorMessage = "Зріст не може дорівнювати нулю";
                 return new ValidationResult(false, ErrorMessage);
             }
-            else if (!(double.Parse(input, CultureInfo.InvariantCulture) > 5))
+            else if (double.Parse(input, CultureInfo.InvariantCulture) > 5)
             {
                 ErrorMessage = "Завелике значення зрісту";
                 return new ValidationResult(false, ErrorMessage);

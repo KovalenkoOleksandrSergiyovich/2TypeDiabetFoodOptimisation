@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -87,7 +88,8 @@ namespace WpfApp2TypeDiabet.ViewModels
 
             //create user
             //TODO....
-            User newUser = new User(UserName, Password, int.Parse(Age), double.Parse(Height), double.Parse(Weight), Gender, false);
+            User newUser = new User(UserName, Password, int.Parse(Age), 
+                double.Parse(Height, CultureInfo.InvariantCulture), double.Parse(Weight, CultureInfo.InvariantCulture), Gender, false);
             if (_userService.IsUserNameAvaliable(newUser))
             {
                 _userService.CreateUser(newUser);

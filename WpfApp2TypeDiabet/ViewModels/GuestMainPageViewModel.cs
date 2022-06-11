@@ -21,11 +21,11 @@ namespace WpfApp2TypeDiabet.ViewModels
         }
         public ICommand GuestGoodsListCommand => new DelegateCommand(() =>
         {
-            _navigation.Navigate(new GoodsViewPage());
+            _navigation.Navigate(new GoodGuestViewPage());
         });
         public ICommand RestrictionsListCommand => new DelegateCommand(() =>
         {
-            _navigation.Navigate(new RestrictionPage());
+            _navigation.Navigate(new RestrictionGuestViewPage());
         });
         public ICommand CalculationDataInputCommand => new DelegateCommand(() =>
         {

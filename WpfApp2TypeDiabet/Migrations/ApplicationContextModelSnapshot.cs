@@ -81,8 +81,18 @@ namespace WpfApp2TypeDiabet.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
+                    b.Property<double>("GoodAmount")
+                        .HasColumnType("double precision");
+
                     b.Property<int>("GoodId")
                         .HasColumnType("integer");
+
+                    b.Property<double>("GoodPrice")
+                        .HasColumnType("double precision");
+
+                    b.Property<string>("GoodUnits")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<bool>("IsDefault")
                         .HasColumnType("boolean");
@@ -128,6 +138,9 @@ namespace WpfApp2TypeDiabet.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
+                    b.Property<double>("Carbohydrates")
+                        .HasColumnType("double precision");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
@@ -172,7 +185,14 @@ namespace WpfApp2TypeDiabet.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<bool>("IsDefault")
+                        .HasColumnType("boolean");
+
                     b.Property<string>("RestrictionName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Unit")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -267,7 +287,7 @@ namespace WpfApp2TypeDiabet.Migrations
             modelBuilder.Entity("WpfApp2TypeDiabet.Models.GoodBasket", b =>
                 {
                     b.HasOne("WpfApp2TypeDiabet.Models.User", "User")
-                        .WithMany()
+                        .WithMany("GoodBaskets")
                         .HasForeignKey("UserID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -350,7 +370,7 @@ namespace WpfApp2TypeDiabet.Migrations
                         .HasForeignKey("GoodInShopid");
 
                     b.HasOne("WpfApp2TypeDiabet.Models.User", "User")
-                        .WithMany()
+                        .WithMany("CustomGoods")
                         .HasForeignKey("UserID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -369,7 +389,7 @@ namespace WpfApp2TypeDiabet.Migrations
                         .IsRequired();
 
                     b.HasOne("WpfApp2TypeDiabet.Models.User", "User")
-                        .WithMany()
+                        .WithMany("CustomRestrictions")
                         .HasForeignKey("UserID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -392,6 +412,15 @@ namespace WpfApp2TypeDiabet.Migrations
             modelBuilder.Entity("WpfApp2TypeDiabet.Models.GoodState", b =>
                 {
                     b.Navigation("GoodShopState");
+                });
+
+            modelBuilder.Entity("WpfApp2TypeDiabet.Models.User", b =>
+                {
+                    b.Navigation("CustomGoods");
+
+                    b.Navigation("CustomRestrictions");
+
+                    b.Navigation("GoodBaskets");
                 });
 #pragma warning restore 612, 618
         }

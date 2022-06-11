@@ -9,7 +9,7 @@ using System.Windows.Controls;
 
 namespace WpfApp2TypeDiabet.ValidationRules
 {
-    public class AmountValidationRule : ValidationRule
+    public class RestrictionAmountValidationRule : ValidationRule
     {
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
@@ -22,12 +22,12 @@ namespace WpfApp2TypeDiabet.ValidationRules
 
             if (string.IsNullOrEmpty(input) || string.IsNullOrWhiteSpace(input))
             {
-                ErrorMessage = "Поле кількості товару не може бути порожнім";
+                ErrorMessage = "Поле кількості обмеження споживання не може бути порожнім";
                 return new ValidationResult(false, ErrorMessage);
             }
             else if (!hasNumber.IsMatch(input))
             {
-                ErrorMessage = "Кількість товару має бути числовим значенням";
+                ErrorMessage = "Кількість обмеження споживання має бути числовим значенням";
                 return new ValidationResult(false, ErrorMessage);
             }
             else if (hasComma.IsMatch(input))
@@ -46,7 +46,7 @@ namespace WpfApp2TypeDiabet.ValidationRules
                 {
                     if (!(double.Parse(input, CultureInfo.InvariantCulture) > 0))
                     {
-                        ErrorMessage = "Кількість товару не може дорівнювати нулю";
+                        ErrorMessage = "Кількість обмеження споживання не може дорівнювати нулю";
                         return new ValidationResult(false, ErrorMessage);
                     }
                     else
@@ -59,14 +59,13 @@ namespace WpfApp2TypeDiabet.ValidationRules
             {
                 if (!(int.Parse(input, CultureInfo.InvariantCulture) > 0))
                 {
-                    ErrorMessage = "Кількість товару не може дорівнювати нулю";
+                    ErrorMessage = "Кількість обмеження споживання не може дорівнювати нулю";
                     return new ValidationResult(false, ErrorMessage);
                 }
                 else
                 {
                     return new ValidationResult(true, null);
                 }
-
             }
         }
     }

@@ -3,7 +3,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace WpfApp2TypeDiabet.Migrations
 {
-    public partial class InitialCreation : Migration
+    public partial class InintialCreation : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -26,7 +26,8 @@ namespace WpfApp2TypeDiabet.Migrations
                 {
                     id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Name = table.Column<string>(type: "text", nullable: false)
+                    Name = table.Column<string>(type: "text", nullable: false),
+                    Carbohydrates = table.Column<double>(type: "double precision", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -41,7 +42,9 @@ namespace WpfApp2TypeDiabet.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     RestrictionName = table.Column<string>(type: "text", nullable: false),
                     Amount = table.Column<double>(type: "double precision", nullable: false),
-                    Comparator = table.Column<string>(type: "text", nullable: false)
+                    IsDefault = table.Column<bool>(type: "boolean", nullable: false),
+                    Comparator = table.Column<string>(type: "text", nullable: false),
+                    Unit = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -140,7 +143,10 @@ namespace WpfApp2TypeDiabet.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     GoodId = table.Column<int>(type: "integer", nullable: false),
                     IsDefault = table.Column<bool>(type: "boolean", nullable: false),
-                    RestrictionID = table.Column<int>(type: "integer", nullable: false)
+                    RestrictionID = table.Column<int>(type: "integer", nullable: false),
+                    GoodPrice = table.Column<double>(type: "double precision", nullable: false),
+                    GoodAmount = table.Column<double>(type: "double precision", nullable: false),
+                    GoodUnits = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {

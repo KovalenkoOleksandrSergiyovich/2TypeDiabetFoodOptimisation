@@ -32,7 +32,7 @@ namespace WpfApp2TypeDiabet.ValidationRules
                 ErrorMessage = "Вага не може дорівнювати нулю";
                 return new ValidationResult(false, ErrorMessage);
             }
-            else if (!(double.Parse(input, CultureInfo.InvariantCulture) > 1000))
+            else if (double.Parse(input, CultureInfo.InvariantCulture) > 1000)
             {
                 ErrorMessage = "Завелике значення ваги";
                 return new ValidationResult(false, ErrorMessage);

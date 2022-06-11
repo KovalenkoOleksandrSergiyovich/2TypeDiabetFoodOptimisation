@@ -24,7 +24,7 @@ namespace WpfApp2TypeDiabet
             services.AddTransient<AdminUserViewPageViewModel>();
             services.AddSingleton<BasketListPageViewModel>();
             services.AddTransient<CalculateDataInputPageViewModel>();
-            services.AddSingleton<GoodPageViewModel>();
+            services.AddSingleton<GoodUserAddPageViewModel>();
             services.AddSingleton<GoodsBasketPageViewModel>();
             services.AddSingleton<GoodsViewPageViewModel>();
             services.AddSingleton<GuestMainPageViewModel>();
@@ -36,12 +36,35 @@ namespace WpfApp2TypeDiabet
             services.AddSingleton<UserMainPageViewModel>();
             services.AddTransient<UserProfileViewModel>();
             services.AddTransient<UserEditUserPageViewModel>();
-            services.AddSingleton<GoodAdminPageViewModel>();
+            services.AddSingleton<GoodAddAdminPageViewModel>();
             services.AddSingleton<CalculationPreparationsPageViewModel>();
+            services.AddSingleton<GoodEditAdminPageViewModel>();
+            services.AddSingleton<RestrictionAddAdminPageViewModel>();
+            services.AddSingleton<RestrictionEditAdminPageViewModel>();
+            services.AddSingleton<GoodViewAdminPageViewModel>();
+            services.AddSingleton<RestrictionViewAdminPageViewModel>();
+            services.AddSingleton<GoodGuestViewPageViewModel>();
+            services.AddSingleton<RestrictionGuestViewPageViewModel>();
+            services.AddSingleton<GoodStandartUserViewPageViewModel>();
+            services.AddSingleton<GoodCustomUserViewPageViewModel>();
+            services.AddSingleton<RestrictionStandartUserViewPageViewModel>();
+            services.AddSingleton<RestrictionCustomUserViewPageViewModel>();
+            services.AddSingleton<GoodUserAddPageViewModel>();
+            services.AddSingleton<RestrictionUserAddPageViewModel>();
+            services.AddSingleton<GoodUserEditPageViewModel>();
+            services.AddSingleton<RestrictionUserEditPageViewModel>();
 
             //реєструємо сервіси
             services.AddSingleton<NavigationService>();
             services.AddSingleton<UserService>();
+            services.AddSingleton<CategoryService>();
+            services.AddSingleton<GoodStateService>();
+            services.AddSingleton<GoodService>();
+            services.AddSingleton<GoodInShopService>();
+            services.AddSingleton<GoodStateService>();
+            services.AddSingleton<GoodShopStateService>();
+            services.AddSingleton<RestrictionService>();
+            services.AddSingleton<UserGoodListService>();
 
             _provider = services.BuildServiceProvider();
 

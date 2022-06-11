@@ -1,16 +1,15 @@
-﻿<Page
-    x:Class="WpfApp2TypeDiabet.Pages.RestrictionPage"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="clr-namespace:WpfApp2TypeDiabet.Pages"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:validationrules="clr-namespace:WpfApp2TypeDiabet.ValidationRules"
-    Title="RestrictionPage"
-    MinWidth="600"
-    MinHeight="470"
-    DataContext="{Binding Source={StaticResource VMLocator}, Path=_restrictionsPageViewModel}"
-    mc:Ignorable="d">
+﻿<Page x:Class="WpfApp2TypeDiabet.Pages.RestrictionAddAdminPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfApp2TypeDiabet.Pages" 
+      xmlns:validationrules="clr-namespace:WpfApp2TypeDiabet.ValidationRules"
+      mc:Ignorable="d" 
+      MinHeight="450" 
+      MinWidth="400"
+      Title="RestrictionAddAdminPage"
+      DataContext="{Binding Source={StaticResource VMLocator}, Path=_restrictionAddAdminPageViewModel}">
 
     <Grid Margin="5,5,0,0" Grid.IsSharedSizeScope="True">
         <Grid.ColumnDefinitions>
@@ -74,6 +73,7 @@
                 <RowDefinition Height="Auto" SharedSizeGroup="Inputs" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" SharedSizeGroup="Inputs" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <TextBlock
                 Grid.Row="0"
@@ -127,11 +127,18 @@
                 <TextBox.Text>
                     <Binding Path="UnitAmount" UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>
-                            <validationrules:AmountValidationRule />
+                            <validationrules:RestrictionAmountValidationRule />
                         </Binding.ValidationRules>
                     </Binding>
                 </TextBox.Text>
             </TextBox>
+            <CheckBox
+                Grid.Row="6"
+                Margin="5 10"
+                IsChecked="True"
+                IsEnabled="False"
+                Content="Стандартне обмеження"
+                />
         </Grid>
         <Grid
             Grid.Row="1"
@@ -184,7 +191,7 @@
             </Button>
             <Button
                 Margin="5,0,0,0"
-                Command="{Binding CancelRestrictionCommand}"
+                Command="{Binding CancelRestrictionAddCommand}"
                 Content="Скасувати" />
         </StackPanel>
     </Grid>

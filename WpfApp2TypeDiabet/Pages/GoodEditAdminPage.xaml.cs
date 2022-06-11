@@ -16,18 +16,13 @@ using System.Windows.Shapes;
 namespace WpfApp2TypeDiabet.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для GoodPage.xaml
+    /// Логика взаимодействия для GoodEditAdminPage.xaml
     /// </summary>
-    public partial class GoodPage : Page
+    public partial class GoodEditAdminPage : Page
     {
-        public GoodPage()
+        public GoodEditAdminPage()
         {
             InitializeComponent();
-        }
-        public GoodPage(string header)
-        {
-            InitializeComponent();
-            TitleTextBlock.Text = header;
         }
     }
 }

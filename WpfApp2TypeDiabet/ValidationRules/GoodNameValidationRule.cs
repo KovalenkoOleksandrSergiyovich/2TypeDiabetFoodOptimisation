@@ -21,7 +21,7 @@ namespace WpfApp2TypeDiabet.ValidationRules
                 ErrorMessage = "Назва продукту не може бути порожньою";
                 return new ValidationResult(false, ErrorMessage);
             }
-            else if(hasAllNessesary.IsMatch(input))
+            else if(!hasAllNessesary.IsMatch(input))
             {
                 ErrorMessage = "Назва продукту не може бути менше двох символів";
                 return new ValidationResult(false, ErrorMessage);

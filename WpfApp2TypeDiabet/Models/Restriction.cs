@@ -11,7 +11,8 @@ namespace WpfApp2TypeDiabet.Models
         public int id { get; set; }
         public string RestrictionName { get; set; }
         public double Amount { get; set; }
-        private bool IsDefault { get; set; }
+        public bool IsDefault { get; set; }
         public string Comparator { get; set; }
+        public string Unit { get; set; }
     }
 }

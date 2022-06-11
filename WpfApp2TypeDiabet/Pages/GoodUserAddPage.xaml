@@ -1,20 +1,18 @@
 ﻿<Page
-    x:Class="WpfApp2TypeDiabet.Pages.GoodAdminPage"
+    x:Class="WpfApp2TypeDiabet.Pages.GoodUserAddPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:WpfApp2TypeDiabet.Pages"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:validationrules="clr-namespace:WpfApp2TypeDiabet.ValidationRules"
-    Title="GoodAdminPage"
-    MinWidth="800"
-    MinHeight="450"
-    DataContext="{Binding Source={StaticResource VMLocator}, Path=_goodAdminPageViewModel}"
+    Title="GoodPage"
+    Width="400"
+    Height="520"
+    DataContext="{Binding Source={StaticResource VMLocator}, Path=_goodPageViewModel}"
     mc:Ignorable="d">
-
     <Grid Margin="5,0,5,0">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -29,14 +27,15 @@
         <Menu Grid.Row="0" Height="25">
             <MenuItem Header="Навігація">
                 <MenuItem Command="{Binding GoBackCommand}" Header="На попередню" />
-                <MenuItem Command="{Binding GoToMainCommand}" Header="На головну" />
+                <MenuItem Command="{Binding GoToMainPageCommand}" Header="На головну" />
             </MenuItem>
         </Menu>
         <TextBlock
             x:Name="TitleTextBlock"
             Grid.Row="1"
             HorizontalAlignment="center"
-            FontSize="24" />
+            FontSize="24"
+            Text="Додавання даних про новий товар" />
         <Grid Grid.Row="2" Margin="0,25,0,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -76,6 +75,7 @@
                 x:Name="GoodCategoryComboBox"
                 Grid.Row="1"
                 Margin="0,5,0,0"
+                ItemsSource="{Binding GoodCategoryList}"
                 SelectedIndex="0"
                 SelectedValue="{Binding GoodCategory, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
                 Style="{StaticResource GeneralComboBoxErrorStyle}" />
@@ -93,6 +93,7 @@
                 x:Name="GoodStateComboBox"
                 Grid.Row="1"
                 Margin="0,5,0,0"
+                ItemsSource="{Binding GoodStateList}"
                 SelectedIndex="0"
                 SelectedItem="{Binding GoodState, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
                 Style="{StaticResource GeneralComboBoxErrorStyle}" />
@@ -156,8 +157,9 @@
                 x:Name="GoodUnitsComboBox"
                 Grid.Row="1"
                 Margin="0,5,0,0"
+                ItemsSource="{Binding GoodUnitList}"
                 SelectedIndex="0"
-                SelectedItem="{Binding GoodUnits, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                SelectedItem="{Binding GoodUnit, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
                 Style="{StaticResource GeneralComboBoxErrorStyle}" />
         </Grid>
         <Grid Grid.Row="8" Margin="0,10,0,0">
@@ -183,18 +185,12 @@
                 </TextBox.Text>
             </TextBox>
         </Grid>
-        <CheckBox
-            Grid.Row="9"
-            Margin="0,10,0,0"
-            Content="Стандартний продукт"
-            IsChecked="True"
-            IsEnabled="False" />
         <StackPanel
             Grid.Row="9"
-            Margin="0,25,0,10"
+            Margin="0,25,0,5"
             HorizontalAlignment="Center"
             Orientation="Horizontal">
-            <Button Command="{Binding ConfirmGoodAddOrEditAdminCommand}" Content="Підтвердити">
+            <Button Command="{Binding ConfirmGoodAddCommand}" Content="Підтвердити">
                 <Button.Style>
                     <Style TargetType="Button">
                         <Setter Property="IsEnabled" Value="False" />
@@ -217,7 +213,7 @@
             </Button>
             <Button
                 Margin="5,0,0,0"
-                Command="{Binding CancelGoodAddOrEditAdminCommand}"
+                Command="{Binding CancelGoodAddCommand}"
                 Content="Скасувати" />
         </StackPanel>
     </Grid>

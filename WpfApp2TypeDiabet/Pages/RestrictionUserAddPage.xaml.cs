@@ -16,14 +16,13 @@ using System.Windows.Shapes;
 namespace WpfApp2TypeDiabet.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для GoodAdminPage.xaml
+    /// Логика взаимодействия для RestrictionUserAddPage.xaml
     /// </summary>
-    public partial class GoodAdminPage : Page
+    public partial class RestrictionUserAddPage : Page
     {
-        public GoodAdminPage(string titleContent)
+        public RestrictionUserAddPage()
         {
             InitializeComponent();
-            TitleTextBlock.Text = titleContent;
         }
     }
 }

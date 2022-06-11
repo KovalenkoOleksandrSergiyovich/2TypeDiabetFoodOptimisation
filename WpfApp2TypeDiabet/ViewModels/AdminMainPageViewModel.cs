@@ -28,7 +28,7 @@ namespace WpfApp2TypeDiabet.ViewModels
         });
         public ICommand AdminAddGoodCommand => new DelegateCommand(() =>
         {
-            _navigation.Navigate(new GoodAdminPage("Додавання нового товару"));
+            _navigation.Navigate(new GoodAddAdminPage());
         });
         public ICommand ViewGoodsListCommand => new DelegateCommand(() =>
         {

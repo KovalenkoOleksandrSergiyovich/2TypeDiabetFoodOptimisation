@@ -11,7 +11,7 @@ using WpfApp2TypeDiabet.Services;
 
 namespace WpfApp2TypeDiabet.ViewModels
 {
-    public class GoodAdminPageViewModel : BindableBase
+    public class GoodAddAdminPageViewModel : BindableBase
     {
         private readonly NavigationService _navigation;
 
@@ -24,7 +24,7 @@ namespace WpfApp2TypeDiabet.ViewModels
         public string GoodCarbohydrates { get; set; }
         public bool GoodIsDefault { get; set; }
 
-        public GoodAdminPageViewModel(NavigationService navigation)
+        public GoodAddAdminPageViewModel(NavigationService navigation)
         {
             _navigation = navigation;
         }
@@ -63,7 +63,7 @@ namespace WpfApp2TypeDiabet.ViewModels
                 GoodIsDefault = false;
             }
         }
-        public ICommand ConfirmGoodAddOrEditAdminCommand => new DelegateCommand(() =>
+        public ICommand ConfirmGoodAddAdminCommand => new DelegateCommand(() =>
         {
             if (!string.IsNullOrEmpty(GoodName) && !string.IsNullOrEmpty(GoodCategory) && !string.IsNullOrEmpty(GoodState) &&
             !string.IsNullOrEmpty(GoodPrice) && !string.IsNullOrEmpty(GoodAmount) && !string.IsNullOrEmpty(GoodUnits) &&
@@ -83,7 +83,7 @@ namespace WpfApp2TypeDiabet.ViewModels
         !string.IsNullOrWhiteSpace(GoodUnits) &&
         !string.IsNullOrWhiteSpace(GoodCarbohydrates));
 
-        public ICommand CancelGoodAddOrEditAdminCommand => new DelegateCommand(() =>
+        public ICommand CancelGoodAddAdminCommand => new DelegateCommand(() =>
         {
             if (!string.IsNullOrEmpty(GoodName) || !string.IsNullOrEmpty(GoodCategory) || !string.IsNullOrEmpty(GoodState) ||
             !string.IsNullOrEmpty(GoodPrice) || !string.IsNullOrEmpty(GoodAmount) || !string.IsNullOrEmpty(GoodUnits) ||
@@ -102,7 +102,7 @@ namespace WpfApp2TypeDiabet.ViewModels
                 _navigation.GoBack();
             }
         });
-        public ICommand GoToMainCommand => new DelegateCommand(() =>
+        public ICommand GoToMainPageCommand => new DelegateCommand(() =>
         {
             if (!string.IsNullOrEmpty(GoodName) || !string.IsNullOrEmpty(GoodCategory) || !string.IsNullOrEmpty(GoodState) ||
             !string.IsNullOrEmpty(GoodPrice) || !string.IsNullOrEmpty(GoodAmount) || !string.IsNullOrEmpty(GoodUnits) ||

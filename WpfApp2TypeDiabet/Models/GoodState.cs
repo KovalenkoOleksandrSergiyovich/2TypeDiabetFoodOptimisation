@@ -11,6 +11,7 @@ namespace WpfApp2TypeDiabet.Models
     {
         public int id  { get; set; }
         public string Name { get; set; }
+        public double Carbohydrates { get; set; }
         public ObservableCollection<GoodShopState> GoodShopState { get; set; } = new ObservableCollection<GoodShopState>();
     }
 }
