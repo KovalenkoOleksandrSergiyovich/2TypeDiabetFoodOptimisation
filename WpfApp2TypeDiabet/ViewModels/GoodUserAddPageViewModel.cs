@@ -112,6 +112,7 @@ namespace WpfApp2TypeDiabet.ViewModels
                             {
                                 if(LinkGoodToUser())
                                 {
+                                    MessageBox.Show("Товар було успішно створено", "Додавання товару", MessageBoxButton.OK, MessageBoxImage.Information);
                                     ClearFields();
                                 }
                             }
@@ -144,7 +145,7 @@ namespace WpfApp2TypeDiabet.ViewModels
             }
             else
             {
-                MessageBox.Show("Товар " + goodToCreate.GoodName + " було успішно стоврено", "Додавання товару", MessageBoxButton.OK, MessageBoxImage.Information);
+                //MessageBox.Show("Товар " + goodToCreate.GoodName + " було успішно стоврено", "Додавання товару", MessageBoxButton.OK, MessageBoxImage.Information);
                 return true;
             }
         }
@@ -187,11 +188,6 @@ namespace WpfApp2TypeDiabet.ViewModels
             }
             else
             {
-                MessageBox.Show("good.id= " + good.id + "GoodPrice=" +
-                GoodPrice + "GoodAmount=" + GoodAmount + "GoodUnit=" + GoodUnit,
-                "", MessageBoxButton.OK);
-
-
                 goodInShopCreationResult = _goodInShopService.CreateGoodInShop(_userService.CurrentUser, good.id, double.Parse(GoodPrice, CultureInfo.InvariantCulture),
                     double.Parse(GoodAmount, CultureInfo.InvariantCulture), GoodUnit, _restrictionService.Restriction.id);
                 if (!goodInShopCreationResult.Equals("Success"))
@@ -201,14 +197,14 @@ namespace WpfApp2TypeDiabet.ViewModels
                 }
                 else
                 {
-                    MessageBox.Show("Товар було успішно додано до магазину", "Додавання товару", MessageBoxButton.OK, MessageBoxImage.Information);
+                    //MessageBox.Show("Товар було успішно додано до магазину", "Додавання товару", MessageBoxButton.OK, MessageBoxImage.Information);
                     return true;
                 }
             }
         }
         public bool CreateGoodState()
         {
-            string goodStateCreationResult = _goodStateService.CreateGoodState(GoodState, double.Parse(GoodAmount, CultureInfo.InvariantCulture));
+            string goodStateCreationResult = _goodStateService.CreateGoodState(GoodState, double.Parse(GoodCarbohydrates, CultureInfo.InvariantCulture));
             if(!goodStateCreationResult.Equals("Success"))
             {
                 MessageBox.Show("Неможливо створити стан продукту. Помилка " + goodStateCreationResult, "Додавання товару", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -216,7 +212,7 @@ namespace WpfApp2TypeDiabet.ViewModels
             }
             else
             {
-                MessageBox.Show("Стан продукту було успішно додано до магазину", "Додавання товару", MessageBoxButton.OK, MessageBoxImage.Information);
+                //MessageBox.Show("Стан продукту було успішно додано до магазину", "Додавання товару", MessageBoxButton.OK, MessageBoxImage.Information);
                 return true;
             }
         }
@@ -230,7 +226,7 @@ namespace WpfApp2TypeDiabet.ViewModels
             }
             else
             {
-                MessageBox.Show("Стан продукту було успішно поєднано з продуктом", "Додавання товару", MessageBoxButton.OK, MessageBoxImage.Information);
+                //MessageBox.Show("Стан продукту було успішно поєднано з продуктом", "Додавання товару", MessageBoxButton.OK, MessageBoxImage.Information);
                 return true;
             }
         }
@@ -244,7 +240,7 @@ namespace WpfApp2TypeDiabet.ViewModels
             }
             else
             {
-                MessageBox.Show("Користувача було успішно поєднано з продуктом", "Додавання товару", MessageBoxButton.OK, MessageBoxImage.Information);
+                //MessageBox.Show("Користувача було успішно поєднано з продуктом", "Додавання товару", MessageBoxButton.OK, MessageBoxImage.Information);
                 return true;
             }
         }

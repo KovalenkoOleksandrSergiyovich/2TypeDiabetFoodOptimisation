@@ -11,6 +11,7 @@ namespace WpfApp2TypeDiabet.Services
     public class GoodInShopService
     {
         public GoodInShop GoodInShop { get; set; }
+        public List<GoodInShop> Goods { get; set; }
         public string CreateGoodInShop(User user, int goodID, double goodPrice, double goodAmount, string? goodUnits, int restrictionID)
         {
             try
@@ -49,6 +50,39 @@ namespace WpfApp2TypeDiabet.Services
             catch(Exception e)
             {
                 return e.Message;
+            }
+        }
+        public string DeleteGoodInShop()
+        {
+            try
+            {
+                using (ApplicationContext db = new ApplicationContext())
+                {
+                    foreach(GoodInShop goodInShop in Goods)
+                    {
+                        db.GoodInShop.Remove(goodInShop);
+                        db.SaveChanges();
+                    }
+                }
+                return "Success";
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
+        }
+        public void GetGoodInShop(Goods goodToDelete)
+        {
+            Goods = new List<GoodInShop>();
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                var goodInShop = from b in db.GoodInShop
+                                 where b.GoodId == goodToDelete.id
+                                 select b;
+                foreach(GoodInShop good in goodInShop)
+                {
+                    Goods.Add(good);
+                }
             }
         }
     }

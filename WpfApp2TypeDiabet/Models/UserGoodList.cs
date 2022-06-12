@@ -9,7 +9,7 @@ namespace WpfApp2TypeDiabet.Models
     public class UserGoodList
     {
         public int id { get; set; }
-        public int GoodID { get; set; }
+        public int GoodInShopID { get; set; }
         public GoodInShop GoodInShop { get; set; }
         public int UserID { get; set; }
         public User User { get; set; }

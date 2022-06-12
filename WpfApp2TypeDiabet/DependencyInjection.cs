@@ -43,10 +43,10 @@ namespace WpfApp2TypeDiabet
             services.AddSingleton<RestrictionEditAdminPageViewModel>();
             services.AddSingleton<GoodViewAdminPageViewModel>();
             services.AddSingleton<RestrictionViewAdminPageViewModel>();
-            services.AddSingleton<GoodGuestViewPageViewModel>();
+            services.AddTransient<GoodGuestViewPageViewModel>();
             services.AddSingleton<RestrictionGuestViewPageViewModel>();
-            services.AddSingleton<GoodStandartUserViewPageViewModel>();
-            services.AddSingleton<GoodCustomUserViewPageViewModel>();
+            services.AddTransient<GoodStandartUserViewPageViewModel>();
+            services.AddTransient<GoodCustomUserViewPageViewModel>();
             services.AddSingleton<RestrictionStandartUserViewPageViewModel>();
             services.AddSingleton<RestrictionCustomUserViewPageViewModel>();
             services.AddSingleton<GoodUserAddPageViewModel>();

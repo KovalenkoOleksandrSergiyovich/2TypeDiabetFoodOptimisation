@@ -28,6 +28,23 @@ namespace WpfApp2TypeDiabet.Services
                 return e.Message;
             }
         }
+        public string DeleteGood(Goods good)
+        {
+            Good = good;
+            try
+            {
+                using (ApplicationContext db = new ApplicationContext())
+                {
+                    db.Goods.Remove(good);
+                    db.SaveChanges();
+                }
+                return "Success";
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
+        }
         public Goods GetGood(int id)
         {
             using (ApplicationContext db = new ApplicationContext())

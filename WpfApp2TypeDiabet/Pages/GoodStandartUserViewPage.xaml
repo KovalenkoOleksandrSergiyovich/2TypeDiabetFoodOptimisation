@@ -31,9 +31,23 @@
             HorizontalAlignment="center"
             FontSize="24"
             Text="Список наявних продуктів харчування" />
-        <ListBox
+        <ListView
             Grid.Row="2"
-            ItemsSource="{Binding}"
-            ScrollViewer.VerticalScrollBarVisibility="Auto" />
+            Margin="5"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Top"
+            ItemsSource="{Binding UserGoodsList}"
+            ScrollViewer.HorizontalScrollBarVisibility="Auto"
+            ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding GoodName}">Назва товару</GridViewColumn>
+                    <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding GoodAmount}">Кількість товару</GridViewColumn>
+                    <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding GoodUnits}">Одиниці виміру товару</GridViewColumn>
+                    <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding GoodPrice}">Ціна за одиницю товару</GridViewColumn>
+                    <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding GoodCarbohydrates}">Кількість вуглеводів в 100г товару</GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </Page>

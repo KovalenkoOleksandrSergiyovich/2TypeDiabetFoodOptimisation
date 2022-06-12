@@ -32,13 +32,33 @@
             HorizontalAlignment="center"
             FontSize="24"
             Text="Список наявних обмежень для ваших продуктів харчування" />
-        <ListBox
+        <ListView
             Grid.Row="2"
-            ItemsSource="{Binding}"
-            ScrollViewer.VerticalScrollBarVisibility="Auto" />
+            Margin="5"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Top"
+            ItemsSource="{Binding UserRestrictionsList}"
+            ScrollViewer.HorizontalScrollBarVisibility="Auto"
+            ScrollViewer.VerticalScrollBarVisibility="Auto"
+            SelectedItem="{Binding SelectedUserRestriction}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding GoodName}">Назва товару</GridViewColumn>
+                    <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding RestrictionName}">Назва обмеження</GridViewColumn>
+                    <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding RestrictionComparator}">Тип обмеження</GridViewColumn>
+                    <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding RestrictionAmount}">Кількість</GridViewColumn>
+                    <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding RestrictionUnit}">Одиниці виміру</GridViewColumn>
+                </GridView>
+            </ListView.View>
+            <ListView.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Command="{Binding DeleteUserRestrictionCommand}" Header="Видалити" />
+                </ContextMenu>
+            </ListView.ContextMenu>
+        </ListView>
         <StackPanel
             Grid.Row="3"
-            Margin="0,25,0,0"
+            Margin="0,25,0,10"
             HorizontalAlignment="Center"
             Orientation="Horizontal">
             <Button Command="{Binding GoToRestrictionPageCommand}" Content="Додати обмеження" />

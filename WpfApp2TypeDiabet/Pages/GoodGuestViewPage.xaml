@@ -6,7 +6,7 @@
     xmlns:local="clr-namespace:WpfApp2TypeDiabet.Pages"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="GoodGuestViewPage"
-    MinWidth="800"
+    MinWidth="500"
     MinHeight="450"
     DataContext="{Binding Source={StaticResource VMLocator}, Path=_goodGuestViewPageViewModel}"
     mc:Ignorable="d">
@@ -14,7 +14,7 @@
     <Grid
         Width="Auto"
         Height="Auto"
-        Margin="5,0,5,0">
+        Margin="5,0,5,10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -31,9 +31,24 @@
             HorizontalAlignment="center"
             FontSize="24"
             Text="Список наявних продуктів харчування" />
-        <ListBox
+        <ListView
             Grid.Row="2"
-            ItemsSource="{Binding}"
-            ScrollViewer.VerticalScrollBarVisibility="Auto" />
+            Margin="5"
+            VerticalAlignment="Top"
+            ItemsSource="{Binding UserGoodsList}"
+            ScrollViewer.HorizontalScrollBarVisibility="Auto"
+            ScrollViewer.VerticalScrollBarVisibility="Auto"
+            HorizontalAlignment="Center"
+            HorizontalContentAlignment="Center">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding GoodName}">Назва товару</GridViewColumn>
+                    <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding GoodAmount}">Кількість товару</GridViewColumn>
+                    <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding GoodUnits}">Одиниці виміру товару</GridViewColumn>
+                    <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding GoodPrice}">Ціна за одиницю товару</GridViewColumn>
+                    <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding GoodCarbohydrates}">Кількість вуглеводів в 100г товару</GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </Page>

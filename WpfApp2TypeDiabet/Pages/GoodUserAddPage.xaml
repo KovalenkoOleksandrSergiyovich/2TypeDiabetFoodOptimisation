@@ -106,7 +106,7 @@
             <TextBlock
                 Grid.Row="0"
                 FontSize="14"
-                Text="Ціна товару, грн" />
+                Text="Ціна одиниці товару, грн" />
             <TextBox
                 x:Name="GoodPriceTextBox"
                 Grid.Row="1"

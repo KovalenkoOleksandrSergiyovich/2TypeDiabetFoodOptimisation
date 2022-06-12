@@ -32,15 +32,15 @@ namespace WpfApp2TypeDiabet.ViewModels
         });
         public ICommand ViewGoodsListCommand => new DelegateCommand(() =>
         {
-            _navigation.Navigate(new GoodsViewPage());
+            _navigation.Navigate(new GoodViewAdminPage());
         });
         public ICommand AdminAddRestrictionCommand => new DelegateCommand(() =>
         {
-
+            _navigation.Navigate(new RestrictionAddAdminPage());
         });
         public ICommand ViewRestrictionsListCommand => new DelegateCommand(() =>
         {
-
+            _navigation.Navigate(new RestrictionViewAdminPage());
         });
         public ICommand OptimizeFoodConsumingCommand => new DelegateCommand(() =>
         {

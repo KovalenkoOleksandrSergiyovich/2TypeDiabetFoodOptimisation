@@ -3,7 +3,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace WpfApp2TypeDiabet.Migrations
 {
-    public partial class InintialCreation : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -197,19 +197,18 @@ namespace WpfApp2TypeDiabet.Migrations
                 {
                     id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    GoodID = table.Column<int>(type: "integer", nullable: false),
-                    GoodInShopid = table.Column<int>(type: "integer", nullable: true),
+                    GoodInShopID = table.Column<int>(type: "integer", nullable: false),
                     UserID = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_UserGoodList", x => x.id);
                     table.ForeignKey(
-                        name: "FK_UserGoodList_GoodInShop_GoodInShopid",
-                        column: x => x.GoodInShopid,
+                        name: "FK_UserGoodList_GoodInShop_GoodInShopID",
+                        column: x => x.GoodInShopID,
                         principalTable: "GoodInShop",
                         principalColumn: "id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_UserGoodList_Users_UserID",
                         column: x => x.UserID,
@@ -285,9 +284,9 @@ namespace WpfApp2TypeDiabet.Migrations
                 column: "GoodStateID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserGoodList_GoodInShopid",
+                name: "IX_UserGoodList_GoodInShopID",
                 table: "UserGoodList",
-                column: "GoodInShopid");
+                column: "GoodInShopID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserGoodList_UserID",

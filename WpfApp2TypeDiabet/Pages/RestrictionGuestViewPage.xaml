@@ -31,9 +31,23 @@
             HorizontalAlignment="center"
             FontSize="24"
             Text="Список наявних обмежень для продуктів харчування" />
-        <ListBox
+        <ListView
             Grid.Row="2"
-            ItemsSource="{Binding}"
-            ScrollViewer.VerticalScrollBarVisibility="Auto" />
+            Margin="5"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Top"
+            ItemsSource="{Binding UserRestrictionsList}"
+            ScrollViewer.HorizontalScrollBarVisibility="Auto"
+            ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding GoodName}">Назва товару</GridViewColumn>
+                    <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding RestrictionName}">Назва обмеження</GridViewColumn>
+                    <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding RestrictionComparator}">Тип обмеження</GridViewColumn>
+                    <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding RestrictionAmount}">Кількість</GridViewColumn>
+                    <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding RestrictionUnit}">Одиниці виміру</GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </Page>
