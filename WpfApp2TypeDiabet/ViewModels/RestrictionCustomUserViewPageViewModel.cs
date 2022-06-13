@@ -5,7 +5,9 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
+using WpfApp2TypeDiabet.Models;
 using WpfApp2TypeDiabet.Pages;
 using WpfApp2TypeDiabet.Services;
 using static WpfApp2TypeDiabet.Services.RestrictionService;
@@ -18,8 +20,8 @@ namespace WpfApp2TypeDiabet.ViewModels
         private RestrictionService _restrictionService;
         private readonly UserService _userService;
 
-        public ObservableCollection<UserRestriction> UserRestrictionsList { get; set; } = new ObservableCollection<RestrictionService.UserRestriction>();
-        public UserRestriction SelectedUserRestriction { get; set; }
+        public ObservableCollection<UserGoodRestriction> UserRestrictionsList { get; set; } = new ObservableCollection<RestrictionService.UserGoodRestriction>();
+        public UserGoodRestriction SelectedUserRestriction { get; set; }
         public RestrictionCustomUserViewPageViewModel(NavigationService navigation, RestrictionService restrictionService, UserService userService)
         {
             _navigation = navigation;
@@ -27,12 +29,32 @@ namespace WpfApp2TypeDiabet.ViewModels
             _userService = userService;
             FillRestrictionList();
         }
+        public ICommand DeleteUserRestrictionCommand => new DelegateCommand(() =>
+        {
+            MessageBoxResult result = MessageBox.Show("Ви впевнені, що хочете видалити це обмеження?", "Видалення обмеження", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if(result==MessageBoxResult.Yes)
+            {
+                Restriction restriction = _restrictionService.GetRestriction(SelectedUserRestriction.RestrictionID);
+                string restrictionDeletionResult = _restrictionService.DeleteRestriction(restriction);
+                if (!restrictionDeletionResult.Equals("Success"))
+                {
+                    MessageBox.Show("Неможливо видалити обмеження. Помилка " + restrictionDeletionResult, "Видалення обмеження", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                else
+                {
+                    MessageBox.Show("Обмеження було успішно видалено", "Видалення обмеження", MessageBoxButton.OK, MessageBoxImage.Information);
+                    FillRestrictionList();
+                }
+            }
+        });
         public ICommand GoBackCommand => new DelegateCommand(()=>
         {
+            ClearList();
             _navigation.GoBack();
         });
         public ICommand GoToMainPageCommand => new DelegateCommand(() =>
         {
+            ClearList();
             _navigation.Navigate(new UserMainPage());
         });
         public ICommand GoToRestrictionPageCommand => new DelegateCommand(() =>
@@ -45,7 +67,11 @@ namespace WpfApp2TypeDiabet.ViewModels
             {
                 UserRestrictionsList.Clear();
             }
-            UserRestrictionsList = _restrictionService.GetUserRestrictions(_userService.CurrentUser);
+            UserRestrictionsList = _restrictionService.GetUserGoodRestrictions(_userService.CurrentUser);
+        }
+        public void ClearList()
+        {
+            UserRestrictionsList.Clear();
         }
     }
 }

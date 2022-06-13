@@ -12,10 +12,20 @@ namespace WpfApp2TypeDiabet.Services
     public class RestrictionService
     {
         public Restriction Restriction { get; set; }
+        public ObservableCollection<UserGoodRestriction> UserGoodRestrictionList { get; set; } = new ObservableCollection<RestrictionService.UserGoodRestriction>();
         public ObservableCollection<UserRestriction> UserRestrictionList { get; set; } = new ObservableCollection<RestrictionService.UserRestriction>();
+        public class UserGoodRestriction
+        {
+            public int RestrictionID { get; set; }
+            public string GoodName { get; set; }
+            public string RestrictionName { get; set; }
+            public string RestrictionComparator { get; set; }
+            public double RestrictionAmount { get; set; }
+            public string RestrictionUnit { get; set; }
+        }
         public class UserRestriction
         {
-            public string GoodName { get; set; }
+            public int RestrictionID { get; set; }
             public string RestrictionName { get; set; }
             public string RestrictionComparator { get; set; }
             public double RestrictionAmount { get; set; }
@@ -60,11 +70,38 @@ namespace WpfApp2TypeDiabet.Services
                 return e.Message;
             }
         }
-        public ObservableCollection<UserRestriction> GetUserRestrictions(User user)
+        public Restriction GetRestriction(int restrictionID)
         {
-            if (UserRestrictionList.Any())
+            using (ApplicationContext db = new ApplicationContext())
             {
-                UserRestrictionList.Clear();
+                var restr = from b in db.Restriction
+                            where b.id == restrictionID
+                            select b;
+                Restriction = restr.First();
+            }
+            return Restriction;
+        }
+        public string DeleteRestriction(Restriction restriction)
+        {
+            try
+            {
+                using (ApplicationContext db = new ApplicationContext())
+                {
+                    db.Restriction.Remove(restriction);
+                    db.SaveChanges();
+                }
+                return "Success";
+            }
+            catch(Exception e)
+            {
+                return e.Message;
+            }
+        }
+        public ObservableCollection<UserGoodRestriction> GetUserGoodRestrictions(User user)
+        {
+            if (UserGoodRestrictionList.Any())
+            {
+                UserGoodRestrictionList.Clear();
             }
             using (ApplicationContext db = new ApplicationContext())
             {
@@ -75,7 +112,83 @@ namespace WpfApp2TypeDiabet.Services
                              where userRestriction.UserID == user.id
                              select new
                              {
+                                 RestrictionID = restriction.id,
                                  GoodName = good.GoodName,
+                                 RestrictionName = restriction.RestrictionName,
+                                 RestrictionComparator = restriction.Comparator,
+                                 RestrictionAmount = restriction.Amount,
+                                 RestrictionUnit = restriction.Unit
+                             };
+                foreach (var r in result)
+                {
+                    UserGoodRestriction userRestriction = new UserGoodRestriction()
+                    {
+                        RestrictionID = r.RestrictionID,
+                        GoodName = r.GoodName,
+                        RestrictionName = r.RestrictionName,
+                        RestrictionComparator = ComparatorToString(r.RestrictionComparator),
+                        RestrictionAmount = r.RestrictionAmount,
+                        RestrictionUnit = r.RestrictionUnit
+                    };
+
+                    UserGoodRestrictionList.Add(userRestriction);
+                }
+            }
+            return UserGoodRestrictionList;
+        }
+        public ObservableCollection<UserGoodRestriction> GetStandartGoodRestrictions()
+        {
+            if (UserGoodRestrictionList.Any())
+            {
+                UserGoodRestrictionList.Clear();
+            }
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                var result = from  restriction in db.Restriction
+                             join goodInShop in db.GoodInShop on restriction.id equals goodInShop.RestrictionID
+                             join good in db.Goods on goodInShop.GoodId equals good.id
+                             where restriction.IsDefault && goodInShop.IsDefault
+                             select new
+                             {
+                                 RestrictionID = restriction.id,
+                                 GoodName = good.GoodName,
+                                 RestrictionName = restriction.RestrictionName,
+                                 RestrictionComparator = restriction.Comparator,
+                                 RestrictionAmount = restriction.Amount,
+                                 RestrictionUnit = restriction.Unit
+                             };
+                foreach (var r in result)
+                {
+                    UserGoodRestriction userRestriction = new UserGoodRestriction()
+                    {
+                        RestrictionID = r.RestrictionID,
+                        GoodName = r.GoodName,
+                        RestrictionName = r.RestrictionName,
+                        RestrictionComparator = ComparatorToString(r.RestrictionComparator),
+                        RestrictionAmount = r.RestrictionAmount,
+                        RestrictionUnit = r.RestrictionUnit
+                    };
+
+                    UserGoodRestrictionList.Add(userRestriction);
+                }
+            }
+            return UserGoodRestrictionList;
+        }
+        public ObservableCollection<UserRestriction> GetUserRestrictions(User user, Goods good)
+        {
+            if (UserRestrictionList.Any())
+            {
+                UserRestrictionList.Clear();
+            }
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                var result = from userRestriction in db.UserRestrictionList
+                             join restriction in db.Restriction on userRestriction.RestrictionID equals restriction.id
+                             join goodInShop in db.GoodInShop on restriction.id equals goodInShop.RestrictionID
+                             where userRestriction.UserID == user.id && goodInShop.GoodId == good.id
+                             select new
+                             {
+                                 RestrictionID = restriction.id,
                                  RestrictionName = restriction.RestrictionName,
                                  RestrictionComparator = restriction.Comparator,
                                  RestrictionAmount = restriction.Amount,
@@ -85,7 +198,7 @@ namespace WpfApp2TypeDiabet.Services
                 {
                     UserRestriction userRestriction = new UserRestriction()
                     {
-                        GoodName = r.GoodName,
+                        RestrictionID = r.RestrictionID,
                         RestrictionName = r.RestrictionName,
                         RestrictionComparator = ComparatorToString(r.RestrictionComparator),
                         RestrictionAmount = r.RestrictionAmount,
@@ -97,7 +210,7 @@ namespace WpfApp2TypeDiabet.Services
             }
             return UserRestrictionList;
         }
-        public ObservableCollection<UserRestriction> GetStandartRestrictions()
+        public ObservableCollection<UserRestriction> GetStandartRestrictions(Goods good)
         {
             if (UserRestrictionList.Any())
             {
@@ -105,13 +218,12 @@ namespace WpfApp2TypeDiabet.Services
             }
             using (ApplicationContext db = new ApplicationContext())
             {
-                var result = from  restriction in db.Restriction
+                var result = from restriction in db.Restriction
                              join goodInShop in db.GoodInShop on restriction.id equals goodInShop.RestrictionID
-                             join good in db.Goods on goodInShop.GoodId equals good.id
-                             where restriction.IsDefault && goodInShop.IsDefault
+                             where restriction.IsDefault && goodInShop.IsDefault && goodInShop.GoodId == good.id
                              select new
                              {
-                                 GoodName = good.GoodName,
+                                 RestrictionID = restriction.id,
                                  RestrictionName = restriction.RestrictionName,
                                  RestrictionComparator = restriction.Comparator,
                                  RestrictionAmount = restriction.Amount,
@@ -121,7 +233,7 @@ namespace WpfApp2TypeDiabet.Services
                 {
                     UserRestriction userRestriction = new UserRestriction()
                     {
-                        GoodName = r.GoodName,
+                        RestrictionID = r.RestrictionID,
                         RestrictionName = r.RestrictionName,
                         RestrictionComparator = ComparatorToString(r.RestrictionComparator),
                         RestrictionAmount = r.RestrictionAmount,
@@ -155,7 +267,7 @@ namespace WpfApp2TypeDiabet.Services
                     }
                 case "gre":
                     {
-                        result = "Більше або дорівнює ніж";
+                        result = "Більше або дорівнює";
                         break;
                     }
                 case "eq":
@@ -186,7 +298,7 @@ namespace WpfApp2TypeDiabet.Services
                         result = "lse";
                         break;
                     }
-                case "Більше або дорівнює ніж":
+                case "Більше або дорівнює":
                     {
                         result = "gre";
                         break;

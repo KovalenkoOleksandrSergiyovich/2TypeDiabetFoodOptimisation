@@ -18,7 +18,7 @@ namespace WpfApp2TypeDiabet.ViewModels
         private RestrictionService _restrictionService;
         private readonly UserService _userService;
 
-        public ObservableCollection<UserRestriction> UserRestrictionsList { get; set; } = new ObservableCollection<RestrictionService.UserRestriction>();
+        public ObservableCollection<UserGoodRestriction> UserRestrictionsList { get; set; } = new ObservableCollection<RestrictionService.UserGoodRestriction>();
         public RestrictionStandartUserViewPageViewModel(NavigationService navigation, RestrictionService restrictionService, UserService userService)
         {
             _navigation = navigation;
@@ -28,10 +28,12 @@ namespace WpfApp2TypeDiabet.ViewModels
         }
         public ICommand GoBackCommand => new DelegateCommand(()=>
         {
+            ClearList();
             _navigation.GoBack();
         });
         public ICommand GoToMainPageCommand => new DelegateCommand(() =>
         {
+            ClearList();
             _navigation.Navigate(new UserMainPage());
         });
         public void FillRestrictionList()
@@ -40,7 +42,11 @@ namespace WpfApp2TypeDiabet.ViewModels
             {
                 UserRestrictionsList.Clear();
             }
-            UserRestrictionsList = _restrictionService.GetStandartRestrictions();
+            UserRestrictionsList = _restrictionService.GetStandartGoodRestrictions();
+        }
+        public void ClearList()
+        {
+            UserRestrictionsList.Clear();
         }
     }
 }

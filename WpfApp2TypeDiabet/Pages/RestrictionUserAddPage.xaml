@@ -15,12 +15,11 @@
     <Grid Margin="5,5,0,0" Grid.IsSharedSizeScope="True">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="Auto" SharedSizeGroup="FirstColumn" />
-            <ColumnDefinition Width="Auto" SharedSizeGroup="FirstColumn" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Menu
@@ -32,39 +31,10 @@
                 <MenuItem Command="{Binding GoToMainPageCommand}" Header="На головну" />
             </MenuItem>
         </Menu>
+
         <Grid
             Grid.Row="1"
             Grid.Column="0"
-            Margin="5,5,5,5">
-            <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-            </Grid.RowDefinitions>
-            <TextBlock
-                Grid.Row="0"
-                Margin="0,5,0,0"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center"
-                Text="Оберіть продукт" />
-            <TextBox
-                x:Name="ToFindGoodTextBox"
-                Grid.Row="1"
-                Text="{Binding GoodNameForSearch, UpdateSourceTrigger=PropertyChanged}" />
-            <ListBox
-                Grid.Row="2"
-                Width="Auto"
-                Height="Auto"
-                MinWidth="200"
-                MinHeight="350"
-                Margin="0,5"
-                ScrollViewer.VerticalScrollBarVisibility="Auto"
-                SelectedValue="{Binding SelectedGood}" />
-        </Grid>
-        <Grid
-            Grid.Row="1"
-            Grid.Column="1"
             Margin="5,5,5,5"
             VerticalAlignment="Center">
             <Grid.RowDefinitions>
@@ -74,6 +44,10 @@
                 <RowDefinition Height="Auto" SharedSizeGroup="Inputs" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" SharedSizeGroup="Inputs" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" SharedSizeGroup="Inputs" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" SharedSizeGroup="Inputs" />
             </Grid.RowDefinitions>
             <TextBlock
                 Grid.Row="0"
@@ -82,17 +56,15 @@
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 FontSize="16"
-                Text="Оберіть тип обмеження" />
+                Text="Оберіть продукт" />
             <ComboBox
+                x:Name="ToFindGoodComboBox"
                 Grid.Row="1"
                 Margin="0,5,0,0"
-                SelectedValue="{Binding RestrictionType}">
-                <ComboBoxItem>Більше</ComboBoxItem>
-                <ComboBoxItem>Більше або дорівнює</ComboBoxItem>
-                <ComboBoxItem>Менше</ComboBoxItem>
-                <ComboBoxItem>Менше або дорівнює</ComboBoxItem>
-                <ComboBoxItem>Дорівнює</ComboBoxItem>
-            </ComboBox>
+                IsEditable="True"
+                ItemsSource="{Binding GoodList}"
+                Text="{Binding GoodNameForSearch, UpdateSourceTrigger=PropertyChanged}"
+                TextBoxBase.TextChanged="ToFindGoodComboBox_TextChanged" />
             <TextBlock
                 Grid.Row="2"
                 Height="Auto"
@@ -100,19 +72,52 @@
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 FontSize="16"
-                Text="Оберіть одиниці виміру" />
-            <ComboBox
+                Text="Вкажіть назву обмеження" />
+            <TextBox
+                x:Name="RestrictionNameTextBox"
                 Grid.Row="3"
                 Margin="0,5,0,0"
-                SelectedValue="{Binding UnitType}">
-                <ComboBoxItem>кг</ComboBoxItem>
-                <ComboBoxItem>г</ComboBoxItem>
-                <ComboBoxItem>мг</ComboBoxItem>
-                <ComboBoxItem>л</ComboBoxItem>
-                <ComboBoxItem>мл</ComboBoxItem>
-            </ComboBox>
+                Style="{StaticResource GeneralTextBoxErrorStyle}">
+                <TextBox.Text>
+                    <Binding Path="RestrictionName" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <validationrules:RestrictionNameValidationRule />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
             <TextBlock
                 Grid.Row="4"
+                Height="Auto"
+                Margin="0,5,0,0"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                FontSize="16"
+                Text="Оберіть тип обмеження" />
+            <ComboBox
+                x:Name="cbType"
+                Grid.Row="5"
+                Margin="0,5,0,0"
+                ItemsSource="{Binding RestrictionTypeList}"
+                SelectedIndex="0"
+                SelectedValue="{Binding RestrictionType}" />
+
+            <TextBlock
+                Grid.Row="6"
+                Height="Auto"
+                Margin="0,5,0,0"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                FontSize="16"
+                Text="Оберіть одиниці виміру" />
+            <ComboBox
+                Grid.Row="7"
+                Margin="0,5,0,0"
+                ItemsSource="{Binding UnitTypeList}"
+                SelectedIndex="0"
+                SelectedValue="{Binding UnitType}" />
+            <TextBlock
+                Grid.Row="8"
                 Height="Auto"
                 Margin="0,5,0,0"
                 HorizontalAlignment="Center"
@@ -121,11 +126,11 @@
                 Text="Вкажіть кількість одиниць" />
             <TextBox
                 x:Name="UnitAmountTextBox"
-                Grid.Row="5"
+                Grid.Row="9"
                 Margin="0,5,0,0"
                 Style="{StaticResource GeneralTextBoxErrorStyle}">
                 <TextBox.Text>
-                    <Binding Path="UnitAmount" UpdateSourceTrigger="PropertyChanged">
+                    <Binding Path="RestrictionAmount" UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>
                             <validationrules:RestrictionAmountValidationRule />
                         </Binding.ValidationRules>
@@ -135,11 +140,11 @@
         </Grid>
         <Grid
             Grid.Row="1"
-            Grid.Column="2"
+            Grid.Column="1"
             Margin="5,5,5,5">
             <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <TextBlock
                 Grid.Row="0"
@@ -149,15 +154,29 @@
                 VerticalAlignment="Center"
                 FontSize="16"
                 Text="Наявні обмеження" />
-            <ListBox
+            <ListView
                 Grid.Row="1"
-                Width="Auto"
-                Height="Auto"
-                MinWidth="200"
-                MinHeight="350"
-                Margin="0,5,0,0"
+                Margin="5"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Top"
+                ItemsSource="{Binding SelectedGoodRestrictions}"
+                ScrollViewer.HorizontalScrollBarVisibility="Auto"
                 ScrollViewer.VerticalScrollBarVisibility="Auto"
-                SelectedValue="{Binding SelectedGoodRestriction}" />
+                SelectedItem="{Binding SelectedGoodRestriction}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding RestrictionName}">Назва обмеження</GridViewColumn>
+                        <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding RestrictionComparator}">Тип обмеження</GridViewColumn>
+                        <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding RestrictionAmount}">Кількість</GridViewColumn>
+                        <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding RestrictionUnit}">Одиниці виміру</GridViewColumn>
+                    </GridView>
+                </ListView.View>
+                <ListView.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Command="{Binding DeleteUserRestrictionCommand}" Header="Видалити" />
+                    </ContextMenu>
+                </ListView.ContextMenu>
+            </ListView>
         </Grid>
         <StackPanel
             Grid.Row="2"
@@ -174,6 +193,7 @@
                         <Style.Triggers>
                             <MultiDataTrigger>
                                 <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=RestrictionNameTextBox}" Value="False" />
                                     <Condition Binding="{Binding Path=(Validation.HasError), ElementName=UnitAmountTextBox}" Value="False" />
                                 </MultiDataTrigger.Conditions>
                                 <Setter Property="IsEnabled" Value="True" />

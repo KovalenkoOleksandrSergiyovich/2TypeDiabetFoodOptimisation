@@ -93,6 +93,47 @@ namespace WpfApp2TypeDiabet.Services
                 return UserGoods;
             }
         }
+        public ObservableCollection<string> GetUserGoodList(User user)
+        {
+            if (UserGoods.Any())
+            {
+                UserGoods.Clear();
+            }
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                ObservableCollection<string> goods = new ObservableCollection<string>();
+                var result = from userGood in db.UserGoodList
+                             join goodInShop in db.GoodInShop on userGood.GoodInShopID equals goodInShop.id
+                             join good in db.Goods on goodInShop.GoodId equals good.id
+                             where userGood.UserID == user.id
+                             select good;
+                foreach (var e in result)
+                {
+                    goods.Add(e.GoodName);
+                }
+                return goods;
+            }
+        }
+        public ObservableCollection<string> GetStandartGoodList()
+        {
+            if (UserGoods.Any())
+            {
+                UserGoods.Clear();
+            }
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                ObservableCollection<string> goods = new ObservableCollection<string>();
+                var result = (from good in db.Goods
+                             join goodInShop in db.GoodInShop on good.id equals goodInShop.GoodId
+                             where goodInShop.IsDefault == true
+                             select good.GoodName).Distinct();
+                foreach (var e in result)
+                {
+                    goods.Add(e);
+                }
+                return goods;
+            }
+        }
         public ObservableCollection<UserGood> GetStandartGoods()
         {
             if (UserGoods.Any())

@@ -39,18 +39,18 @@ namespace WpfApp2TypeDiabet
             services.AddSingleton<GoodAddAdminPageViewModel>();
             services.AddSingleton<CalculationPreparationsPageViewModel>();
             services.AddSingleton<GoodEditAdminPageViewModel>();
-            services.AddSingleton<RestrictionAddAdminPageViewModel>();
+            services.AddTransient<RestrictionAddAdminPageViewModel>();
             services.AddSingleton<RestrictionEditAdminPageViewModel>();
             services.AddSingleton<GoodViewAdminPageViewModel>();
-            services.AddSingleton<RestrictionViewAdminPageViewModel>();
+            services.AddTransient<RestrictionViewAdminPageViewModel>();
             services.AddTransient<GoodGuestViewPageViewModel>();
             services.AddSingleton<RestrictionGuestViewPageViewModel>();
             services.AddTransient<GoodStandartUserViewPageViewModel>();
             services.AddTransient<GoodCustomUserViewPageViewModel>();
-            services.AddSingleton<RestrictionStandartUserViewPageViewModel>();
-            services.AddSingleton<RestrictionCustomUserViewPageViewModel>();
+            services.AddTransient<RestrictionStandartUserViewPageViewModel>();
+            services.AddTransient<RestrictionCustomUserViewPageViewModel>();
             services.AddSingleton<GoodUserAddPageViewModel>();
-            services.AddSingleton<RestrictionUserAddPageViewModel>();
+            services.AddTransient<RestrictionUserAddPageViewModel>();
             services.AddSingleton<GoodUserEditPageViewModel>();
             services.AddSingleton<RestrictionUserEditPageViewModel>();
 
@@ -65,6 +65,7 @@ namespace WpfApp2TypeDiabet
             services.AddSingleton<GoodShopStateService>();
             services.AddSingleton<RestrictionService>();
             services.AddSingleton<UserGoodListService>();
+            services.AddSingleton<UserRestrictionListService>();
 
             _provider = services.BuildServiceProvider();
 

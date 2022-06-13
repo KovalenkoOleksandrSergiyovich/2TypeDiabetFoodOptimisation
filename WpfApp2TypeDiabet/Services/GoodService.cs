@@ -52,7 +52,14 @@ namespace WpfApp2TypeDiabet.Services
                 var good = from b in db.Goods
                            where b.id == id
                            select b;
-                return good.First();
+                if (good.Any())
+                {
+                    return good.First();
+                }
+                else
+                {
+                    return null;
+                }
             }
         }
         public Goods GetGood(string goodName)
@@ -62,7 +69,14 @@ namespace WpfApp2TypeDiabet.Services
                 var good = from b in db.Goods
                            where b.GoodName == goodName
                            select b;
-                return good.First();
+                if(good.Any())
+                {
+                    return good.First();
+                }
+                else
+                {
+                    return null;
+                }
             }
         }
         public List<Goods> SelectGoodsLike(string goodName)

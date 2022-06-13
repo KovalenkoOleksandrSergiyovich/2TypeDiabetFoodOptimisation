@@ -39,7 +39,8 @@
             VerticalAlignment="Top"
             ItemsSource="{Binding UserRestrictionsList}"
             ScrollViewer.HorizontalScrollBarVisibility="Auto"
-            ScrollViewer.VerticalScrollBarVisibility="Auto">
+            ScrollViewer.VerticalScrollBarVisibility="Auto"
+            SelectedItem="{Binding SelectedStandartRestriction}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding GoodName}">Назва товару</GridViewColumn>

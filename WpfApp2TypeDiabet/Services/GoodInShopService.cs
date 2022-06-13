@@ -71,17 +71,17 @@ namespace WpfApp2TypeDiabet.Services
                 return e.Message;
             }
         }
-        public void GetGoodInShop(Goods goodToDelete)
+        public void GetGoodInShop(Goods good)
         {
             Goods = new List<GoodInShop>();
             using (ApplicationContext db = new ApplicationContext())
             {
                 var goodInShop = from b in db.GoodInShop
-                                 where b.GoodId == goodToDelete.id
+                                 where b.GoodId == good.id
                                  select b;
-                foreach(GoodInShop good in goodInShop)
+                foreach(GoodInShop product in goodInShop)
                 {
-                    Goods.Add(good);
+                    Goods.Add(product);
                 }
             }
         }
