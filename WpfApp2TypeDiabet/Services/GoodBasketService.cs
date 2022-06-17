@@ -13,9 +13,9 @@ namespace WpfApp2TypeDiabet.Services
     {
         public GoodBasket GoodBasket { get; set; }
         public List<GoodBasket> Baskets { get; set; } = new List<GoodBasket>();
-        public string CreateGoodBasket(int userID, double bU, double price, ObservableCollection<GoodInBasket> goodInBasket)
+        public string CreateGoodBasket(int userID, double bU, double price)
         {
-            GoodBasket = new GoodBasket(userID, bU, price, goodInBasket);
+            GoodBasket = new GoodBasket(userID, bU, price);
             try
             {
                 using (ApplicationContext db = new ApplicationContext())

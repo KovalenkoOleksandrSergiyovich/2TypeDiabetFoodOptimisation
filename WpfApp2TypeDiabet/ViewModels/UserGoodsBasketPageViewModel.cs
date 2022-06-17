@@ -73,13 +73,14 @@ namespace WpfApp2TypeDiabet.ViewModels
                 }
             }
             string goodBasketCreationResult = _goodBasketService.CreateGoodBasket(_userService.CurrentUser.id, double.Parse(TotalBU, CultureInfo.InvariantCulture),
-                double.Parse(TotalPrice, CultureInfo.InvariantCulture), GoodsInBasket);
+                double.Parse(TotalPrice, CultureInfo.InvariantCulture));
             if(goodBasketCreationResult!="Success")
             {
                 MessageBox.Show("Неможливо зберегти продуктовий кошик","Збереження продуктового кошику",MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else
             {
+                _goodBasketService.GoodBasket.GoodInBasket = GoodsInBasket;
                 _navigation.Navigate(new BasketListPage());
             }
             

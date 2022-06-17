@@ -34,6 +34,6 @@ namespace WpfApp2TypeDiabet.Models
 
         public ObservableCollection<UserGoodList> CustomGoods { get; set; } = new ObservableCollection<UserGoodList>();
         public ObservableCollection<UserRestrictionList> CustomRestrictions { get; set; } = new ObservableCollection<UserRestrictionList>();
-        public ObservableCollection<Result> GoodBaskets { get; set; } = new ObservableCollection<Result>();
+        public ObservableCollection<GoodBasket> GoodBaskets { get; set; } = new ObservableCollection<GoodBasket>();
     }
 }

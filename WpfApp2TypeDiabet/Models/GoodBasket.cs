@@ -15,15 +15,13 @@ namespace WpfApp2TypeDiabet.Models
         public double BU { get; set; }
         public double Price { get; set; }
         //public int GoodInBasketID { get; set; }
-        public public ObservableCollection<GoodInBasket> GoodInBasket { get; set; } = new ObservableCollection<GoodInBasket>();
+        public ObservableCollection<GoodInBasket> GoodInBasket { get; set; } = new ObservableCollection<GoodInBasket>();
 
-        public GoodBasket(int userID, double bU, double price, ObservableCollection<GoodInBasket> goodInBasket)
+        public GoodBasket(int userID, double bU, double price)
         {
             UserID = userID;
             BU = bU;
             Price = price;
-            //GoodInBasketID = goodInBasketID;
-            GoodInBasket = goodInBasket;
         }
     }
 }

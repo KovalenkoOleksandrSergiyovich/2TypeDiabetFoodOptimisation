@@ -22,10 +22,6 @@ namespace WpfApp2TypeDiabet.DBServices
         public DbSet<UserGoodList> UserGoodList { get; set; }
         public DbSet<UserRestrictionList> UserRestrictionList { get; set; }
         public DbSet<GoodInBasket> GoodInBasket { get; set; }
-        //public DbSet<OptimizeModel> OptimizeModel { get; set; }
-        //public DbSet<Result> Result { get; set; }
-        //public DbSet<ProductBasket> ProductBasket { get; set; }
-        //public DbSet<GoodToOptimize> GoodToOptimize { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
