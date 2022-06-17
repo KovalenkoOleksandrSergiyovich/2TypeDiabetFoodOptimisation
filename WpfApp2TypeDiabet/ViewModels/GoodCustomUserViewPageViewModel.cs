@@ -21,8 +21,8 @@ namespace WpfApp2TypeDiabet.ViewModels
         private readonly UserService _userService;
         private readonly UserGoodListService _userGoodListService;
 
-        public ObservableCollection<UserGood> UserGoodsList { get; set; } = new ObservableCollection<UserGoodListService.UserGood>();
-        public UserGood SelectedUserGood { get; set; }
+        public ObservableCollection<GoodToOptimize> UserGoodsList { get; set; } = new ObservableCollection<UserGoodListService.GoodToOptimize>();
+        public GoodToOptimize SelectedUserGood { get; set; }
 
         public GoodCustomUserViewPageViewModel(NavigationService navigation, UserGoodListService userGoodListService, 
             UserService userService, GoodService goodService)

@@ -25,7 +25,7 @@ namespace WpfApp2TypeDiabet
             services.AddSingleton<BasketListPageViewModel>();
             services.AddTransient<CalculateDataInputPageViewModel>();
             services.AddSingleton<GoodUserAddPageViewModel>();
-            services.AddSingleton<GoodsBasketPageViewModel>();
+            services.AddSingleton<UserGoodsBasketPageViewModel>();
             services.AddSingleton<GoodsViewPageViewModel>();
             services.AddSingleton<GuestMainPageViewModel>();
             services.AddTransient<LoginPageViewModel>();
@@ -53,6 +53,7 @@ namespace WpfApp2TypeDiabet
             services.AddTransient<RestrictionUserAddPageViewModel>();
             services.AddSingleton<GoodUserEditPageViewModel>();
             services.AddSingleton<RestrictionUserEditPageViewModel>();
+            services.AddTransient<GuestGoodsBasketPageViewModel>();
 
             //реєструємо сервіси
             services.AddSingleton<NavigationService>();
@@ -66,6 +67,7 @@ namespace WpfApp2TypeDiabet
             services.AddSingleton<RestrictionService>();
             services.AddSingleton<UserGoodListService>();
             services.AddSingleton<UserRestrictionListService>();
+            services.AddSingleton<OptimizeService>();
 
             _provider = services.BuildServiceProvider();
 

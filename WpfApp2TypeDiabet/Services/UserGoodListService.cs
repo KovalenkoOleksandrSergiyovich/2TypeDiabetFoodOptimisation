@@ -12,15 +12,17 @@ namespace WpfApp2TypeDiabet.Services
     public class UserGoodListService
     {
         public UserGoodList UserGoodList { get; set; }
-        public ObservableCollection<UserGood> UserGoods { get; set; } = new ObservableCollection<UserGoodListService.UserGood>();
+        public ObservableCollection<GoodToOptimize> UserGoods { get; set; } = new ObservableCollection<UserGoodListService.GoodToOptimize>();
 
-        public class UserGood
+        public class GoodToOptimize
         {
+            public int GoodInShopID { get; set; }
             public string GoodName { get; set; }
             public double GoodPrice { get; set; }
             public double GoodAmount { get; set; }
             public string GoodUnits { get; set; }
             public double GoodCarbohydrates { get; set; }
+            public int GoodID { get; set; }
         }
         public string CreateUserGoodList(int userID, int goodInShopID)
         {
@@ -56,7 +58,7 @@ namespace WpfApp2TypeDiabet.Services
                 return e.Message;
             }
         }
-        public ObservableCollection<UserGood> GetUserGoods(User user)
+        public ObservableCollection<GoodToOptimize> GetUserGoods(User user)
         {
             if(UserGoods.Any())
             {
@@ -72,21 +74,106 @@ namespace WpfApp2TypeDiabet.Services
                              where userGood.UserID == user.id
                              select new
                              {
+                                 GoodInShopID = goodInShop.id,
                                  GoodName = good.GoodName,
                                  GoodPrice = goodInShop.GoodPrice,
                                  GoodAmount = goodInShop.GoodAmount,
                                  GoodUnits = goodInShop.GoodUnits,
-                                 GoodCarbohydrates = goodState.Carbohydrates
+                                 GoodCarbohydrates = goodState.Carbohydrates,
+                                 GoodID = goodInShop.GoodId
                              };
                 foreach(var e in result)
                 {
-                    UserGood userGood = new UserGood()
+                    GoodToOptimize userGood = new GoodToOptimize()
                     {
+                        GoodInShopID = e.GoodInShopID,
                         GoodName = e.GoodName,
                         GoodPrice = e.GoodPrice,
                         GoodAmount = e.GoodAmount,
                         GoodUnits = e.GoodUnits,
-                        GoodCarbohydrates = e.GoodCarbohydrates
+                        GoodCarbohydrates = e.GoodCarbohydrates,
+                        GoodID = e.GoodID
+                    };
+                    UserGoods.Add(userGood);
+                }
+                return UserGoods;
+            }
+        }
+        public ObservableCollection<GoodToOptimize> UserGetAllGoods(User user)
+        {
+            if (UserGoods.Any())
+            {
+                UserGoods.Clear();
+            }
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                var result = from userGood in db.UserGoodList
+                             join goodInShop in db.GoodInShop on userGood.GoodInShopID equals goodInShop.id
+                             join good in db.Goods on goodInShop.GoodId equals good.id
+                             join goodShopState in db.GoodShopState on goodInShop.id equals goodShopState.GoodInShopID
+                             join goodState in db.GoodState on goodShopState.GoodStateID equals goodState.id
+                             where userGood.UserID == user.id || goodInShop.IsDefault
+                             select new
+                             {
+                                 GoodInShopID = goodInShop.id,
+                                 GoodName = good.GoodName,
+                                 GoodPrice = goodInShop.GoodPrice,
+                                 GoodAmount = goodInShop.GoodAmount,
+                                 GoodUnits = goodInShop.GoodUnits,
+                                 GoodCarbohydrates = goodState.Carbohydrates,
+                                 GoodID = goodInShop.GoodId
+                             };
+                foreach (var e in result)
+                {
+                    GoodToOptimize userGood = new GoodToOptimize()
+                    {
+                        GoodInShopID = e.GoodInShopID,
+                        GoodName = e.GoodName,
+                        GoodPrice = e.GoodPrice,
+                        GoodAmount = e.GoodAmount,
+                        GoodUnits = e.GoodUnits,
+                        GoodCarbohydrates = e.GoodCarbohydrates,
+                        GoodID = e.GoodID
+                    };
+                    UserGoods.Add(userGood);
+                }
+                return UserGoods;
+            }
+        }
+        public ObservableCollection<GoodToOptimize> GuestGetAllGoods()
+        {
+            if (UserGoods.Any())
+            {
+                UserGoods.Clear();
+            }
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                var result = from goodInShop in db.GoodInShop
+                             join good in db.Goods on goodInShop.GoodId equals good.id
+                             join goodShopState in db.GoodShopState on goodInShop.id equals goodShopState.GoodInShopID
+                             join goodState in db.GoodState on goodShopState.GoodStateID equals goodState.id
+                             where goodInShop.IsDefault
+                             select new
+                             {
+                                 GoodInShopID = goodInShop.id,
+                                 GoodName = good.GoodName,
+                                 GoodPrice = goodInShop.GoodPrice,
+                                 GoodAmount = goodInShop.GoodAmount,
+                                 GoodUnits = goodInShop.GoodUnits,
+                                 GoodCarbohydrates = goodState.Carbohydrates,
+                                 GoodID = goodInShop.GoodId
+                             };
+                foreach (var e in result)
+                {
+                    GoodToOptimize userGood = new GoodToOptimize()
+                    {
+                        GoodInShopID = e.GoodInShopID,
+                        GoodName = e.GoodName,
+                        GoodPrice = e.GoodPrice,
+                        GoodAmount = e.GoodAmount,
+                        GoodUnits = e.GoodUnits,
+                        GoodCarbohydrates = e.GoodCarbohydrates,
+                        GoodID = e.GoodID
                     };
                     UserGoods.Add(userGood);
                 }
@@ -134,7 +221,7 @@ namespace WpfApp2TypeDiabet.Services
                 return goods;
             }
         }
-        public ObservableCollection<UserGood> GetStandartGoods()
+        public ObservableCollection<GoodToOptimize> GetStandartGoods()
         {
             if (UserGoods.Any())
             {
@@ -149,21 +236,25 @@ namespace WpfApp2TypeDiabet.Services
                              where goodInShop.IsDefault
                              select new
                              {
+                                 GoodInShopID = goodInShop.id,
                                  GoodName = good.GoodName,
                                  GoodPrice = goodInShop.GoodPrice,
                                  GoodAmount = goodInShop.GoodAmount,
                                  GoodUnits = goodInShop.GoodUnits,
-                                 GoodCarbohydrates = goodState.Carbohydrates
+                                 GoodCarbohydrates = goodState.Carbohydrates,
+                                 GoodID = goodInShop.GoodId
                              };
                 foreach (var e in result)
                 {
-                    UserGood userGood = new UserGood()
+                    GoodToOptimize userGood = new GoodToOptimize()
                     {
+                        GoodInShopID = e.GoodInShopID,
                         GoodName = e.GoodName,
                         GoodPrice = e.GoodPrice,
                         GoodAmount = e.GoodAmount,
                         GoodUnits = e.GoodUnits,
-                        GoodCarbohydrates = e.GoodCarbohydrates
+                        GoodCarbohydrates = e.GoodCarbohydrates,
+                        GoodID = e.GoodID
                     };
                     UserGoods.Add(userGood);
                 }

@@ -149,6 +149,8 @@
                 Grid.Column="1"
                 Margin="10,5,0,0"
                 ItemsSource="{Binding Genders}"
+                HorizontalContentAlignment="Center"
+                VerticalContentAlignment="Center"
                 SelectedValue="{Binding Gender, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true}"
                 Style="{StaticResource GeneralComboBoxErrorStyle}" />
         </Grid>
@@ -174,6 +176,8 @@
                 Grid.Column="1"
                 Margin="10,5,0,0"
                 ItemsSource="{Binding PhysicalActivities}"
+                HorizontalContentAlignment="Center"
+                VerticalContentAlignment="Center"
                 SelectedValue="{Binding PhysicalActivity, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true}"
                 Style="{StaticResource GeneralComboBoxErrorStyle}" />
         </Grid>

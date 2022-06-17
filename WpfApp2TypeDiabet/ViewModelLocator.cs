@@ -9,7 +9,7 @@ namespace WpfApp2TypeDiabet
         public BasketListPageViewModel _backetListPageViewModel => DependencyInjection.Resolve<BasketListPageViewModel>();
         public CalculateDataInputPageViewModel _calculateDataInputPageViewModel => DependencyInjection.Resolve<CalculateDataInputPageViewModel>();
         public GoodUserAddPageViewModel _goodPageViewModel => DependencyInjection.Resolve<GoodUserAddPageViewModel>();
-        public GoodsBasketPageViewModel _goodsBacketPageViewModel => DependencyInjection.Resolve<GoodsBasketPageViewModel>();
+        public UserGoodsBasketPageViewModel _goodsBacketPageViewModel => DependencyInjection.Resolve<UserGoodsBasketPageViewModel>();
         public GoodsViewPageViewModel _goodsViewPageViewModel => DependencyInjection.Resolve<GoodsViewPageViewModel>();
         public GuestMainPageViewModel _guestMainPageViewModel => DependencyInjection.Resolve<GuestMainPageViewModel>();
         public LoginPageViewModel _loginPageViewModel => DependencyInjection.Resolve<LoginPageViewModel>();
@@ -37,5 +37,6 @@ namespace WpfApp2TypeDiabet
         public RestrictionUserAddPageViewModel _restrictionUserAddPageViewModel => DependencyInjection.Resolve<RestrictionUserAddPageViewModel>();
         public GoodUserEditPageViewModel _goodUserEditPageViewModel => DependencyInjection.Resolve<GoodUserEditPageViewModel>();
         public RestrictionUserEditPageViewModel _restrictionUserEditPageViewModel => DependencyInjection.Resolve<RestrictionUserEditPageViewModel>();
+        public GuestGoodsBasketPageViewModel _guestGoodsBasketPageViewModel => DependencyInjection.Resolve<GuestGoodsBasketPageViewModel>();
     }
 }

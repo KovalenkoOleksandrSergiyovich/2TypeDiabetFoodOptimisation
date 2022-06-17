@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace WpfApp2TypeDiabet.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для GoodsBasketPage.xaml
+    /// Логика взаимодействия для GuestGoodBasket.xaml
     /// </summary>
-    public partial class GoodsBasketPage : Page
+    public partial class GuestGoodsBasketPage : Page
     {
-        public GoodsBasketPage()
+        public GuestGoodsBasketPage()
         {
             InitializeComponent();
         }

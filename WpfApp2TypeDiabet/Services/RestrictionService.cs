@@ -245,6 +245,23 @@ namespace WpfApp2TypeDiabet.Services
             }
             return UserRestrictionList;
         }
+        public List<Restriction> GetGoodRestrictions(int goodID)
+        {
+            List<Restriction> restrictions = new List<Restriction>();
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                var result = from restriction in db.Restriction
+                             join goodInShop in db.GoodInShop on restriction.id equals goodInShop.RestrictionID
+                             where goodInShop.GoodId == goodID
+                             select restriction;
+                             
+                foreach (var r in result)
+                {
+                    restrictions.Add(r);
+                }
+            }
+            return restrictions;
+        }
         public string ComparatorToString(string comparator)
         {
             string result = null;

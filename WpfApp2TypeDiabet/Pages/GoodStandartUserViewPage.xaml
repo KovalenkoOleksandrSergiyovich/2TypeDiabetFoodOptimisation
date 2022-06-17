@@ -44,8 +44,8 @@
                     <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding GoodName}">Назва товару</GridViewColumn>
                     <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding GoodAmount}">Кількість товару</GridViewColumn>
                     <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding GoodUnits}">Одиниці виміру товару</GridViewColumn>
-                    <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding GoodPrice}">Ціна за одиницю товару</GridViewColumn>
-                    <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding GoodCarbohydrates}">Кількість вуглеводів в 100г товару</GridViewColumn>
+                    <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding GoodPrice, StringFormat={}{0:c}, ConverterCulture=uk-UA}">Ціна за одиницю товару</GridViewColumn>
+                    <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding GoodCarbohydrates}">1 хлібна одиниця, грами товару</GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>

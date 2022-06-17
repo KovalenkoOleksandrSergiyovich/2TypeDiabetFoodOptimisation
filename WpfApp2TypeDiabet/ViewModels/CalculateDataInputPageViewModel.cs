@@ -1,6 +1,8 @@
 ﻿using DevExpress.Mvvm;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,18 +17,20 @@ namespace WpfApp2TypeDiabet.ViewModels
     {
         private NavigationService _navigation;
         private readonly UserService _userService;
+        private readonly OptimizeService _optimizeService;
+
         public List<string> Genders { get; set; }
         public List<string> PhysicalActivities { get; set; }
-
         public string Age { get; set; }
         public string Height { get; set; }
         public string Weight { get; set; }
         public string Gender { get; set; }
         public string PhysicalActivity { get; set; }
-        public CalculateDataInputPageViewModel(NavigationService navigation, UserService userService)
+        public CalculateDataInputPageViewModel(NavigationService navigation, UserService userService, OptimizeService optimizeService)
         {
             _navigation = navigation;
             _userService = userService;
+            _optimizeService = optimizeService;
 
             Age = _userService.CurrentUser.Age.ToString();
             Height = _userService.CurrentUser.Height.ToString();
@@ -49,6 +53,11 @@ namespace WpfApp2TypeDiabet.ViewModels
         {
             //TODO...
             //save changes to user? and run calculations 
+            _userService.CurrentUser.Gender = Gender;
+            _userService.CurrentUser.Age = int.Parse(Age);
+            _userService.CurrentUser.Height = double.Parse(Height, CultureInfo.InvariantCulture);
+            _userService.CurrentUser.Weight = double.Parse(Weight, CultureInfo.InvariantCulture);
+            _optimizeService.CreateModel(PhysicalActivity, _userService.CurrentUser);
             _navigation.Navigate(new CalculationPreparationsPage());
         }, ()=> !string.IsNullOrEmpty(Age) && !string.IsNullOrEmpty(Height) &&
         !string.IsNullOrEmpty(Weight) && !string.IsNullOrEmpty(Gender) && !string.IsNullOrEmpty(PhysicalActivity));

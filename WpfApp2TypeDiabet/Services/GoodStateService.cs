@@ -43,9 +43,11 @@ namespace WpfApp2TypeDiabet.Services
         }
         public string CreateGoodState(string name, double carbohydrates)
         {
+            double breadUnits = 100 / (carbohydrates / 12);
+
             try
             {
-                GoodState = new GoodState() { Name = name, Carbohydrates = carbohydrates };
+                GoodState = new GoodState() { Name = name, Carbohydrates = breadUnits };
                 using (ApplicationContext db = new ApplicationContext())
                 {
                     db.GoodState.Add(GoodState);

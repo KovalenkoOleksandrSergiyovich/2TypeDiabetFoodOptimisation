@@ -1,14 +1,14 @@
 ﻿<Page
-    x:Class="WpfApp2TypeDiabet.Pages.GoodsBasketPage"
+    x:Class="WpfApp2TypeDiabet.Pages.GuestGoodsBasketPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:WpfApp2TypeDiabet.Pages"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="GoodsBasketPage"
-    MinWidth="800"
+    MinWidth="500"
     MinHeight="450"
-    DataContext="{Binding Source={StaticResource VMLocator}, Path=_goodsBacketPageViewModel}"
+    DataContext="{Binding Source={StaticResource VMLocator}, Path=_guestGoodsBasketPageViewModel}"
     mc:Ignorable="d">
 
     <Grid Margin="5,5,5,5">
@@ -21,16 +21,6 @@
             Grid.Row="0"
             Height="25"
             VerticalAlignment="Top">
-            <MenuItem Header="Кошик">
-                <MenuItem Command="{Binding SaveBasketCommand}" Header="Зберегти" />
-                <MenuItem Header="Експортувати">
-                    <MenuItem Command="{Binding ExportAsDocCommand}" Header="Документ .doc" />
-                    <MenuItem Command="{Binding ExportAsXlsCommand}" Header="Документ .xls" />
-                    <MenuItem Command="{Binding ExportAsPdfCommand}" Header="Документ .pdf" />
-                </MenuItem>
-                <MenuItem Command="{Binding PrintCommand}" Header="Надрукувати" />
-                <MenuItem Command="{Binding ViewBasketsListCommand}" Header="Список кошиків" />
-            </MenuItem>
             <MenuItem Header="Навігація">
                 <MenuItem Command="{Binding GoToThePreviousPageCommand}" Header="На попередню" />
                 <MenuItem Command="{Binding GoToTheMainPageCommand}" Header="На головну" />
@@ -40,9 +30,9 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition />
-                <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
+                <RowDefinition />
                 <RowDefinition />
             </Grid.RowDefinitions>
             <Grid Grid.Row="0" Grid.Column="0">
@@ -58,13 +48,34 @@
                     Margin="5,0,0,0"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
-                    Text="Загальна ціна кошику" />
+                    Text="Максимальна ціна кошику, грн" />
                 <TextBlock
                     Grid.Column="1"
                     Margin="5,0,0,0"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
-                    Text="Ціна" />
+                    Text="{Binding MaximumPrice, StringFormat={}{0:c}, ConverterCulture=uk-UA}" />
+            </Grid>
+            <Grid Grid.Row="1" Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <TextBlock
+                    Grid.Column="0"
+                    Margin="5,0,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Text="Загальна ціна кошику, грн" />
+                <TextBlock
+                    Grid.Column="1"
+                    Margin="5,0,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Text="{Binding TotalPrice}" />
             </Grid>
             <Grid Grid.Row="0" Grid.Column="1">
                 <Grid.ColumnDefinitions>
@@ -85,9 +96,9 @@
                     Margin="5,0,0,0"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
-                    Text="ХО" />
+                    Text="{Binding TotalBU}" />
             </Grid>
-            <Grid Grid.Row="0" Grid.Column="2">
+            <Grid Grid.Row="1" Grid.Column="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
                     <ColumnDefinition />
@@ -106,7 +117,7 @@
                     Margin="5,0,0,0"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
-                    Text="Період" />
+                    Text="{Binding Period}" />
             </Grid>
         </Grid>
         <Grid Grid.Row="2" Margin="0,10,0,0">
@@ -121,10 +132,25 @@
                 VerticalAlignment="Center"
                 FontSize="16"
                 Text="Рекомендації щодо споживання продуктів" />
-            <ListBox
+            <ListView
                 Grid.Row="1"
-                ItemsSource="{Binding}"
-                ScrollViewer.VerticalScrollBarVisibility="Auto" />
+                Width="Auto"
+                Height="Auto"
+                MinWidth="200"
+                MinHeight="300"
+                Margin="0,5"
+                ItemsSource="{Binding GoodList}"
+                ScrollViewer.VerticalScrollBarVisibility="Auto">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding GoodName}">Назва товару</GridViewColumn>
+                        <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding GoodAmount}">Кількість товару</GridViewColumn>
+                        <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding GoodUnit}">Одиниці виміру</GridViewColumn>
+                        <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding GoodPrice, StringFormat={}{0:c}, ConverterCulture=uk-UA}">Ціна товару</GridViewColumn>
+                        <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding GoodBU}">1 ХО, г товару</GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
         </Grid>
     </Grid>
 </Page>
