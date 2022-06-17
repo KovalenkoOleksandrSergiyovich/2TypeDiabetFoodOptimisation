@@ -153,11 +153,11 @@
                 ScrollViewer.VerticalScrollBarVisibility="Auto">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Name}">Назва товару</GridViewColumn>
-                        <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Amount}">Кількість товару</GridViewColumn>
-                        <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Unit}">Одиниці виміру</GridViewColumn>
-                        <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Price, StringFormat={}{0:c}, ConverterCulture=uk-UA}">Ціна товару</GridViewColumn>
-                        <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding BU}">1 ХО, г товару</GridViewColumn>
+                        <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding GoodName}">Назва товару</GridViewColumn>
+                        <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding GoodAmount}">Кількість товару</GridViewColumn>
+                        <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding GoodUnit}">Одиниці виміру</GridViewColumn>
+                        <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding GoodPrice, StringFormat={}{0:c}, ConverterCulture=uk-UA}">Ціна товару</GridViewColumn>
+                        <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding GoodBU}">Кількість ХО</GridViewColumn>
                     </GridView>
                 </ListView.View>
             </ListView>

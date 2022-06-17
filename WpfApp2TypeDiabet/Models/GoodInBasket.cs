@@ -11,7 +11,12 @@ namespace WpfApp2TypeDiabet.Models
         public int id { get; set; }
         public int GoodBasketID { get; set; }
         public GoodBasket GoodBasket { get; set; }
-        public int GoodShopStateID { get; set; }
-        public GoodShopState GoodShopState { get; set; }
+        public double Amount { get; set; }
+        public int GoodInShopID { get; set; }
+        public GoodInBasket(int goodInShopID, double amount)
+        {
+            GoodInShopID = goodInShopID;
+            Amount = amount;
+        }
     }
 }

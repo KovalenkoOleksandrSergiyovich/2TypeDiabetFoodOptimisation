@@ -85,5 +85,44 @@ namespace WpfApp2TypeDiabet.Services
                 }
             }
         }
+        public GoodInShop GetGoodInShop(int ID)
+        {
+            GoodInShop = new GoodInShop();
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                var goodInShop = from b in db.GoodInShop
+                                 where b.id == ID
+                                 select b;
+                GoodInShop = goodInShop.First();
+            }
+            return GoodInShop;
+        }
+        public Goods GetGoodByShopID(int goodInShopID)
+        {
+            Goods targetGood;
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                var goods = from b in db.GoodInShop
+                           join good in db.Goods on b.GoodId equals good.id
+                                 where b.id == goodInShopID
+                           select good;
+                targetGood = goods.First();
+            }
+            return targetGood;
+        }
+        public double GetGoodBUByShopID(int goodInShopID)
+        {
+            double BU;
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                var BUs = from b in db.GoodInShop
+                            join goodShopState in db.GoodShopState on b.id equals goodShopState.GoodInShopID
+                            join goodState in db.GoodState on goodShopState.GoodStateID equals goodState.id
+                            where b.id == goodInShopID
+                            select goodState.Carbohydrates;
+                BU = BUs.First();
+            }
+            return BU;
+        }
     }
 }

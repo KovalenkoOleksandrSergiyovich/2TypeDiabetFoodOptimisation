@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WpfApp2TypeDiabet.Models;
+using static WpfApp2TypeDiabet.Services.OptimizeService;
 
 namespace WpfApp2TypeDiabet.DBServices
 {
@@ -21,6 +22,11 @@ namespace WpfApp2TypeDiabet.DBServices
         public DbSet<UserGoodList> UserGoodList { get; set; }
         public DbSet<UserRestrictionList> UserRestrictionList { get; set; }
         public DbSet<GoodInBasket> GoodInBasket { get; set; }
+        //public DbSet<OptimizeModel> OptimizeModel { get; set; }
+        //public DbSet<Result> Result { get; set; }
+        //public DbSet<ProductBasket> ProductBasket { get; set; }
+        //public DbSet<GoodToOptimize> GoodToOptimize { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             string connString = string.Format("Host={0};" +

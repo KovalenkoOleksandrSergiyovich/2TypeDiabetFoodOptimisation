@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WpfApp2TypeDiabet.DBServices;
+using static WpfApp2TypeDiabet.Services.OptimizeService;
 
 namespace WpfApp2TypeDiabet.Models
 {
@@ -33,6 +34,6 @@ namespace WpfApp2TypeDiabet.Models
 
         public ObservableCollection<UserGoodList> CustomGoods { get; set; } = new ObservableCollection<UserGoodList>();
         public ObservableCollection<UserRestrictionList> CustomRestrictions { get; set; } = new ObservableCollection<UserRestrictionList>();
-        public ObservableCollection<GoodBasket> GoodBaskets { get; set; } = new ObservableCollection<GoodBasket>();
+        public ObservableCollection<Result> GoodBaskets { get; set; } = new ObservableCollection<Result>();
     }
 }

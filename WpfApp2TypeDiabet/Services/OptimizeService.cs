@@ -12,8 +12,9 @@ namespace WpfApp2TypeDiabet.Services
     {
         public class GoodToOptimize
         {
+            public int GoodInShopID { get; set; }
             public string GoodName { get; set; }
-            public string GoodID { get; set; }
+            public int GoodID { get; set; }
             public double GoodPrice { get; set; }
             public double GoodAmount { get; set; }
             public string GoodUnit { get; set; }
@@ -28,12 +29,9 @@ namespace WpfApp2TypeDiabet.Services
         }
         public class ProductBasket
         {
+            public int id { get; set; }
             public double Amount { get; set; }
-            public string ID { get; set; }
-            public string Name { get; set; }
-            public double Price { get; set; }
-            public string Unit { get; set; }
-            public double BU { get; set; }
+            public int GoodInShopID { get; set; }
         }
         public OptimizeModel OptimizeModel { get; set; }
         public void CreateModel(string PhysicalActivityLevel, User user)

@@ -92,7 +92,6 @@ namespace WpfApp2TypeDiabet.ViewModels
             using (FileStream fs = new FileStream("results.json", FileMode.Open))
             {
                 OptimizeService.Result Result = await JsonSerializer.DeserializeAsync<OptimizeService.Result>(fs,options);
-                MessageBox.Show("result " + Result);
                 _optimizeService.OptimizeModel.Result.Add(Result);
             }
 
@@ -118,7 +117,8 @@ namespace WpfApp2TypeDiabet.ViewModels
                 goodToOptimize.GoodBU = good.GoodCarbohydrates;
                 goodToOptimize.GoodUnit = good.GoodUnits;
                 goodToOptimize.GoodPrice = good.GoodPrice;
-                goodToOptimize.GoodID = good.GoodInShopID.ToString();
+                goodToOptimize.GoodInShopID = good.GoodInShopID;
+                goodToOptimize.GoodID = good.GoodID;
                 goodToOptimize.GoodAmount = good.GoodAmount;
                 goodToOptimize.GoodName = good.GoodName;
                goodToOptimize.Restrictions = _restrictionService.GetGoodRestrictions(good.GoodID);

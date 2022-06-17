@@ -68,6 +68,7 @@ namespace WpfApp2TypeDiabet
             services.AddSingleton<UserGoodListService>();
             services.AddSingleton<UserRestrictionListService>();
             services.AddSingleton<OptimizeService>();
+            services.AddSingleton<GoodBasketService>();
 
             _provider = services.BuildServiceProvider();
 
