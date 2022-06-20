@@ -10,7 +10,13 @@
     Height="450"
     DataContext="{Binding Source={StaticResource VMLocator}, Path=_mainViewModel}"
     mc:Ignorable="d"
-    SizeToContent="WidthAndHeight">
+    SizeToContent="WidthAndHeight"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        Background="{DynamicResource MaterialDesignPaper}"
+        TextElement.FontWeight="Medium"
+        TextElement.FontSize="12"
+        FontFamily="{materialDesign:MaterialDesignFont}">
     <Grid>
         <Frame Content="{Binding CurrentPage}" NavigationUIVisibility="Hidden" />
     </Grid>

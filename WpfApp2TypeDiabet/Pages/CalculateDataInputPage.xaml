@@ -24,7 +24,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <Menu Grid.Row="0" Height="25">
+        <Menu Grid.Row="0" Height="Auto">
             <MenuItem Header="Навігація">
                 <MenuItem Command="{Binding GoBackCommand}" Header="На попередню" />
                 <MenuItem Command="{Binding CancelCalculationsCommand}" Header="На головну" />

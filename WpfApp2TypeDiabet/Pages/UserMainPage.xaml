@@ -15,85 +15,97 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Menu
             Grid.Row="0"
-            Height="25"
-            VerticalAlignment="Top">
+            Height="Auto"
+            VerticalAlignment="Top"
+            FontSize="14"
+            FontWeight="Medium">
             <MenuItem Header="Продукти">
                 <MenuItem Command="{Binding StandartGoodsListCommand}" Header="Стандартний список продуктів">
                     <MenuItem.Icon>
-                        <Image Source="\Images\Standart.png" Stretch="UniformToFill" />
+                        <Image Source="../Images/Standart.png" Stretch="UniformToFill" />
                     </MenuItem.Icon>
                 </MenuItem>
                 <MenuItem Command="{Binding CustomGoodsListCommand}" Header="Користувальницький список продуктів">
                     <MenuItem.Icon>
-                        <Image Source="\Images\Custom.png" Stretch="UniformToFill" />
+                        <Image Source="../Images/Custom.png" Stretch="UniformToFill" />
                     </MenuItem.Icon>
                 </MenuItem>
                 <MenuItem.Icon>
-                    <Image Source="\Images\Good.png" Stretch="UniformToFill" />
+                    <Image Source="../Images/Good.png" Stretch="UniformToFill" />
                 </MenuItem.Icon>
             </MenuItem>
             <MenuItem Header="Обмеження">
                 <MenuItem Command="{Binding StandartRestrictionsListCommand}" Header="Рекомендовані обмеження">
                     <MenuItem.Icon>
-                        <Image Source="\Images\Standart.png" Stretch="UniformToFill" />
+                        <Image Source="../Images/Standart.png" Stretch="UniformToFill" />
                     </MenuItem.Icon>
                 </MenuItem>
                 <MenuItem Command="{Binding CustomRestrictionsListCommand}" Header="Користувальницькі обмеження">
                     <MenuItem.Icon>
-                        <Image Source="\Images\Custom.png" Stretch="UniformToFill" />
+                        <Image Source="../Images/Custom.png" Stretch="UniformToFill" />
                     </MenuItem.Icon>
                 </MenuItem>
                 <MenuItem.Icon>
-                    <Image Source="\Images\Restriction.png" Stretch="UniformToFill" />
+                    <Image Source="../Images/Restriction.png" Stretch="UniformToFill" />
                 </MenuItem.Icon>
             </MenuItem>
             <MenuItem Header="Раціон харчування">
                 <MenuItem Command="{Binding OptimizeFoodConsumingCommand}" Header="Оптимізувати раціон харчування">
                     <MenuItem.Icon>
-                        <Image Source="/Images/Calculations.svg.png" Stretch="UniformToFill" />
+                        <Image Source="../Images/Calculations.svg.png" Stretch="UniformToFill" />
                     </MenuItem.Icon>
                 </MenuItem>
                 <MenuItem.Icon>
-                    <Image Source="\Images\Ration.png" Stretch="UniformToFill" />
+                    <Image Source="../Images/Ration.png" Stretch="UniformToFill" />
                 </MenuItem.Icon>
             </MenuItem>
             <MenuItem Header="Обліковий запис">
                 <MenuItem Command="{Binding ViewUserProfileCommand}" Header="Профіль">
                     <MenuItem.Icon>
-                        <Image Source="\Images\Profile.png" Stretch="UniformToFill" />
+                        <Image Source="../Images/Profile.png" Stretch="UniformToFill" />
                     </MenuItem.Icon>
                 </MenuItem>
                 <MenuItem Command="{Binding ViewGoodBacketsListCommand}" Header="Продуктові кошики">
                     <MenuItem.Icon>
-                        <Image Source="\Images\Basket.png" Stretch="UniformToFill" />
+                        <Image Source="../Images/Basket.png" Stretch="UniformToFill" />
                     </MenuItem.Icon>
                 </MenuItem>
                 <MenuItem Command="{Binding UserLogOutCommand}" Header="Вийти">
                     <MenuItem.Icon>
-                        <Image Source="\Images\LogOut.png" Stretch="UniformToFill" />
+                        <Image Source="../Images/LogOut.png" Stretch="UniformToFill" />
                     </MenuItem.Icon>
                 </MenuItem>
                 <MenuItem.Icon>
-                    <Image Source="\Images\Profile.png" Stretch="UniformToFill" />
+                    <Image Source="../Images/Profile.png" Stretch="UniformToFill" />
                 </MenuItem.Icon>
             </MenuItem>
             <Separator />
             <MenuItem Command="{Binding ExitCommand}" Header="Завершити роботу">
                 <MenuItem.Icon>
-                    <Image Source="/Images/ShutDown.png" Stretch="UniformToFill" />
+                    <Image Source="../Images/ShutDown.png" Stretch="UniformToFill" />
                 </MenuItem.Icon>
             </MenuItem>
         </Menu>
-        <TextBlock
-            Grid.Row="2"
-            Margin="10"
-            HorizontalAlignment="Right"
-            VerticalAlignment="Center"
-            FontSize="14"
-            Text="{Binding UserName, StringFormat=Поточний користувач: {0}}" />
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <TextBlock
+                Grid.Row="2"
+                Margin="10"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                FontSize="14"
+                FontWeight="Bold"
+                Text="{Binding UserName, StringFormat=Поточний користувач: {0}}" />
+            <Grid.Background>
+                <!--<ImageBrush ImageSource="F:\Student\NMU\3_year\Диплом\WPF STYLE TEST\WpfApp2TypeDiabet\WpfApp2TypeDiabet\Images\MainBackground.jpg" Stretch="UniformToFill"/>-->
+                <ImageBrush ImageSource="pack://application:,,,/Images/MainBackground.jpg" Stretch="UniformToFill" />
+            </Grid.Background>
+        </Grid>
     </Grid>
 </Page>

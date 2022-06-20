@@ -8,7 +8,28 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\Add.png" />
+    <None Remove="Images\Basket.png" />
+    <None Remove="Images\Calculations.svg.png" />
+    <None Remove="Images\Custom.png" />
+    <None Remove="Images\Delete.png" />
+    <None Remove="Images\Edit.png" />
+    <None Remove="Images\GoBack.png" />
+    <None Remove="Images\Good.png" />
+    <None Remove="Images\Home.png" />
+    <None Remove="Images\LogOut.png" />
+    <None Remove="Images\MainBackground.jpg" />
+    <None Remove="Images\Profile.png" />
+    <None Remove="Images\Ration.png" />
+    <None Remove="Images\Restriction.png" />
+    <None Remove="Images\ShutDown.png" />
+    <None Remove="Images\Standart.png" />
+    <None Remove="Images\User.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="DevExpressMvvm" Version="21.1.5" />
+    <PackageReference Include="MaterialDesignThemes" Version="4.5.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.17" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.17">
       <PrivateAssets>all</PrivateAssets>
@@ -17,10 +38,27 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.10" />
     <PackageReference Include="PropertyChanged.Fody" Version="3.4.1" />
+    <PackageReference Include="ShowMeTheXAML.MSBuild" Version="2.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Images\" />
+    <Resource Include="Images\Add.png" />
+    <Resource Include="Images\Basket.png" />
+    <Resource Include="Images\Calculations.svg.png" />
+    <Resource Include="Images\Custom.png" />
+    <Resource Include="Images\Delete.png" />
+    <Resource Include="Images\Edit.png" />
+    <Resource Include="Images\GoBack.png" />
+    <Resource Include="Images\Good.png" />
+    <Resource Include="Images\Home.png" />
+    <Resource Include="Images\LogOut.png" />
+    <Resource Include="Images\MainBackground.jpg" />
+    <Resource Include="Images\Profile.png" />
+    <Resource Include="Images\Ration.png" />
+    <Resource Include="Images\Restriction.png" />
+    <Resource Include="Images\ShutDown.png" />
+    <Resource Include="Images\Standart.png" />
+    <Resource Include="Images\User.png" />
   </ItemGroup>
 
 </Project>

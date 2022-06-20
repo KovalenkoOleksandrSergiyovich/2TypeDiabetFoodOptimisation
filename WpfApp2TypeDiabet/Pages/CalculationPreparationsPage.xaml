@@ -23,7 +23,7 @@
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
-        <Menu Grid.Row="0" Height="25">
+        <Menu Grid.Row="0" Height="Auto">
             <MenuItem Header="Навігація">
                 <MenuItem Command="{Binding GoBackCommand}" Header="На попередню" />
                 <MenuItem Command="{Binding GoToMainCommand}" Header="На головну" />

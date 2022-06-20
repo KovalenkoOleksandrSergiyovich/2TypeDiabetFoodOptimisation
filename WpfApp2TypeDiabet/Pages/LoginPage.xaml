@@ -70,7 +70,7 @@
             VerticalAlignment="Center"
             FontSize="12"
             Foreground="Blue"
-            Text="Якщо у вас не має облікового запису - будь ласка, зареєструйтеся.">
+            Text="Якщо у вас немає облікового запису - будь ласка, зареєструйтеся.">
             <TextBlock.InputBindings>
                 <MouseBinding Command="{Binding GoToRegistrationPageCommand}" MouseAction="LeftClick" />
             </TextBlock.InputBindings>

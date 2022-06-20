@@ -17,7 +17,7 @@
         </Grid.RowDefinitions>
         <Menu
             Grid.Row="0"
-            Height="25"
+            Height="Auto"
             VerticalAlignment="Top">
             <MenuItem Header="Продукти">
                 <MenuItem Command="{Binding GuestGoodsListCommand}" Header="Список продуктів" />

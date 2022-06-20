@@ -19,7 +19,7 @@
         </Grid.RowDefinitions>
         <Menu
             Grid.Row="0"
-            Height="25"
+            Height="Auto"
             VerticalAlignment="Top">
             <MenuItem Header="Навігація">
                 <MenuItem Command="{Binding GoToThePreviousPageCommand}" Header="На попередню" />
