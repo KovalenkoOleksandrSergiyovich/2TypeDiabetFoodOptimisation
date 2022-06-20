@@ -12,6 +12,7 @@ using System.Text.Unicode;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Xml;
 using WpfApp2TypeDiabet.Models;
 using WpfApp2TypeDiabet.Pages;
 using WpfApp2TypeDiabet.Services;
@@ -81,11 +82,12 @@ namespace WpfApp2TypeDiabet.ViewModels
             };
             using (FileStream fs = new FileStream("products.json", FileMode.Create))
             {
-                foreach(var good in _optimizeService.OptimizeModel.ObjectiveGoods)
+
+                foreach (var good in _optimizeService.OptimizeModel.ObjectiveGoods)
                 {
-                    await JsonSerializer.SerializeAsync<OptimizeService.GoodToOptimize>(fs, good,options);
+                    await JsonSerializer.SerializeAsync<OptimizeService.GoodToOptimize>(fs, good, options);
                 }
-                
+
                 MessageBox.Show("Data has been saved to file");
             }
 

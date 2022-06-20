@@ -22,26 +22,28 @@ namespace WpfApp2TypeDiabet.ViewModels
         private readonly OptimizeService _optimizeService;
         private readonly GoodInShopService _goodInShopService;
         private readonly GoodBasketService _goodBasketService;
+        private readonly GoodInBasketService _goodInBasketService;
 
         public ObservableCollection<OptimizeService.GoodToOptimize> GoodList { get; set; } = new ObservableCollection<OptimizeService.GoodToOptimize>();
         public ObservableCollection<GoodInBasket> GoodsInBasket { get; set; } = new ObservableCollection<GoodInBasket>();
         public string Period { get; set; }
-        public string TotalPrice { get; set; }
-        public string TotalBU { get; set; }
-        public string MaximumPrice { get; set; }
+        public double TotalPrice { get; set; }
+        public double TotalBU { get; set; }
+        public double MaximumPrice { get; set; }
         public UserGoodsBasketPageViewModel(NavigationService navigation, UserService userService, OptimizeService optimizeService, 
-            GoodInShopService goodInShopService, GoodBasketService goodBasketService)
+            GoodInShopService goodInShopService, GoodBasketService goodBasketService, GoodInBasketService goodInBasketService)
         {
             _navigation = navigation;
             _userService = userService;
             _optimizeService = optimizeService;
             _goodInShopService = goodInShopService;
             _goodBasketService = goodBasketService;
+            _goodInBasketService = goodInBasketService;
 
             Period = _optimizeService.OptimizeModel.Period;
-            TotalPrice = _optimizeService.OptimizeModel.Result.First().Price.ToString();
-            MaximumPrice = _optimizeService.OptimizeModel.MaxSum.ToString();
-            TotalBU = _optimizeService.OptimizeModel.Result.First().BU.ToString();
+            TotalPrice = _optimizeService.OptimizeModel.Result.First().Price;
+            MaximumPrice = _optimizeService.OptimizeModel.MaxSum;
+            TotalBU = _optimizeService.OptimizeModel.Result.First().BU;
 
             foreach(var v in _optimizeService.OptimizeModel.Result)
             {
@@ -64,24 +66,33 @@ namespace WpfApp2TypeDiabet.ViewModels
         {
             //TODO...
             //save current record to the list
-            foreach (var v in _optimizeService.OptimizeModel.Result)
-            {
-                foreach (var vv in v.ProductBasket)
-                {
-                    GoodInBasket goodInBasket = new GoodInBasket(vv.GoodInShopID, vv.Amount);
-                    GoodsInBasket.Add(goodInBasket);
-                }
-            }
-            string goodBasketCreationResult = _goodBasketService.CreateGoodBasket(_userService.CurrentUser.id, double.Parse(TotalBU, CultureInfo.InvariantCulture),
-                double.Parse(TotalPrice, CultureInfo.InvariantCulture));
+            string goodBasketCreationResult = _goodBasketService.CreateGoodBasket(_userService.CurrentUser.id, TotalBU,
+                TotalPrice);
             if(goodBasketCreationResult!="Success")
             {
                 MessageBox.Show("Неможливо зберегти продуктовий кошик","Збереження продуктового кошику",MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else
             {
-                _goodBasketService.GoodBasket.GoodInBasket = GoodsInBasket;
-                _navigation.Navigate(new BasketListPage());
+                foreach (var v in _optimizeService.OptimizeModel.Result)
+                {
+                    foreach (var vv in v.ProductBasket)
+                    {
+                        GoodInBasket goodInBasket = new GoodInBasket(vv.GoodInShopID, vv.Amount);
+                        goodInBasket.GoodBasketID = _goodBasketService.GoodBasket.id;
+                        GoodsInBasket.Add(goodInBasket);
+                    }
+                    string goodInBasketCreationResult = _goodInBasketService.CreateGoodInBasket(GoodsInBasket);
+                    if (goodInBasketCreationResult != "Success")
+                    {
+                        MessageBox.Show("Неможливо зберегти продукт в кошику", "Збереження продуктового кошику", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    else
+                    {
+                        _goodBasketService.GoodBasket.GoodInBasket = GoodsInBasket;
+                        _navigation.Navigate(new BasketListPage());
+                    }
+                }
             }
             
         });

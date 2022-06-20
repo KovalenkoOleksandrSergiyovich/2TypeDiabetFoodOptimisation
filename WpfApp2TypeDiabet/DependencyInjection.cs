@@ -22,11 +22,11 @@ namespace WpfApp2TypeDiabet
             //реєструємо view models
             services.AddSingleton<AdminMainPageViewModel>();
             services.AddTransient<AdminUserViewPageViewModel>();
-            services.AddSingleton<BasketListPageViewModel>();
+            services.AddTransient<BasketListPageViewModel>();
             services.AddTransient<CalculateDataInputPageViewModel>();
-            services.AddSingleton<GoodUserAddPageViewModel>();
-            services.AddSingleton<UserGoodsBasketPageViewModel>();
-            services.AddSingleton<GoodsViewPageViewModel>();
+            services.AddTransient<GoodUserAddPageViewModel>();
+            services.AddTransient<UserGoodsBasketPageViewModel>();
+            services.AddTransient<GoodsViewPageViewModel>();
             services.AddSingleton<GuestMainPageViewModel>();
             services.AddTransient<LoginPageViewModel>();
             services.AddSingleton<MainPageViewModel>();
@@ -36,12 +36,12 @@ namespace WpfApp2TypeDiabet
             services.AddSingleton<UserMainPageViewModel>();
             services.AddTransient<UserProfileViewModel>();
             services.AddTransient<UserEditUserPageViewModel>();
-            services.AddSingleton<GoodAddAdminPageViewModel>();
-            services.AddSingleton<CalculationPreparationsPageViewModel>();
-            services.AddSingleton<GoodEditAdminPageViewModel>();
+            services.AddTransient<GoodAddAdminPageViewModel>();
+            services.AddTransient<CalculationPreparationsPageViewModel>();
+            services.AddTransient<GoodEditAdminPageViewModel>();
             services.AddTransient<RestrictionAddAdminPageViewModel>();
-            services.AddSingleton<RestrictionEditAdminPageViewModel>();
-            services.AddSingleton<GoodViewAdminPageViewModel>();
+            services.AddTransient<RestrictionEditAdminPageViewModel>();
+            services.AddTransient<GoodViewAdminPageViewModel>();
             services.AddTransient<RestrictionViewAdminPageViewModel>();
             services.AddTransient<GoodGuestViewPageViewModel>();
             services.AddSingleton<RestrictionGuestViewPageViewModel>();
@@ -49,10 +49,10 @@ namespace WpfApp2TypeDiabet
             services.AddTransient<GoodCustomUserViewPageViewModel>();
             services.AddTransient<RestrictionStandartUserViewPageViewModel>();
             services.AddTransient<RestrictionCustomUserViewPageViewModel>();
-            services.AddSingleton<GoodUserAddPageViewModel>();
+            services.AddTransient<GoodUserAddPageViewModel>();
             services.AddTransient<RestrictionUserAddPageViewModel>();
-            services.AddSingleton<GoodUserEditPageViewModel>();
-            services.AddSingleton<RestrictionUserEditPageViewModel>();
+            services.AddTransient<GoodUserEditPageViewModel>();
+            services.AddTransient<RestrictionUserEditPageViewModel>();
             services.AddTransient<GuestGoodsBasketPageViewModel>();
 
             //реєструємо сервіси
@@ -69,6 +69,7 @@ namespace WpfApp2TypeDiabet
             services.AddSingleton<UserRestrictionListService>();
             services.AddSingleton<OptimizeService>();
             services.AddSingleton<GoodBasketService>();
+            services.AddSingleton<GoodInBasketService>();
 
             _provider = services.BuildServiceProvider();
 

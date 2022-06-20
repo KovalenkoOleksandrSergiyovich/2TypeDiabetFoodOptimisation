@@ -107,12 +107,12 @@ namespace WpfApp2TypeDiabet.Services
             }
             using (ApplicationContext db = new ApplicationContext())
             {
-                var result = from userGood in db.UserGoodList
-                             join goodInShop in db.GoodInShop on userGood.GoodInShopID equals goodInShop.id
+                var result = from goodInShop in db.GoodInShop 
+                             //join userGood in db.UserGoodList on goodInShop.id equals userGood.GoodInShopID
                              join good in db.Goods on goodInShop.GoodId equals good.id
                              join goodShopState in db.GoodShopState on goodInShop.id equals goodShopState.GoodInShopID
                              join goodState in db.GoodState on goodShopState.GoodStateID equals goodState.id
-                             where userGood.UserID == user.id || goodInShop.IsDefault
+                             where /*userGood.UserID == user.id ||*/ goodInShop.IsDefault == true
                              select new
                              {
                                  GoodInShopID = goodInShop.id,

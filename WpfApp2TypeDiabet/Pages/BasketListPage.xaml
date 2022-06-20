@@ -11,34 +11,52 @@
     DataContext="{Binding Source={StaticResource VMLocator}, Path=_backetListPageViewModel}"
     mc:Ignorable="d">
 
-    <Grid
-        Width="Auto"
-        Height="Auto"
-        Margin="5,0,5,0">
+    <Grid Margin="5,5,5,5">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Menu Grid.Row="0" Height="25">
+        <Menu
+            Grid.Row="0"
+            Height="25"
+            VerticalAlignment="Top">
             <MenuItem Header="Навігація">
                 <MenuItem Command="{Binding GoBackCommand}" Header="На попередню" />
-                <MenuItem Command="{Binding GoToMainCommand}" Header="На головну">
-                    <MenuItem.Icon>
-                        <Image Source="/Images/Home.png" Stretch="UniformToFill" />
-                    </MenuItem.Icon>
-                </MenuItem>
+                <MenuItem Command="{Binding GoToMainCommand}" Header="На головну" />
             </MenuItem>
         </Menu>
-        <TextBlock
-            Grid.Row="1"
-            HorizontalAlignment="center"
-            FontSize="24"
-            Text="Ваші нещодавні обчислення" />
-        <ListBox
-            Grid.Row="2"
-            Margin="5"
-            ItemsSource="{Binding}"
-            ScrollViewer.VerticalScrollBarVisibility="Auto" />
+        <Grid Grid.Row="1" Margin="0,10,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <TextBlock
+                Grid.Row="0"
+                Margin="0,10,0,10"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                FontSize="18"
+                Text="Ваші нещодавні обчислення" />
+            <ListView
+                Grid.Row="1"
+                Width="Auto"
+                Height="Auto"
+                MinWidth="200"
+                MinHeight="300"
+                Margin="0,5"
+                ItemsSource="{Binding GoodBaskets}"
+                ScrollViewer.VerticalScrollBarVisibility="Auto">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding BasketNO}">Продуктовий кошик №</GridViewColumn>
+                        <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding GoodName}">Назва товару</GridViewColumn>
+                        <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding GoodAmount}">Кількість товару</GridViewColumn>
+                        <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Units}">Одиниці виміру</GridViewColumn>
+                        <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Price, StringFormat={}{0:c}, ConverterCulture=uk-UA}">Ціна товару</GridViewColumn>
+                        <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding BU}">Загальна кількість ХО в кошику</GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
     </Grid>
 </Page>
