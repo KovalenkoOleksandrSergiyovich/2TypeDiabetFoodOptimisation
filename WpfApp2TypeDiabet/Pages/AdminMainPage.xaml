@@ -15,40 +15,102 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Menu
             Grid.Row="0"
             Height="Auto"
-            VerticalAlignment="Top">
+            VerticalAlignment="Top"
+            FontSize="12"
+            FontWeight="Bold">
             <MenuItem Header="Користувачі">
                 <MenuItem Command="{Binding ViewUsersListCommand}" Header="Список користувачів" />
+                <MenuItem.Icon>
+                    <Image Source="../Images/User.png" Stretch="UniformToFill" />
+                </MenuItem.Icon>
             </MenuItem>
             <MenuItem Header="Продукти">
-                <MenuItem Command="{Binding AdminAddGoodCommand}" Header="Додати продукт" />
-                <MenuItem Command="{Binding ViewGoodsListCommand}" Header="Список продуктів" />
+                <MenuItem Command="{Binding AdminAddGoodCommand}" Header="Додати продукт" >
+                    <MenuItem.Icon>
+                        <Image Source="../Images/Add.png" Stretch="UniformToFill" />
+                    </MenuItem.Icon>
+                </MenuItem>
+            <MenuItem Command="{Binding ViewGoodsListCommand}" Header="Список продуктів" >
+                    <MenuItem.Icon>
+                        <Image Source="../Images/Standart.png" Stretch="UniformToFill" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem.Icon>
+                    <Image Source="../Images/Good.png" Stretch="UniformToFill" />
+                </MenuItem.Icon>
             </MenuItem>
             <MenuItem Header="Обмеження">
-                <MenuItem Command="{Binding AdminAddRestrictionCommand}" Header="Додати обмеження" />
-                <MenuItem Command="{Binding ViewRestrictionsListCommand}" Header="Список обмежень" />
+                <MenuItem Command="{Binding AdminAddRestrictionCommand}" Header="Додати обмеження" >
+                    <MenuItem.Icon>
+                        <Image Source="../Images/Add.png" Stretch="UniformToFill" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Command="{Binding ViewRestrictionsListCommand}" Header="Список обмежень" >
+                    <MenuItem.Icon>
+                        <Image Source="../Images/Standart.png" Stretch="UniformToFill" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem.Icon>
+                    <Image Source="../Images/Restriction.png" Stretch="UniformToFill" />
+                </MenuItem.Icon>
             </MenuItem>
             <MenuItem Header="Раціон харчування">
-                <MenuItem Command="{Binding OptimizeFoodConsumingCommand}" Header="Оптимізувати раціон харчування" />
+                <MenuItem Command="{Binding OptimizeFoodConsumingCommand}" Header="Оптимізувати раціон харчування" >
+                    <MenuItem.Icon>
+                        <Image Source="../Images/Calculations.svg.png" Stretch="UniformToFill" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem.Icon>
+                    <Image Source="../Images/Ration.png" Stretch="UniformToFill" />
+                </MenuItem.Icon>
             </MenuItem>
             <MenuItem Header="Обліковий запис">
-                <MenuItem Command="{Binding ViewUserProfileCommand}" Header="Профіль" />
-                <MenuItem Command="{Binding ViewGoodBacketsListCommand}" Header="Продуктові кошики" />
-                <MenuItem Command="{Binding UserLogOutCommand}" Header="Вийти" />
+                <MenuItem Command="{Binding ViewUserProfileCommand}" Header="Профіль" >
+                    <MenuItem.Icon>
+                        <Image Source="../Images/Profile.png" Stretch="UniformToFill" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Command="{Binding ViewGoodBacketsListCommand}" Header="Продуктові кошики" >
+                    <MenuItem.Icon>
+                        <Image Source="../Images/Basket.png" Stretch="UniformToFill" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Command="{Binding UserLogOutCommand}" Header="Вийти" >
+                    <MenuItem.Icon>
+                        <Image Source="../Images/LogOut.png" Stretch="UniformToFill" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem.Icon>
+                    <Image Source="../Images/Profile.png" Stretch="UniformToFill" />
+                </MenuItem.Icon>
             </MenuItem>
             <Separator />
-            <MenuItem Command="{Binding ExitCommand}" Header="Завершити роботу" />
+            <MenuItem Command="{Binding ExitCommand}" Header="Завершити роботу">
+                <MenuItem.Icon>
+                    <Image Source="../Images/ShutDown.png" Stretch="UniformToFill" />
+                </MenuItem.Icon>
+            </MenuItem>
         </Menu>
-        <TextBlock
-            Grid.Row="2"
-            Margin="10"
-            HorizontalAlignment="Right"
-            VerticalAlignment="Center"
-            FontSize="14"
-            Text="{Binding UserName, StringFormat=Поточний користувач: {0}}" />
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <TextBlock
+                Grid.Row="2"
+                Margin="10"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                FontSize="14"
+                FontWeight="Bold"
+                Text="{Binding UserName, StringFormat=Поточний користувач: {0}}" />
+            <Grid.Background>
+                <ImageBrush ImageSource="pack://application:,,,/Images/MainBackground.jpg" Stretch="UniformToFill" />
+            </Grid.Background>
+        </Grid>
     </Grid>
 </Page>

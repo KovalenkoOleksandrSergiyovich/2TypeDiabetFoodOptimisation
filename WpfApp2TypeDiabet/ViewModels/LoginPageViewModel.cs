@@ -1,9 +1,4 @@
 ﻿using DevExpress.Mvvm;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using WpfApp2TypeDiabet.Models;
@@ -16,14 +11,17 @@ namespace WpfApp2TypeDiabet.ViewModels
     {
         private readonly NavigationService _navigation;
         private readonly UserService _userService;
-
+        //властивість для отримання та встановлення значень логіну користувача
         public string Login {get; set;}
+        //властивість для отримання та встановлення значень паролю користувача
         public string Password {get; set;}
+        //конструктор класу
         public LoginPageViewModel(NavigationService navigation, UserService userSevice)
         {
             _navigation = navigation;
             _userService = userSevice;
         }
+        //команда переходу на форму авторизації
         public ICommand GoToRegistrationPageCommand => new DelegateCommand(() =>
         {
             if (!string.IsNullOrEmpty(Login) || !string.IsNullOrEmpty(Password))
@@ -42,6 +40,7 @@ namespace WpfApp2TypeDiabet.ViewModels
                 _navigation.Navigate(new RegistrationPage());
             }
         });
+        //команда переходу на форму запиту на авторизацію
         public ICommand GoToPromptPageCommand => new DelegateCommand(() =>
         {
             if (!string.IsNullOrEmpty(Login) || !string.IsNullOrEmpty(Password))
@@ -60,6 +59,7 @@ namespace WpfApp2TypeDiabet.ViewModels
                 _navigation.Navigate(new PromptToLogin());
             }
         });
+        //команда авторизації
         public ICommand LoginCommand => new DelegateCommand(() =>
         {
             User userToLogin = _userService.AttemptToLogin(Login, Password);
@@ -74,15 +74,14 @@ namespace WpfApp2TypeDiabet.ViewModels
                 {
                     _navigation.Navigate(new UserMainPage());
                 }
-                
-                ClearFields();
-                
+                ClearFields();  
             }
             else
             {
                 MessageBox.Show("Неможливо авторизуватися!", "Помилка авторизації", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }, ()=>!string.IsNullOrWhiteSpace(Login) && !string.IsNullOrWhiteSpace(Password));
+        //метод очищення полів
         private void ClearFields()
         {
             if(!string.IsNullOrEmpty(Login))

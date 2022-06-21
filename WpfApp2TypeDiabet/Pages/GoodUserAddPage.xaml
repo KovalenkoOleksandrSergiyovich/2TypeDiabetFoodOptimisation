@@ -8,7 +8,7 @@
     xmlns:validationrules="clr-namespace:WpfApp2TypeDiabet.ValidationRules"
     Title="GoodPage"
     Width="400"
-    Height="520"
+    Height="550"
     DataContext="{Binding Source={StaticResource VMLocator}, Path=_goodPageViewModel}"
     mc:Ignorable="d">
     <Grid Margin="5,0,5,0">
@@ -26,8 +26,16 @@
         </Grid.RowDefinitions>
         <Menu Grid.Row="0" Height="Auto">
             <MenuItem Header="Навігація">
-                <MenuItem Command="{Binding GoBackCommand}" Header="На попередню" />
-                <MenuItem Command="{Binding GoToMainPageCommand}" Header="На головну" />
+                <MenuItem Command="{Binding GoBackCommand}" Header="На попередню">
+                    <MenuItem.Icon>
+                        <Image Source="../Images/GoBack.png" Stretch="UniformToFill" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Command="{Binding GoToMainPageCommand}" Header="На головну">
+                    <MenuItem.Icon>
+                        <Image Source="../Images/Home.png" Stretch="UniformToFill" />
+                    </MenuItem.Icon>
+                </MenuItem>
             </MenuItem>
         </Menu>
         <TextBlock
@@ -187,7 +195,7 @@
         </Grid>
         <StackPanel
             Grid.Row="9"
-            Margin="0,25,0,5"
+            Margin="0,25,0,10"
             HorizontalAlignment="Center"
             Orientation="Horizontal">
             <Button Command="{Binding ConfirmGoodAddCommand}" Content="Підтвердити">

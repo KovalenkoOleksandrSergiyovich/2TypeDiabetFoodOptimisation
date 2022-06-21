@@ -23,6 +23,15 @@ namespace WpfApp2TypeDiabet.ViewModels
 {
     public class CalculationPreparationsPageViewModel : BindableBase
     {
+        protected class JsonStructure
+        {
+            public double MinBU { get; set; }
+            public double MaxBU { get; set; }
+            public double MaxSum { get; set; }
+            public int Days { get; set; }
+            public ObservableCollection<OptimizeService.GoodToOptimize> Goods { get; set; } = new ObservableCollection<OptimizeService.GoodToOptimize>();
+        }
+
         private readonly NavigationService _navigation;
         private readonly UserService _userService;
         private readonly OptimizeService _optimizeService;
@@ -75,6 +84,12 @@ namespace WpfApp2TypeDiabet.ViewModels
         public ICommand OptimizeCommand => new DelegateCommand(async () =>
         {
             CreateOptimizationModel();
+            JsonStructure structure = new JsonStructure();
+            structure.MaxSum = _optimizeService.OptimizeModel.MaxSum;
+            structure.MinBU = _optimizeService.OptimizeModel.MinBU;
+            structure.MaxBU = _optimizeService.OptimizeModel.MaxBU;
+            structure.Days = GetNumberOfDays();
+            structure.Goods = _optimizeService.OptimizeModel.ObjectiveGoods;
             JsonSerializerOptions options = new JsonSerializerOptions
             {
                 Encoder = JavaScriptEncoder.Create(UnicodeRanges.BasicLatin, UnicodeRanges.Cyrillic),
@@ -82,18 +97,26 @@ namespace WpfApp2TypeDiabet.ViewModels
             };
             using (FileStream fs = new FileStream("products.json", FileMode.Create))
             {
-
                 foreach (var good in _optimizeService.OptimizeModel.ObjectiveGoods)
                 {
-                    await JsonSerializer.SerializeAsync<OptimizeService.GoodToOptimize>(fs, good, options);
+                    good.GoodPrice /= good.GoodAmount;
                 }
+                await JsonSerializer.SerializeAsync<JsonStructure>(fs, structure, options);
+                //foreach (var good in _optimizeService.OptimizeModel.ObjectiveGoods)
+                //{
+                //    await JsonSerializer.SerializeAsync<OptimizeService.GoodToOptimize>(fs, good, options);
+                //}
 
                 MessageBox.Show("Data has been saved to file");
             }
 
+            if(_optimizeService.OptimizeModel.Result.Any())
+            {
+                _optimizeService.OptimizeModel.Result.Clear();
+            }
             using (FileStream fs = new FileStream("results.json", FileMode.Open))
             {
-                OptimizeService.Result Result = await JsonSerializer.DeserializeAsync<OptimizeService.Result>(fs,options);
+                OptimizeService.Result Result = await JsonSerializer.DeserializeAsync<OptimizeService.Result>(fs, options);
                 _optimizeService.OptimizeModel.Result.Add(Result);
             }
 
@@ -105,15 +128,47 @@ namespace WpfApp2TypeDiabet.ViewModels
             {
                 _navigation.Navigate(new UserGoodsBasketPage());
             }
-            
+
         }, ()=>!string.IsNullOrEmpty(MaximumGoodPrice) && SelectedGoods.Any());
+
+        private int GetNumberOfDays()
+        {
+            int days = 0;
+            switch (Period)
+            {
+                case "День":
+                    {
+                        days = 1;
+                        break;
+                    }
+                case "Тиждень":
+                    {
+                        days = 7;
+                        break;
+                    }
+                case "Місяць":
+                    {
+                        days = 30;
+                        break;
+                    }
+                case "Рік":
+                    {
+                        days = 365;
+                        break;
+                    }
+            }
+            return days;
+        }
 
         private void CreateOptimizationModel()
         {
-            
             _optimizeService.OptimizeModel.Period = Period;
             _optimizeService.OptimizeModel.MaxSum = double.Parse(MaximumGoodPrice, CultureInfo.InvariantCulture);
-            foreach(var good in SelectedGoods)
+            if (_optimizeService.OptimizeModel.ObjectiveGoods.Any())
+            {
+                _optimizeService.OptimizeModel.ObjectiveGoods.Clear();
+            }
+            foreach (var good in SelectedGoods)
             {
                 OptimizeService.GoodToOptimize goodToOptimize = new OptimizeService.GoodToOptimize();
                 goodToOptimize.GoodBU = good.GoodCarbohydrates;
@@ -123,8 +178,9 @@ namespace WpfApp2TypeDiabet.ViewModels
                 goodToOptimize.GoodID = good.GoodID;
                 goodToOptimize.GoodAmount = good.GoodAmount;
                 goodToOptimize.GoodName = good.GoodName;
-               goodToOptimize.Restrictions = _restrictionService.GetGoodRestrictions(good.GoodID);
+                goodToOptimize.Restrictions = _restrictionService.GetGoodRestrictions(good.GoodID);
                 _optimizeService.OptimizeModel.ObjectiveGoods.Add(goodToOptimize);
+                _optimizeService.CalculateBUBorders();
             }
         }
 

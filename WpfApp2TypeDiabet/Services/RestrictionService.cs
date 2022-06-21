@@ -60,6 +60,10 @@ namespace WpfApp2TypeDiabet.Services
                 }
                 using (ApplicationContext db = new ApplicationContext())
                 {
+                    var restrictions = from g in db.Restriction
+                                orderby g.id
+                                select g;
+                    Restriction.id = restrictions.Last().id + 1;
                     db.Restriction.Add(Restriction);
                     db.SaveChanges();
                 }

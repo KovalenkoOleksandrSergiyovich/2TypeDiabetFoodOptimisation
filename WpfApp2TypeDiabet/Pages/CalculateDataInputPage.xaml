@@ -26,8 +26,16 @@
         </Grid.RowDefinitions>
         <Menu Grid.Row="0" Height="Auto">
             <MenuItem Header="Навігація">
-                <MenuItem Command="{Binding GoBackCommand}" Header="На попередню" />
-                <MenuItem Command="{Binding CancelCalculationsCommand}" Header="На головну" />
+                <MenuItem Command="{Binding GoBackCommand}" Header="На попередню">
+                    <MenuItem.Icon>
+                        <Image Source="../Images/GoBack.png" Stretch="UniformToFill" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Command="{Binding CancelCalculationsCommand}" Header="На головну">
+                    <MenuItem.Icon>
+                        <Image Source="../Images/Home.png" Stretch="UniformToFill" />
+                    </MenuItem.Icon>
+                </MenuItem>
             </MenuItem>
         </Menu>
         <TextBlock
@@ -148,9 +156,9 @@
                 Grid.Row="0"
                 Grid.Column="1"
                 Margin="10,5,0,0"
-                ItemsSource="{Binding Genders}"
                 HorizontalContentAlignment="Center"
                 VerticalContentAlignment="Center"
+                ItemsSource="{Binding Genders}"
                 SelectedValue="{Binding Gender, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true}"
                 Style="{StaticResource GeneralComboBoxErrorStyle}" />
         </Grid>
@@ -175,9 +183,9 @@
                 Grid.Row="0"
                 Grid.Column="1"
                 Margin="10,5,0,0"
-                ItemsSource="{Binding PhysicalActivities}"
                 HorizontalContentAlignment="Center"
                 VerticalContentAlignment="Center"
+                ItemsSource="{Binding PhysicalActivities}"
                 SelectedValue="{Binding PhysicalActivity, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true}"
                 Style="{StaticResource GeneralComboBoxErrorStyle}" />
         </Grid>

@@ -18,6 +18,17 @@ namespace WpfApp2TypeDiabet.Services
                 GoodShopState = new GoodShopState() { GoodInShopID = goodInShopID, GoodStateID = goodStateID };
                 using (ApplicationContext db = new ApplicationContext())
                 {
+                    var shopStates = from g in db.GoodShopState
+                                 orderby g.id
+                                 select g;
+                    if (shopStates.Any())
+                    {
+                        GoodShopState.id = shopStates.Last().id + 1;
+                    }
+                    else
+                    {
+                        GoodShopState.id = 1;
+                    } 
                     db.GoodShopState.Add(GoodShopState);
                     db.SaveChanges();
                 }

@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WpfApp2TypeDiabet.DBServices;
 using WpfApp2TypeDiabet.Models;
 
@@ -10,8 +8,11 @@ namespace WpfApp2TypeDiabet.Services
 {
     public class GoodInShopService
     {
+        //властивість для отримання та встановлення значеннь про товар в магазині
         public GoodInShop GoodInShop { get; set; }
+        //властивість для отримання та встановлення значень про список товарів в магазині
         public List<GoodInShop> Goods { get; set; }
+        //метод для створення товару в магазині
         public string CreateGoodInShop(User user, int goodID, double goodPrice, double goodAmount, string? goodUnits, int restrictionID)
         {
             try
@@ -42,6 +43,10 @@ namespace WpfApp2TypeDiabet.Services
                 }
                 using (ApplicationContext db = new ApplicationContext())
                 {
+                    var goodInShop = from g in db.GoodInShop
+                                       orderby g.id
+                                       select g;
+                    GoodInShop.id = goodInShop.Last().id + 1;
                     db.GoodInShop.Add(GoodInShop);
                     db.SaveChanges();
                 }
@@ -52,6 +57,7 @@ namespace WpfApp2TypeDiabet.Services
                 return e.Message;
             }
         }
+        //метод для видалення товару з магазину
         public string DeleteGoodInShop()
         {
             try
@@ -71,6 +77,7 @@ namespace WpfApp2TypeDiabet.Services
                 return e.Message;
             }
         }
+        //метод для отримання значень про товар в магазині за об'єктом товаром
         public void GetGoodInShop(Goods good)
         {
             Goods = new List<GoodInShop>();
@@ -85,6 +92,7 @@ namespace WpfApp2TypeDiabet.Services
                 }
             }
         }
+        //метод для отримання даних про товар в магазині за його ідентифіктатором
         public GoodInShop GetGoodInShop(int ID)
         {
             GoodInShop = new GoodInShop();
@@ -97,6 +105,7 @@ namespace WpfApp2TypeDiabet.Services
             }
             return GoodInShop;
         }
+        //метод для отримання даних про товар за  ідентифікатором товару в магазині
         public Goods GetGoodByShopID(int goodInShopID)
         {
             Goods targetGood;
@@ -110,6 +119,7 @@ namespace WpfApp2TypeDiabet.Services
             }
             return targetGood;
         }
+        //метод для отримання кількості хлібних одиниць товару з ідентифікатором товару в магазині
         public double GetGoodBUByShopID(int goodInShopID)
         {
             double BU;

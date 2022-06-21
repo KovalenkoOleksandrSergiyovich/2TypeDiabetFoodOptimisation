@@ -53,11 +53,19 @@ namespace WpfApp2TypeDiabet.ViewModels
                     Goods good = _goodInShopService.GetGoodByShopID(vv.GoodInShopID);
                     GoodInShop goodInShop = _goodInShopService.GetGoodInShop(vv.GoodInShopID);
                     goodToOptimize.GoodInShopID = vv.GoodInShopID;
-                    goodToOptimize.GoodAmount = vv.Amount;
-                    goodToOptimize.GoodName = good.GoodName;
-                    goodToOptimize.GoodPrice = goodInShop.GoodPrice * vv.Amount;
-                    goodToOptimize.GoodBU = _goodInShopService.GetGoodBUByShopID(vv.GoodInShopID) * vv.Amount;
                     goodToOptimize.GoodUnit = goodInShop.GoodUnits;
+                    if(goodToOptimize.GoodUnit.Equals("кілограми") || goodToOptimize.GoodUnit.Equals("літри"))
+                    {
+                        goodToOptimize.GoodAmount = Math.Round(vv.Amount/1000,4);
+                    }
+                    else
+                    {
+                        goodToOptimize.GoodAmount = Math.Round(vv.Amount,4);
+                    }
+                    goodToOptimize.GoodName = good.GoodName;
+                    goodToOptimize.GoodPrice = Math.Round(goodInShop.GoodPrice/goodInShop.GoodAmount * vv.Amount,4);
+                    goodToOptimize.GoodBU = Math.Round(_goodInShopService.GetGoodBUByShopID(vv.GoodInShopID) * vv.Amount,4);
+                    
                     GoodList.Add(goodToOptimize);
                 }
             }
@@ -74,6 +82,10 @@ namespace WpfApp2TypeDiabet.ViewModels
             }
             else
             {
+                if(GoodsInBasket.Any())
+                {
+                    GoodsInBasket.Clear();
+                }
                 foreach (var v in _optimizeService.OptimizeModel.Result)
                 {
                     foreach (var vv in v.ProductBasket)

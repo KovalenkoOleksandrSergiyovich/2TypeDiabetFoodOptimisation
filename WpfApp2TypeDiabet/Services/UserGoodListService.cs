@@ -31,6 +31,17 @@ namespace WpfApp2TypeDiabet.Services
                 UserGoodList = new UserGoodList() { UserID = userID, GoodInShopID = goodInShopID };
                 using (ApplicationContext db = new ApplicationContext())
                 {
+                    var userLists = from g in db.UserGoodList
+                                     orderby g.id
+                                     select g;
+                    if (userLists.Any())
+                    {
+                        UserGoodList.id = userLists.Last().id + 1;
+                    }
+                    else
+                    {
+                        UserGoodList.id = 1;
+                    }
                     db.UserGoodList.Add(UserGoodList);
                     db.SaveChanges();
                 }

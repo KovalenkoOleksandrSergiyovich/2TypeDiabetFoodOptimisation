@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WpfApp2TypeDiabet.DBServices;
 using WpfApp2TypeDiabet.Models;
 
@@ -11,7 +8,9 @@ namespace WpfApp2TypeDiabet.Services
 {
     public class UserService
     {
+        //властивість для отримання та встановлення значень поточного користувача
         public User CurrentUser { get; set; }
+        //метод перевірки доступності імені в базі даних при створенні нового коритсувача
         public bool IsUserNameAvaliable(User newUser)
         {
             using (ApplicationContext db = new ApplicationContext())
@@ -29,16 +28,20 @@ namespace WpfApp2TypeDiabet.Services
                 }
             }
         }
-
+        //метод створення об'єкту класу "користувач"
         public void CreateUser(User newUser)
         {
             using (ApplicationContext db = new ApplicationContext())
             {
+                var users = from b in db.Users
+                            orderby b.id
+                            select b;
+                newUser.id = users.Last().id + 1;
                 db.Users.Add(newUser);
                 db.SaveChanges();
             }
         }
-
+        //метод обробки спроби авторизації
         public User AttemptToLogin(string userName, string password)
         {
             using (ApplicationContext db = new ApplicationContext())
@@ -56,10 +59,12 @@ namespace WpfApp2TypeDiabet.Services
                 }
             }
         }
+        //метод для виходу з облікового запису користувача
         public void LogOut()
         {
             CurrentUser = null;
         }
+        //метод для оновлення даних про користувача в базі даних
         public string UpdateDBInfo(string username, string password, int age, double height, double weight, string gender)
         {
             using (ApplicationContext db = new ApplicationContext())
@@ -103,6 +108,7 @@ namespace WpfApp2TypeDiabet.Services
                 }
             }
         }
+        //метод для оновлення даних про користувача
         public void UpdateInfo(int age, double height, double weight, string gender)
         {
             CurrentUser.Age = age;
@@ -110,6 +116,7 @@ namespace WpfApp2TypeDiabet.Services
             CurrentUser.Weight = weight;
             CurrentUser.Gender = gender;
         }
+        ////метод для отримання об'єкту класу "користувач" за ідентифікатором користувача
         public User GetUser(int id)
         {
             using (ApplicationContext db = new ApplicationContext())
@@ -127,6 +134,7 @@ namespace WpfApp2TypeDiabet.Services
                 }
             }
         }
+        //метод для видалення об'єкту класу "користувач" з бази даних
         public string DeleteUser(User userToDelete)
         {
             using (ApplicationContext db = new ApplicationContext())
@@ -143,6 +151,7 @@ namespace WpfApp2TypeDiabet.Services
                 }
             }
         }
+        //метод для отримання списку користувачів
         public ObservableCollection<User> GetUsersList()
         {
             ObservableCollection<User> users = new ObservableCollection<User>();
@@ -157,6 +166,7 @@ namespace WpfApp2TypeDiabet.Services
             }
             return users;
         }
+        //метод для отримання об'єкту класу "користувач" за іменем користувача
         public User GetUser(string Name)
         {
             using (ApplicationContext db = new ApplicationContext())
@@ -174,44 +184,5 @@ namespace WpfApp2TypeDiabet.Services
                 }
             }
         }
-        //public int GetUserGoodsCount(User user)
-        //{
-        //    int goodsCount;
-        //    using (ApplicationContext db = new ApplicationContext())
-        //    {
-        //        var DbUsers = from b in db.Users
-        //                      select b;
-        //        foreach (User user in DbUsers)
-        //        {
-        //            users.Add(user);
-        //        }
-        //    }
-        //}
-        //public int GetUserRestrictionsCount(User user)
-        //{
-        //    int restrictionsCount;
-        //    using (ApplicationContext db = new ApplicationContext())
-        //    {
-        //        var DbUsers = from b in db.Users
-        //                      select b;
-        //        foreach (User user in DbUsers)
-        //        {
-        //            users.Add(user);
-        //        }
-        //    }
-        //}
-        //public int GetUserBasketsCount(User user)
-        //{
-        //    int basketsCount;
-        //    using (ApplicationContext db = new ApplicationContext())
-        //    {
-        //        var DbUsers = from b in db.Users
-        //                      select b;
-        //        foreach (User user in DbUsers)
-        //        {
-        //            users.Add(user);
-        //        }
-        //    }
-        //}
     }
 }

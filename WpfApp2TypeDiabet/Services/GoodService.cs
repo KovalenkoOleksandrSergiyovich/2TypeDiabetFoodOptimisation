@@ -18,7 +18,11 @@ namespace WpfApp2TypeDiabet.Services
             {
                 using (ApplicationContext db = new ApplicationContext())
                 {
-                    db.Goods.Add(good);
+                    var goods = from g in db.Goods
+                               orderby g.id
+                                select g;
+                    Good.id = goods.Last().id + 1;
+                    db.Goods.Add(Good);
                     db.SaveChanges();
                 }
                 return "Success";

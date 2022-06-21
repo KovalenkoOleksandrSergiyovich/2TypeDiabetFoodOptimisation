@@ -43,6 +43,10 @@ namespace WpfApp2TypeDiabet.ViewModels
             _goodInBasketService = goodInBasketService;
             _goodInShopService = goodInShopService;
 
+            if(GoodBaskets.Any())
+            {
+                GoodBaskets.Clear();
+            }
             if (GoodList.Any())
             {
                 GoodList.Clear();

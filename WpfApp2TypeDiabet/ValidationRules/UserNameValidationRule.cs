@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
+﻿using System.Globalization;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Controls;
 
 namespace WpfApp2TypeDiabet.ValidationRules
@@ -24,7 +19,7 @@ namespace WpfApp2TypeDiabet.ValidationRules
                 ErrorMessage = "Ім'я користувача не може бути порожнім";
                 return new ValidationResult(false, ErrorMessage);
             }
-            else if (!hasUpperChar.IsMatch(input /*"^[A-Za-z0-9._-]{4,20}$"*/))
+            else if (!hasUpperChar.IsMatch(input))
             {
                 ErrorMessage = "Ім'я користувача повинно мати хоча б одну велику літеру";
                 return new ValidationResult(false, ErrorMessage);

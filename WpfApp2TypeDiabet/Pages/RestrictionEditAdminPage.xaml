@@ -28,8 +28,16 @@
             Grid.ColumnSpan="3"
             Height="Auto">
             <MenuItem Header="Навігація">
-                <MenuItem Command="{Binding GoBackCommand}" Header="На попередню" />
-                <MenuItem Command="{Binding GoToMainPageCommand}" Header="На головну" />
+                <MenuItem Command="{Binding GoBackCommand}" Header="На попередню">
+                    <MenuItem.Icon>
+                        <Image Source="../Images/GoBack.png" Stretch="UniformToFill" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Command="{Binding GoToMainPageCommand}" Header="На головну">
+                    <MenuItem.Icon>
+                        <Image Source="../Images/Home.png" Stretch="UniformToFill" />
+                    </MenuItem.Icon>
+                </MenuItem>
             </MenuItem>
         </Menu>
         <Grid

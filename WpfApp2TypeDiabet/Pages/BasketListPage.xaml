@@ -40,7 +40,7 @@
             <ListView
                 Grid.Row="1"
                 Width="Auto"
-                Height="Auto"
+                Height="500"
                 MinWidth="200"
                 MinHeight="300"
                 Margin="0,5"
@@ -52,7 +52,7 @@
                         <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding GoodName}">Назва товару</GridViewColumn>
                         <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding GoodAmount}">Кількість товару</GridViewColumn>
                         <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Units}">Одиниці виміру</GridViewColumn>
-                        <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Price, StringFormat={}{0:c}, ConverterCulture=uk-UA}">Ціна товару</GridViewColumn>
+                        <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Price, StringFormat={}{0:c}, ConverterCulture=uk-UA}">Ціна кошику</GridViewColumn>
                         <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding BU}">Загальна кількість ХО в кошику</GridViewColumn>
                     </GridView>
                 </ListView.View>

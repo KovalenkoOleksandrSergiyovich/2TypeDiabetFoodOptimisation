@@ -22,9 +22,14 @@
     <None Remove="Images\Profile.png" />
     <None Remove="Images\Ration.png" />
     <None Remove="Images\Restriction.png" />
+    <None Remove="Images\Save.png" />
     <None Remove="Images\ShutDown.png" />
     <None Remove="Images\Standart.png" />
     <None Remove="Images\User.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\Save.png" />
   </ItemGroup>
 
   <ItemGroup>

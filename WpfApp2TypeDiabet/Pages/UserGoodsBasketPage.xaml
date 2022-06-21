@@ -22,18 +22,34 @@
             Height="Auto"
             VerticalAlignment="Top">
             <MenuItem Header="Кошик">
-                <MenuItem Command="{Binding SaveBasketCommand}" Header="Зберегти" />
-                <MenuItem Header="Експортувати">
+                <MenuItem Command="{Binding SaveBasketCommand}" Header="Зберегти">
+                    <MenuItem.Icon>
+                        <Image Source="../Images/Save.png" Stretch="UniformToFill" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <!--<MenuItem Header="Експортувати">
                     <MenuItem Command="{Binding ExportAsDocCommand}" Header="Документ .doc" />
                     <MenuItem Command="{Binding ExportAsXlsCommand}" Header="Документ .xls" />
                     <MenuItem Command="{Binding ExportAsPdfCommand}" Header="Документ .pdf" />
                 </MenuItem>
-                <MenuItem Command="{Binding PrintCommand}" Header="Надрукувати" />
-                <MenuItem Command="{Binding ViewBasketsListCommand}" Header="Список кошиків" />
+                <MenuItem Command="{Binding PrintCommand}" Header="Надрукувати" />-->
+                <MenuItem Command="{Binding ViewBasketsListCommand}" Header="Список кошиків">
+                    <MenuItem.Icon>
+                        <Image Source="../Images/Basket.png" Stretch="UniformToFill" />
+                    </MenuItem.Icon>
+                </MenuItem>
             </MenuItem>
             <MenuItem Header="Навігація">
-                <MenuItem Command="{Binding GoToThePreviousPageCommand}" Header="На попередню" />
-                <MenuItem Command="{Binding GoToTheMainPageCommand}" Header="На головну" />
+                <MenuItem Command="{Binding GoToThePreviousPageCommand}" Header="На попередню">
+                    <MenuItem.Icon>
+                        <Image Source="../Images/GoBack.png" Stretch="UniformToFill" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Command="{Binding GoToTheMainPageCommand}" Header="На головну">
+                    <MenuItem.Icon>
+                        <Image Source="../Images/Home.png" Stretch="UniformToFill" />
+                    </MenuItem.Icon>
+                </MenuItem>
             </MenuItem>
         </Menu>
         <Grid Grid.Row="1" Margin="0,10,0,0">

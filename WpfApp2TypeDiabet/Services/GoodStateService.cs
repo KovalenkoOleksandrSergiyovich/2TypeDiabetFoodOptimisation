@@ -50,6 +50,10 @@ namespace WpfApp2TypeDiabet.Services
                 GoodState = new GoodState() { Name = name, Carbohydrates = breadUnits };
                 using (ApplicationContext db = new ApplicationContext())
                 {
+                    var states = from g in db.GoodState
+                                       orderby g.id
+                                       select g;
+                    GoodState.id = states.Last().id + 1;
                     db.GoodState.Add(GoodState);
                     db.SaveChanges();
                     return "Success";

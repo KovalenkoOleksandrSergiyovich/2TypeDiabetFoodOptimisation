@@ -20,6 +20,18 @@ namespace WpfApp2TypeDiabet.Services
                 UserRestrictionList = new UserRestrictionList() { UserID = userID, RestrictionID = restrictionID };
                 using (ApplicationContext db = new ApplicationContext())
                 {
+                    var userRestrictions = from g in db.UserRestrictionList
+                                    orderby g.id
+                                    select g;
+                    if (userRestrictions.Any())
+                    {
+                        UserRestrictionList.id = userRestrictions.Last().id + 1;
+                    }
+                    else
+                    {
+                        UserRestrictionList.id = 1;
+                    }
+                    
                     db.UserRestrictionList.Add(UserRestrictionList);
                     db.SaveChanges();
                 }

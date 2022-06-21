@@ -160,22 +160,22 @@ namespace WpfApp2TypeDiabet.ViewModels
             {
                 case "мілілітри":
                     {
-                        maxAmount = 2500;
+                        maxAmount = 1000;
                         break;
                     }
                 case "літри":
                     {
-                        maxAmount = 5;
+                        maxAmount = 3;
                         break;
                     }
                 case "грами":
                     {
-                        maxAmount = 1500;
+                        maxAmount = 500;
                         break;
                     }
                 case "кілограми":
                     {
-                        maxAmount = 2;
+                        maxAmount = 1;
                         break;
                     }
             }

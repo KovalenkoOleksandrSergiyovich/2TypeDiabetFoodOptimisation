@@ -18,15 +18,31 @@
         <Menu
             Grid.Row="0"
             Height="Auto"
-            VerticalAlignment="Top">
+            VerticalAlignment="Top"
+            FontSize="14"
+            FontWeight="Medium">
             <MenuItem Header="Продукти">
                 <MenuItem Command="{Binding GuestGoodsListCommand}" Header="Список продуктів" />
+                <MenuItem.Icon>
+                    <Image Source="../Images/Good.png" Stretch="UniformToFill" />
+                </MenuItem.Icon>
             </MenuItem>
             <MenuItem Header="Обмеження">
                 <MenuItem Command="{Binding RestrictionsListCommand}" Header="Рекомендовані обмеження" />
+                <MenuItem.Icon>
+                    <Image Source="../Images/Restriction.png" Stretch="UniformToFill" />
+                </MenuItem.Icon>
             </MenuItem>
-            <MenuItem Command="{Binding CalculationDataInputCommand}" Header="Оптимізувати раціон харчування" />
-            <MenuItem Command="{Binding ExitCommand}" Header="Завершити роботу" />
+            <MenuItem Command="{Binding CalculationDataInputCommand}" Header="Оптимізувати раціон харчування">
+                <MenuItem.Icon>
+                    <Image Source="../Images/Calculations.svg.png" Stretch="UniformToFill" />
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem Command="{Binding ExitCommand}" Header="Завершити роботу">
+                <MenuItem.Icon>
+                    <Image Source="../Images/ShutDown.png" Stretch="UniformToFill" />
+                </MenuItem.Icon>
+            </MenuItem>
         </Menu>
     </Grid>
 </Page>
