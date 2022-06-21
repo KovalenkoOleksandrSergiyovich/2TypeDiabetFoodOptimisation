@@ -21,8 +21,16 @@
             Height="Auto"
             VerticalAlignment="Top">
             <MenuItem Header="Навігація">
-                <MenuItem Command="{Binding GoBackCommand}" Header="На попередню" />
-                <MenuItem Command="{Binding GoToMainCommand}" Header="На головну" />
+                <MenuItem Command="{Binding GoBackCommand}" Header="На попередню">
+                    <MenuItem.Icon>
+                        <Image Source="../Images/GoBack.png" Stretch="UniformToFill" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Command="{Binding GoToMainCommand}" Header="На головну">
+                    <MenuItem.Icon>
+                        <Image Source="../Images/Home.png" Stretch="UniformToFill" />
+                    </MenuItem.Icon>
+                </MenuItem>
             </MenuItem>
         </Menu>
         <Grid Grid.Row="1" Margin="0,10,0,0">

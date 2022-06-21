@@ -33,7 +33,7 @@
                         <Image Source="../Images/GoBack.png" Stretch="UniformToFill" />
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Command="{Binding GoToMainPageCommand}" Header="На головну">
+                <MenuItem Command="{Binding GoToMainCommand}" Header="На головну">
                     <MenuItem.Icon>
                         <Image Source="../Images/Home.png" Stretch="UniformToFill" />
                     </MenuItem.Icon>

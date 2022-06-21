@@ -24,7 +24,7 @@ namespace WpfApp2TypeDiabet.ViewModels
         private readonly GoodBasketService _goodBasketService;
         private readonly GoodInBasketService _goodInBasketService;
 
-        public ObservableCollection<OptimizeService.GoodToOptimize> GoodList { get; set; } = new ObservableCollection<OptimizeService.GoodToOptimize>();
+        public ObservableCollection<GoodToOptimize> GoodList { get; set; } = new ObservableCollection<GoodToOptimize>();
         public ObservableCollection<GoodInBasket> GoodsInBasket { get; set; } = new ObservableCollection<GoodInBasket>();
         public string Period { get; set; }
         public double TotalPrice { get; set; }

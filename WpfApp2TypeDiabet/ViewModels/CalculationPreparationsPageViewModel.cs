@@ -1,27 +1,23 @@
 ﻿using DevExpress.Mvvm;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text.Unicode;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows;
 using System.Windows.Input;
-using System.Xml;
-using WpfApp2TypeDiabet.Models;
 using WpfApp2TypeDiabet.Pages;
 using WpfApp2TypeDiabet.Services;
-using static WpfApp2TypeDiabet.Services.OptimizeService;
-using static WpfApp2TypeDiabet.Services.UserGoodListService;
 
 namespace WpfApp2TypeDiabet.ViewModels
 {
-    public class CalculationPreparationsPageViewModel : BindableBase
+    public class CalculationPreparationsPageViewModel : BindableBase, INotifyPropertyChanged
     {
         protected class JsonStructure
         {
@@ -31,6 +27,23 @@ namespace WpfApp2TypeDiabet.ViewModels
             public int Days { get; set; }
             public ObservableCollection<OptimizeService.GoodToOptimize> Goods { get; set; } = new ObservableCollection<OptimizeService.GoodToOptimize>();
         }
+        
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
+        private bool _IsBusy;
+        public bool IsBusy
+        {
+            get { return _IsBusy; }
+            set
+            {
+                _IsBusy = value;
+                OnPropertyChanged("IsBusy");
+            }
+        }
 
         private readonly NavigationService _navigation;
         private readonly UserService _userService;
@@ -38,6 +51,10 @@ namespace WpfApp2TypeDiabet.ViewModels
         private readonly UserGoodListService _userGoodListService;
         private readonly RestrictionService _restrictionService;
         private UserGoodListService.GoodToOptimize _selectedGood;
+        private string _panelMainMessage;
+        private string _panelSubMessage;
+        private bool _panelLoading;
+
         public List<string> PeriodList { get; set; }
         public string Period { get; set; }
         public string MaximumGoodPrice { get; set; }
@@ -83,6 +100,9 @@ namespace WpfApp2TypeDiabet.ViewModels
         });
         public ICommand OptimizeCommand => new DelegateCommand(async () =>
         {
+            IsBusy = true;
+
+
             CreateOptimizationModel();
             JsonStructure structure = new JsonStructure();
             structure.MaxSum = _optimizeService.OptimizeModel.MaxSum;
@@ -95,25 +115,33 @@ namespace WpfApp2TypeDiabet.ViewModels
                 Encoder = JavaScriptEncoder.Create(UnicodeRanges.BasicLatin, UnicodeRanges.Cyrillic),
                 WriteIndented = true
             };
-            using (FileStream fs = new FileStream("products.json", FileMode.Create))
-            {
-                foreach (var good in _optimizeService.OptimizeModel.ObjectiveGoods)
-                {
-                    good.GoodPrice /= good.GoodAmount;
-                }
-                await JsonSerializer.SerializeAsync<JsonStructure>(fs, structure, options);
-                //foreach (var good in _optimizeService.OptimizeModel.ObjectiveGoods)
-                //{
-                //    await JsonSerializer.SerializeAsync<OptimizeService.GoodToOptimize>(fs, good, options);
-                //}
 
-                MessageBox.Show("Data has been saved to file");
+            foreach (var good in _optimizeService.OptimizeModel.ObjectiveGoods)
+            {
+                good.GoodPrice /= good.GoodAmount;
             }
 
-            if(_optimizeService.OptimizeModel.Result.Any())
+            using (FileStream fs = new FileStream("products.json", FileMode.Create))
+            {
+                await JsonSerializer.SerializeAsync<JsonStructure>(fs, structure, options);
+            }
+
+            if (_optimizeService.OptimizeModel.Result.Any())
             {
                 _optimizeService.OptimizeModel.Result.Clear();
             }
+            var process = new Process();
+
+            process.StartInfo.RedirectStandardOutput = true;
+            process.StartInfo.UseShellExecute = false;
+            process.StartInfo.CreateNoWindow = true;
+
+            process.StartInfo.FileName = @"service.exe";
+            process.Start();
+            process.WaitForExit();
+
+            IsBusy = false;
+
             using (FileStream fs = new FileStream("results.json", FileMode.Open))
             {
                 OptimizeService.Result Result = await JsonSerializer.DeserializeAsync<OptimizeService.Result>(fs, options);

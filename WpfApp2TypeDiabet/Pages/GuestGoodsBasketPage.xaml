@@ -155,7 +155,7 @@
                         <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding GoodAmount}">Кількість товару</GridViewColumn>
                         <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding GoodUnit}">Одиниці виміру</GridViewColumn>
                         <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding GoodPrice, StringFormat={}{0:c}, ConverterCulture=uk-UA}">Ціна товару</GridViewColumn>
-                        <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding GoodBU}">1 ХО, г товару</GridViewColumn>
+                        <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding GoodBU}">Кількість ХО</GridViewColumn>
                     </GridView>
                 </ListView.View>
             </ListView>

@@ -27,12 +27,6 @@
                         <Image Source="../Images/Save.png" Stretch="UniformToFill" />
                     </MenuItem.Icon>
                 </MenuItem>
-                <!--<MenuItem Header="Експортувати">
-                    <MenuItem Command="{Binding ExportAsDocCommand}" Header="Документ .doc" />
-                    <MenuItem Command="{Binding ExportAsXlsCommand}" Header="Документ .xls" />
-                    <MenuItem Command="{Binding ExportAsPdfCommand}" Header="Документ .pdf" />
-                </MenuItem>
-                <MenuItem Command="{Binding PrintCommand}" Header="Надрукувати" />-->
                 <MenuItem Command="{Binding ViewBasketsListCommand}" Header="Список кошиків">
                     <MenuItem.Icon>
                         <Image Source="../Images/Basket.png" Stretch="UniformToFill" />

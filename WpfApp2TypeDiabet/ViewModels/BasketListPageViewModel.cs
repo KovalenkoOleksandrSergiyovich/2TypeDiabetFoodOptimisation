@@ -54,17 +54,18 @@ namespace WpfApp2TypeDiabet.ViewModels
             GoodList = _goodBasketSercive.GetAllBaskets(_userService.CurrentUser);
             foreach(var b in GoodList)
             {
-                BasketToView basket = new BasketToView();
+                
                 b.GoodInBasket = _goodInBasketService.GetGoodInBaskets(b);
                 foreach(var g in b.GoodInBasket)
                 {
+                    BasketToView basket = new BasketToView();
                     basket.GoodName = _goodInShopService.GetGoodByShopID(g.GoodInShopID).GoodName;
                     basket.GoodAmount = g.Amount;
                     basket.Price = b.Price;
                     basket.BU = b.BU;
                     basket.Units = _goodInShopService.GetGoodInShop(g.GoodInShopID).GoodUnits;
-                    GoodBaskets.Add(basket);
                     basket.BasketNO = b.id;
+                    GoodBaskets.Add(basket);
                 }
             }
         }

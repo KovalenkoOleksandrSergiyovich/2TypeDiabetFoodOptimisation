@@ -103,7 +103,6 @@
                 FontWeight="Bold"
                 Text="{Binding UserName, StringFormat=Поточний користувач: {0}}" />
             <Grid.Background>
-                <!--<ImageBrush ImageSource="F:\Student\NMU\3_year\Диплом\WPF STYLE TEST\WpfApp2TypeDiabet\WpfApp2TypeDiabet\Images\MainBackground.jpg" Stretch="UniformToFill"/>-->
                 <ImageBrush ImageSource="pack://application:,,,/Images/MainBackground.jpg" Stretch="UniformToFill" />
             </Grid.Background>
         </Grid>

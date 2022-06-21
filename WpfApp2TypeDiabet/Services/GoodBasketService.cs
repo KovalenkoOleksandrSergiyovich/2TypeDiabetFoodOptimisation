@@ -52,7 +52,7 @@ namespace WpfApp2TypeDiabet.Services
             }
             using (ApplicationContext db = new ApplicationContext())
             {
-                var result = from goodBasket in db.GoodBasket
+                var result = (from goodBasket in db.GoodBasket
                              join goodInBasket in db.GoodInBasket on goodBasket.id equals goodInBasket.GoodBasketID
                              join users in db.Users on goodBasket.UserID equals users.id
                              where goodBasket.UserID == user.id
@@ -62,7 +62,7 @@ namespace WpfApp2TypeDiabet.Services
                                  basketPrice = goodBasket.Price,
                                  basketBU = goodBasket.BU,
                                  basketUser = goodBasket.UserID
-                             };
+                             }).Distinct();
                 foreach (var e in result)
                 {
                     // resultRecord = new Result();
