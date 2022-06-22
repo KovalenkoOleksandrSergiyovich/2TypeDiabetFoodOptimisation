@@ -152,12 +152,13 @@ namespace WpfApp2TypeDiabet.Services
             }
         }
         //метод для отримання списку користувачів
-        public ObservableCollection<User> GetUsersList()
+        public ObservableCollection<User> GetUsersList(User currentUser)
         {
             ObservableCollection<User> users = new ObservableCollection<User>();
             using (ApplicationContext db = new ApplicationContext())
             {
                 var DbUsers = from b in db.Users
+                              where b.id != currentUser.id
                               select b;
                 foreach(User user in DbUsers)
                 {

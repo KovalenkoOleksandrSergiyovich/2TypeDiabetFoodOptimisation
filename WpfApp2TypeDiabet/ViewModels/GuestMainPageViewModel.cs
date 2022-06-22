@@ -33,12 +33,7 @@ namespace WpfApp2TypeDiabet.ViewModels
         });
         public ICommand ExitCommand => new DelegateCommand(() =>
         {
-            MessageBoxResult result = MessageBox.Show("Ви впевнені, що хочете завершити роботу програми?",
-                "Закриття додатку", MessageBoxButton.YesNo, MessageBoxImage.Question);
-            if (result == MessageBoxResult.Yes)
-            {
-                Application.Current.Shutdown();
-            }
+            App.Current.Windows[0].Close();
         });
     }
 }

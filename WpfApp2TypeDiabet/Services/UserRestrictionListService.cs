@@ -12,7 +12,7 @@ namespace WpfApp2TypeDiabet.Services
     public class UserRestrictionListService
     {
         public UserRestrictionList UserRestrictionList { get; set; }
-        //public ObservableCollection<UserGood> UserGoods { get; set; } = new ObservableCollection<UserGoodListService.UserGood>();
+        public ObservableCollection<UserRestrictionList> UserRestrictions { get; set; } = new ObservableCollection<UserRestrictionList>();
         public string CreateUserRestrictionList(int userID, int restrictionID)
         {
             try
@@ -40,6 +40,24 @@ namespace WpfApp2TypeDiabet.Services
             catch (Exception e)
             {
                 return e.Message;
+            }
+        }
+        public ObservableCollection<UserRestrictionList> GetUserRestrictions(User user)
+        {
+            if (UserRestrictions.Any())
+            {
+                UserRestrictions.Clear();
+            }
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                var result = from userRestriction in db.UserRestrictionList
+                             where userRestriction.UserID == user.id
+                             select userRestriction;
+                foreach (var e in result)
+                {
+                    UserRestrictions.Add(e);
+                }
+                return UserRestrictions;
             }
         }
     }

@@ -17,6 +17,10 @@ namespace WpfApp2TypeDiabet.ViewModels
     {
         private readonly NavigationService _navigation;
         private readonly UserService _userService;
+        private readonly UserGoodListService _userGoodListService;
+        private readonly UserRestrictionListService _userRestrictionListService;
+        private readonly GoodBasketService _goodBasketService;
+
         public ObservableCollection<ViewUser> UsersList { get; set; }
         public ViewUser SelectedUser { get; set; } 
         public string SelectedUserName { get; set; }
@@ -36,10 +40,14 @@ namespace WpfApp2TypeDiabet.ViewModels
             }
         }
 
-        public AdminUserViewPageViewModel(NavigationService navigation, UserService userService)
+        public AdminUserViewPageViewModel(NavigationService navigation, UserService userService, UserGoodListService userGoodListService,
+            UserRestrictionListService userRestrictionListService, GoodBasketService goodBasketService)
         {
             _navigation = navigation;
             _userService = userService;
+            _userGoodListService = userGoodListService;
+            _userRestrictionListService = userRestrictionListService;
+            _goodBasketService = goodBasketService;
             FillUsersList();
         }
         public ICommand GoBackCommand => new DelegateCommand(() =>
@@ -52,7 +60,7 @@ namespace WpfApp2TypeDiabet.ViewModels
         });
         public ICommand DeleteUserCommand => new DelegateCommand(() =>
         {
-            MessageBoxResult boxResult = MessageBox.Show("Ви впевнені, що хочете видалити користувача"+SelectedUser.UserName+" ?",
+            MessageBoxResult boxResult = MessageBox.Show("Ви впевнені, що хочете видалити користувача "+SelectedUser.UserName+" ?",
                 "Видалення користувача", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if(boxResult==MessageBoxResult.Yes)
             {
@@ -65,15 +73,23 @@ namespace WpfApp2TypeDiabet.ViewModels
                 else
                 {
                     MessageBox.Show("Користувача " + SelectedUser.UserName + " було успішно видалено", "Видалення користувача", MessageBoxButton.OK, MessageBoxImage.Information);
+                    FillUsersList();
                 }
             }
         });
         public void FillUsersList()
         {
             UsersList = new ObservableCollection<ViewUser>();
-            ViewUser user = new("Alexandr", 1, 2, 3);
-            UsersList.Add(user);
             
+            var users = _userService.GetUsersList(_userService.CurrentUser);
+            foreach(var u in users)
+            {
+                var userGoodsCount = _userGoodListService.GetUserGoods(u).Count();
+                var userRestrictionsCount = _userRestrictionListService.GetUserRestrictions(u).Count();
+                var goodBasketsCount = _goodBasketService.GetAllBaskets(u).Count();
+                ViewUser viewUser = new(u.UserName, userGoodsCount, userRestrictionsCount, goodBasketsCount);
+                UsersList.Add(viewUser);
+            }
         }
     }
 }
