@@ -13,7 +13,7 @@ namespace WpfApp2TypeDiabet.Services
     {
         public UserGoodList UserGoodList { get; set; }
         public ObservableCollection<GoodToOptimize> UserGoods { get; set; } = new ObservableCollection<UserGoodListService.GoodToOptimize>();
-
+        public ObservableCollection<GoodToOptimize> StandartGoods { get; set; } = new ObservableCollection<UserGoodListService.GoodToOptimize>();
         public class GoodToOptimize
         {
             public int GoodInShopID { get; set; }
@@ -110,47 +110,47 @@ namespace WpfApp2TypeDiabet.Services
                 return UserGoods;
             }
         }
-        public ObservableCollection<GoodToOptimize> UserGetAllGoods(User user)
-        {
-            if (UserGoods.Any())
-            {
-                UserGoods.Clear();
-            }
-            using (ApplicationContext db = new ApplicationContext())
-            {
-                var result = from goodInShop in db.GoodInShop 
-                             //join userGood in db.UserGoodList on goodInShop.id equals userGood.GoodInShopID
-                             join good in db.Goods on goodInShop.GoodId equals good.id
-                             join goodShopState in db.GoodShopState on goodInShop.id equals goodShopState.GoodInShopID
-                             join goodState in db.GoodState on goodShopState.GoodStateID equals goodState.id
-                             where /*userGood.UserID == user.id ||*/ goodInShop.IsDefault == true
-                             select new
-                             {
-                                 GoodInShopID = goodInShop.id,
-                                 GoodName = good.GoodName,
-                                 GoodPrice = goodInShop.GoodPrice,
-                                 GoodAmount = goodInShop.GoodAmount,
-                                 GoodUnits = goodInShop.GoodUnits,
-                                 GoodCarbohydrates = goodState.Carbohydrates,
-                                 GoodID = goodInShop.GoodId
-                             };
-                foreach (var e in result)
-                {
-                    GoodToOptimize userGood = new GoodToOptimize()
-                    {
-                        GoodInShopID = e.GoodInShopID,
-                        GoodName = e.GoodName,
-                        GoodPrice = e.GoodPrice,
-                        GoodAmount = e.GoodAmount,
-                        GoodUnits = e.GoodUnits,
-                        GoodCarbohydrates = e.GoodCarbohydrates,
-                        GoodID = e.GoodID
-                    };
-                    UserGoods.Add(userGood);
-                }
-                return UserGoods;
-            }
-        }
+        //public ObservableCollection<GoodToOptimize> UserGetAllGoods(User user)
+        //{
+        //    if (UserGoods.Any())
+        //    {
+        //        UserGoods.Clear();
+        //    }
+        //    using (ApplicationContext db = new ApplicationContext())
+        //    {
+        //        var result = from goodInShop in db.GoodInShop 
+        //                     join userGood in db.UserGoodList on goodInShop.id equals userGood.GoodInShopID
+        //                     join good in db.Goods on goodInShop.GoodId equals good.id
+        //                     join goodShopState in db.GoodShopState on goodInShop.id equals goodShopState.GoodInShopID
+        //                     join goodState in db.GoodState on goodShopState.GoodStateID equals goodState.id
+        //                     where goodInShop.IsDefault == true || userGood.UserID == user.id 
+        //                     select new
+        //                     {
+        //                         GoodInShopID = goodInShop.id,
+        //                         GoodName = good.GoodName,
+        //                         GoodPrice = goodInShop.GoodPrice,
+        //                         GoodAmount = goodInShop.GoodAmount,
+        //                         GoodUnits = goodInShop.GoodUnits,
+        //                         GoodCarbohydrates = goodState.Carbohydrates,
+        //                         GoodID = goodInShop.GoodId
+        //                     };
+        //        foreach (var e in result)
+        //        {
+        //            GoodToOptimize userGood = new GoodToOptimize()
+        //            {
+        //                GoodInShopID = e.GoodInShopID,
+        //                GoodName = e.GoodName,
+        //                GoodPrice = e.GoodPrice,
+        //                GoodAmount = e.GoodAmount,
+        //                GoodUnits = e.GoodUnits,
+        //                GoodCarbohydrates = e.GoodCarbohydrates,
+        //                GoodID = e.GoodID
+        //            };
+        //            UserGoods.Add(userGood);
+        //        }
+        //        return UserGoods;
+        //    }
+        //}
         public ObservableCollection<GoodToOptimize> GuestGetAllGoods()
         {
             if (UserGoods.Any())
@@ -163,7 +163,7 @@ namespace WpfApp2TypeDiabet.Services
                              join good in db.Goods on goodInShop.GoodId equals good.id
                              join goodShopState in db.GoodShopState on goodInShop.id equals goodShopState.GoodInShopID
                              join goodState in db.GoodState on goodShopState.GoodStateID equals goodState.id
-                             where goodInShop.IsDefault
+                             where goodInShop.IsDefault == true
                              select new
                              {
                                  GoodInShopID = goodInShop.id,
@@ -234,9 +234,9 @@ namespace WpfApp2TypeDiabet.Services
         }
         public ObservableCollection<GoodToOptimize> GetStandartGoods()
         {
-            if (UserGoods.Any())
+            if (StandartGoods.Any())
             {
-                UserGoods.Clear();
+                StandartGoods.Clear();
             }
             using (ApplicationContext db = new ApplicationContext())
             {
@@ -244,7 +244,7 @@ namespace WpfApp2TypeDiabet.Services
                              join good in db.Goods on goodInShop.GoodId equals good.id
                              join goodShopState in db.GoodShopState on goodInShop.id equals goodShopState.GoodInShopID
                              join goodState in db.GoodState on goodShopState.GoodStateID equals goodState.id
-                             where goodInShop.IsDefault
+                             where goodInShop.IsDefault == true
                              select new
                              {
                                  GoodInShopID = goodInShop.id,
@@ -257,7 +257,7 @@ namespace WpfApp2TypeDiabet.Services
                              };
                 foreach (var e in result)
                 {
-                    GoodToOptimize userGood = new GoodToOptimize()
+                    GoodToOptimize standartGood = new GoodToOptimize()
                     {
                         GoodInShopID = e.GoodInShopID,
                         GoodName = e.GoodName,
@@ -267,10 +267,10 @@ namespace WpfApp2TypeDiabet.Services
                         GoodCarbohydrates = e.GoodCarbohydrates,
                         GoodID = e.GoodID
                     };
-                    UserGoods.Add(userGood);
+                    StandartGoods.Add(standartGood);
                 }
-                return UserGoods;
             }
+            return StandartGoods;
         }
     }
 }

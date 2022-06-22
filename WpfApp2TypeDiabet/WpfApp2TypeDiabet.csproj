@@ -18,7 +18,9 @@
     <None Remove="Images\Good.png" />
     <None Remove="Images\Home.png" />
     <None Remove="Images\LogOut.png" />
+    <None Remove="Images\Main icon.ico" />
     <None Remove="Images\MainBackground.jpg" />
+    <None Remove="Images\MainIcon.ico" />
     <None Remove="Images\Profile.png" />
     <None Remove="Images\Ration.png" />
     <None Remove="Images\Restriction.png" />
@@ -29,6 +31,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Images\MainIcon.ico" />
     <Resource Include="Images\Save.png" />
   </ItemGroup>
 

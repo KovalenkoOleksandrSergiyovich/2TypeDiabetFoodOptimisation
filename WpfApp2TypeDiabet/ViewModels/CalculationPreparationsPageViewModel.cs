@@ -58,7 +58,7 @@ namespace WpfApp2TypeDiabet.ViewModels
         public List<string> PeriodList { get; set; }
         public string Period { get; set; }
         public string MaximumGoodPrice { get; set; }
-        public ObservableCollection<UserGoodListService.GoodToOptimize> GoodList { get; set; }
+        public ObservableCollection<UserGoodListService.GoodToOptimize> GoodList { get; set; } = new ObservableCollection<UserGoodListService.GoodToOptimize>();
         public UserGoodListService.GoodToOptimize SelectedGood { get; set; }
         public UserGoodListService.GoodToOptimize ConfirmedSelectedGood { get; set; }
         public ObservableCollection<UserGoodListService.GoodToOptimize> SelectedGoods { get; set; } = new ObservableCollection<UserGoodListService.GoodToOptimize>();
@@ -70,14 +70,23 @@ namespace WpfApp2TypeDiabet.ViewModels
             _optimizeService = optimizeService;
             _userGoodListService = userGoodListService;
             _restrictionService = restrictionService;
-
+            if(GoodList.Any())
+            {
+                GoodList.Clear();
+            }
             if (_userService.CurrentUser.UserName.Equals("Guest"))
             {
                 GoodList = _userGoodListService.GuestGetAllGoods();
             }
             else
             {
-                GoodList = _userGoodListService.UserGetAllGoods(_userService.CurrentUser);
+                ObservableCollection<UserGoodListService.GoodToOptimize> standartGoods = _userGoodListService.GetStandartGoods();
+                ObservableCollection<UserGoodListService.GoodToOptimize> userGoods = _userGoodListService.GetUserGoods(_userService.CurrentUser);
+
+                foreach (var p in standartGoods.Union(userGoods))
+                    GoodList.Add(p);
+
+                //GoodList = _userGoodListService.UserGetAllGoods(_userService.CurrentUser);
             }
 
             PeriodList = new List<string>()

@@ -17,7 +17,8 @@
     TextElement.FontWeight="Medium"
     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
     WindowStartupLocation="CenterScreen"
-    mc:Ignorable="d" Closing="Window_Closing">
+    mc:Ignorable="d" Closing="Window_Closing"
+    Icon="../Images/MainIcon.ico">
     <Grid>
         <Frame Content="{Binding CurrentPage}" NavigationUIVisibility="Hidden" />
     </Grid>
